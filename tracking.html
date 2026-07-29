@@ -1,199 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Track Shipment | Airsell Cargo - Real-Time Manifest Tracking</title>
-    <meta name="description" content="Use the Airsell Cargo manifest system to track your air and sea shipments from Hargeisa to worldwide destinations in real-time.">
-    
-    <!-- Link to your professional CSS -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Track Shipment | Airsell Cargo - Real-Time Manifest Tracking</title>
+  <meta name="description" content="Use the Airsell Cargo manifest system to track your air and sea shipments from Hargeisa to worldwide destinations in real-time.">
+  
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <div class="container header-flex">
-        <div class="logo">
-            <a href="index.html">
-                <img src="logo.png" alt="Airsell Logo" width="150">
-            </a>
-        </div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index">Home</a></li>
-                <li><a href="about">About</a></li>
-                <li><a href="services">Services</a></li>
-                <li><a href="tracking" class="active">Tracking</a></li>
-                <li><a href="contact">Contact</a></li>
-            </ul>
-        </nav>
+  <div class="container header-flex">
+    <div class="logo">
+      <a href="index.html">
+        <img src="logo.png" alt="Airsell Logo" width="150">
+      </a>
     </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="tracking.html" class="active">Tracking</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
 <main>
-    <!-- Standard Hero Section -->
-    <section class="services-hero">
-        <div class="container">
-            <h1>Global Shipment Tracking</h1>
-            <p>Monitor your cargo from Hargeisa to the world via our manifest system.</p>
-        </div>
-    </section>
+  <!-- Hero Section -->
+  <section class="services-hero">
+    <div class="container">
+      <h1>Global Shipment Tracking</h1>
+      <p>Real-time updates from Hargeisa Airport and Berbera Port to worldwide hubs.</p>
+    </div>
+  </section>
 
-    <!-- Tracking Input Section -->
-    <section class="contact-section">
-        <div class="container">
-            <div class="contact-form-container" style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <span class="badge red">Live Manifest</span>
-                <h3 style="margin-bottom: 15px;">Enter Tracking Number</h3>
-                <p style="color: var(--text-muted); margin-bottom: 30px;">
-                    Enter your Airway Bill (AWB) to see real-time updates from our regional hubs.
-                </p>
-                
-                <form class="tracking-form" id="main-track-form" style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-                    <input type="text" id="awb-input" placeholder="e.g., ASL-8829104" required style="flex: 2; min-width: 280px; margin-bottom: 0;">
-                    <button type="submit" id="track-btn" class="btn-primary" style="flex: 1; min-width: 150px;">Track Now</button>
-                </form>
+  <!-- Tracking Input Section -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-form-container" style="max-width: 800px; margin: 0 auto; text-align: center;">
+        <span class="badge red">Live Manifest</span>
+        <h3 style="margin-bottom: 15px;">Enter Tracking Number</h3>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">
+          Enter your Airway Bill (AWB) to see real-time updates from our regional hubs.
+        </p>
+        
+        <form id="main-track-form" class="tracking-form" style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+          <input type="text" id="awb-input" placeholder="e.g., ASL-8829104" required style="flex: 2; min-width: 280px;">
+          <button type="submit" id="track-btn" class="btn-primary" style="flex: 1; min-width: 150px;">Track Now</button>
+        </form>
 
-                <!-- Result Area (Hidden by Default) -->
-                <div id="tracking-result" style="display: none; margin-top: 40px; text-align: left;">
-                    <div class="service-card green" style="border-top-width: 8px;">
-                        <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 20px;">
-                            <small style="color: var(--text-muted); text-transform: uppercase; font-weight: bold; font-size: 0.75rem;">Manifest Details:</small>
-                            <h2 id="display-awb" style="margin: 5px 0; color: var(--primary-dark);"></h2>
-                        </div>
-                        
-                        <!-- Content injected by JavaScript -->
-                        <div id="shipment-info-content"></div>
-                    </div>
-                </div>
+        <!-- Result Area -->
+        <div id="tracking-result" style="display: none; margin-top: 40px; text-align: left;">
+          <div class="service-card green" style="border-top-width: 8px;">
+            <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 20px;">
+              <small style="color: var(--text-muted); text-transform: uppercase; font-weight: bold; font-size: 0.75rem;">Manifest Details:</small>
+              <h2 id="display-awb" style="margin: 5px 0; color: var(--primary-dark);"></h2>
             </div>
+            <div id="shipment-info-content"></div>
+            <ul id="timeline" style="margin-top:20px; list-style:none; padding:0;"></ul>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
-    <div class="container footer-row">
-        <!-- Column 1: Brand Authority -->
-        <div class="footer-column">
-            <h4 class="brand-yellow-text">Airsell Cargo</h4>
-            <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6;">
-                A professional, non-IATA freight forwarder and multimodal logistics provider. 
-                Strategically positioned in Hargeisa to bridge regional trade with global markets through digital innovation.
-            </p>
-        </div>
-
-        <!-- Column 2: Operations & Portal -->
-        <div class="footer-column">
-            <h4 class="brand-yellow-text">Operations</h4>
-            <ul class="footer-links">
-                <li><a href="services.html">Freight Services</a></li>
-                <li><a href="tracking.html">Airsell Web Portal</a></li>
-                <li><a href="about.html">Company Profile</a></li>
-                <li><a href="terms.html">Standard Trading Conditions</a></li>
-            </ul>
-        </div>
-
-        <!-- Column 3: Professional Verification -->
-        <div class="footer-column">
-            <h4 class="brand-yellow-text">Member Verification</h4>
-            <ul class="footer-links" style="font-size: 0.85rem;">
-                <li>
-                    <a href="https://www.iata.org/en/publications/directories/cargolink/directory/airsell-cargo-service-agent/12787/" target="_blank">
-                        ✓ IATA Cargolink Directory
-                    </a>
-                </li>
-                <li>
-                    <a href="https://fiata.org/directory/so/" target="_blank">
-                        ✓ FIATA Member Directory
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.iata.org/en/programs/cargo/e/one-record/multi-lateral-agreement/" target="_blank">
-                        ✓ IATA ONE Record Standard
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Column 4: Contact (Hidden Number Support) -->
-        <div class="footer-column">
-            <h4 class="brand-yellow-text">Global Contact</h4>
-            <div style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.8;">
-                📍 Hargeisa, Somaliland<br>
-                📧 <a href="mailto:contact@airsellcargo.com" style="color: white; text-decoration: none;">contact@airsellcargo.com</a><br>
-                <!-- Hidden Number Button -->
-                <div style="margin-top: 10px;">
-                    <a href="https://wa.me/252634823310" target="_blank" 
-                       style="background: #25D366; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem;">
-                       <span>💬 Live Support Chat</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+  <div class="container footer-row">
+    <div class="footer-column">
+      <h4 class="brand-yellow-text">Airsell Cargo</h4>
+      <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6;">
+        A professional, non-IATA freight forwarder and multimodal logistics provider. 
+        Strategically positioned in Hargeisa to bridge regional trade with global markets through digital innovation.
+      </p>
     </div>
-
-    <!-- Legal & Compliance Bar -->
-    <div class="footer-bottom">
-        <div class="container" style="border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-            <p style="color: #64748b; font-size: 0.8rem;">&copy; 2026 Airsell Cargo. All rights reserved.</p>
-            <div style="font-size: 0.8rem;">
-                <a href="terms.html" style="color: #64748b; text-decoration: none; margin-left: 20px;">Terms of Service</a>
-                <span style="color: #64748b; margin-left: 20px;">Logistics Excellence for East Africa</span>
-            </div>
-        </div>
+    <div class="footer-column">
+      <h4 class="brand-yellow-text">Operations</h4>
+      <ul class="footer-links">
+        <li><a href="services.html">Freight Services</a></li>
+        <li><a href="tracking.html">Airsell Web Portal</a></li>
+        <li><a href="about.html">Company Profile</a></li>
+        <li><a href="terms.html">Standard Trading Conditions</a></li>
+      </ul>
     </div>
+    <div class="footer-column">
+      <h4 class="brand-yellow-text">Member Verification</h4>
+      <ul class="footer-links" style="font-size: 0.85rem;">
+        <li><a href="https://www.iata.org/en/publications/directories/cargolink/directory/airsell-cargo-service-agent/12787/" target="_blank">✓ IATA Cargolink Directory</a></li>
+        <li><a href="https://fiata.org/directory/so/" target="_blank">✓ FIATA Member Directory</a></li>
+        <li><a href="https://www.iata.org/en/programs/cargo/e/one-record/multi-lateral-agreement/" target="_blank">✓ IATA ONE Record Standard</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4 class="brand-yellow-text">Global Contact</h4>
+      <div style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.8;">
+        📍 Hargeisa, Somaliland<br>
+        🌐 www.airsellcargo.com<br>
+        📧 <a href="mailto:info@airsellcargo.com" style="color: white; text-decoration: none;">info@airsellcargo.com</a><br>
+        📞 +252‑63‑412‑5763
+      </div>
+    </div>
+  </div>
 </footer>
 
 <script>
-const trackForm = document.getElementById('<a href="https://www.freightnet.com/profile/249514.htm"><img src="https://www.freightnet.com/images/m_249514.jpg" border="0" width="250" height="100" alt="Freightnet Standard Member"></a>');
-const resultArea = document.getElementById('tracking-result');
-const displayAwb = document.getElementById('display-awb');
-const infoContent = document.getElementById('shipment-info-content');
-const trackBtn = document.getElementById('track-btn');
-
-trackForm.addEventListener('submit', function(e) {
+document.getElementById('main-track-form').addEventListener('submit', function(e) {
   e.preventDefault();
-  const inputValue = document.getElementById('awb-input').value.trim().toUpperCase();
-
-  trackBtn.innerText = "Searching...";
-  trackBtn.style.opacity = "0.7";
-
-  // Simulating a fetch to shipment.json
+  const awb = document.getElementById('awb-input').value.trim();
+  
   fetch('shipment.json')
-    .then(response => response.json())
-    .then(shipments => {
-      const shipment = shipments.find(s => s.ShipmentID.toUpperCase() === inputValue);
-      
-      resultArea.style.display = 'block';
-      
-      if (shipment) {
-        displayAwb.innerText = shipment.ShipmentID;
-        infoContent.innerHTML = `
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 0.95rem;">
-            <p><strong>Customer:</strong> ${shipment.CustomerName}</p>
-            <p><strong>Status:</strong> <span style="color:var(--brand-green); font-weight:bold;">${shipment.Status}</span></p>
-            <p><strong>Origin:</strong> ${shipment.Origin}</p>
-            <p><strong>Destination:</strong> ${shipment.Destination}</p>
-            <p><strong>ETA:</strong> ${shipment.ExpectedArrival}</p>
-          </div>
-        `;
-      } else {
-        displayAwb.innerText = "Not Found";
-        infoContent.innerHTML = `
-          <p style="color:var(--brand-red); font-weight:bold;">No shipment found for AWB: ${inputValue}. Please check your number or contact support.</p>
-        `;
-      }
-      
-      trackBtn.innerText = "Track Now";
-      trackBtn.style.opacity = "1";
-      resultArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('display-awb').innerText = awb;
+      document.getElementById('shipment-info-content').innerHTML = `
+        <p><strong>Status:</strong> ${data.Status}</p>
+        <p><strong>Origin:</strong> ${data.Origin}</p>
+        <p><strong>Destination:</strong> ${data.Destination}</p>
+        <p><strong>Estimated Arrival:</strong> ${data.Timeline[data.Timeline.length-1].date}</p>
+      `;
+      const timelineEl = document.getElementById('timeline');
+      timelineEl.innerHTML = '';
+      data.Timeline.forEach(step => {
+        const li = document.createElement('li');
+        li.innerHTML = `✅ <strong>${step.stage}</strong> — ${step.date}`;
+        timelineEl.appendChild(li);
+      });
+      document.getElementById('tracking-result').style.display = 'block';
     })
-    .catch(error => {
-      console.error('Error:', error);
-      trackBtn.innerText = "Track Now";
-      trackBtn.style.opacity = "1";
+    .catch(err => {
+      document.getElementById('shipment-info-content').innerHTML = `<p style="color:red;">Error loading shipment data.</p>`;
+      document.getElementById('tracking-result').style.display = 'block';
     });
 });
 </script>
