@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // BUILD HEADERS & MESSAGE
     // -------------------------------------------------
     $email_subject = "Airsell Portal Inquiry: $subject";
-    $headers  = "From: portal@airsellcargo.com\r\n";   // Prefer your real domain email for SPF
+    $headers  = "From: info@airsellcargo.com\r\n";   // Prefer your real domain email for SPF
     $headers .= "Reply-To: $email\r\n";
     $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
