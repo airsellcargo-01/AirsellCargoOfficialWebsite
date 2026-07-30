@@ -42,7 +42,28 @@ header {
         
         .info-card { border-top: 6px solid var(--brand-red); }
         .dept-label { display: block; font-weight: 800; text-transform: uppercase; font-size: 0.75rem; color: var(--text-gray); letter-spacing: 1px; margin-bottom: 8px; }
-        
+        <form action="https://formsubmit.co/sales@airsellcargo.com" method="POST" style="margin-top:30px;">
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
+    <input type="text" name="name" placeholder="Full Name" required 
+           style="padding:12px; border:1px solid #e2e8f0; border-radius:6px;">
+    <input type="email" name="email" placeholder="Email Address" required 
+           style="padding:12px; border:1px solid #e2e8f0; border-radius:6px;">
+  </div>
+
+  <textarea name="message" placeholder="Your Message" rows="6" required 
+            style="width:100%; padding:12px; border:1px solid #e2e8f0; border-radius:6px; margin-bottom:20px;"></textarea>
+
+  <!-- Hidden fields -->
+  <input type="hidden" name="_next" value="https://airsellcargo.com/thank.html">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_subject" value="New Contact Form Submission - Airsell Cargo">
+
+  <button type="submit" 
+          style="background:var(--brand-red); color:white; padding:14px 28px; border:none; border-radius:8px; font-weight:700; cursor:pointer; transition:0.3s;">
+    ✉ Send Message
+  </button>
+</form>
+
         /* Interactive WhatsApp Button */
         .wa-button { 
             background: #25D366; color: white; text-decoration: none; padding: 15px 25px; 
