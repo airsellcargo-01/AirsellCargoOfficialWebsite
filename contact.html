@@ -57,45 +57,82 @@
     </div>
   </header>
 
-
-
-  <div class="info-card">
+<div class="info-card">
   <h2>Request a Cargo Shipment Quote</h2>
 
   <form id="quoteForm" action="https://formsubmit.co/1233a26cfc71ac026ab36a3426f8e462" method="POST" enctype="multipart/form-data">
-  <!-- Hidden Settings -->
-  <input type="hidden" name="_next" value="https://airsellcargo.com/thank.html">
-  <input type="hidden" name="_subject" value="New Cargo Quote Request">
-  <input type="hidden" name="_captcha" value="false">
+    
+    <!-- Hidden Settings -->
+    <input type="hidden" name="_next" value="https://airsellcargo.com/thanks.html">
+    <input type="hidden" name="_subject" value="New Cargo Quote Request">
+    <input type="hidden" name="_captcha" value="false">
 
-  <h3>Client Information</h3>
-  <label for="name">Full Name*</label>
-  <input type="text" id="name" name="name" required>
-  <label for="company">Company Name</label>
-  <input type="text" id="company" name="company">
-  <label for="address">Postal Address*</label>
-  <input type="text" id="address" name="address" required>
-  <label for="email">Email Address*</label>
-  <input type="email" id="email" name="email" required>
-  <label for="phone">Phone Number*</label>
-  <input type="tel" id="phone" name="phone" required>
-  <label for="contact_method">Preferred Contact Method</label>
-  <select id="contact_method" name="contact_method">
-    <option>Email</option><option>Phone</option><option>WhatsApp</option>
-  </select>
+    <!-- Client Information -->
+    <h3 class="form-section-title">Client Information</h3>
+    <label for="name" class="form-label">Full Name*</label>
+    <input type="text" id="name" name="name" class="form-input" required>
 
-  <h3>Shipment Details</h3>
-  <!-- Service Type, Cargo Type, Weight, Dimensions, Origin, Destination, Date, Incoterms -->
+    <label for="company" class="form-label">Company Name</label>
+    <input type="text" id="company" name="company" class="form-input">
 
-  <h3>Additional Notes</h3>
-  <label for="instructions">Special Instructions</label>
-  <textarea id="instructions" name="instructions" rows="4"></textarea>
-  <label for="file">Upload Supporting Document (optional)</label>
-  <input type="file" id="file" name="file">
+    <label for="address" class="form-label">Postal Address*</label>
+    <input type="text" id="address" name="address" class="form-input" required>
 
-  <button type="submit" class="wa-button">Request Quote</button>
-</form>
+    <label for="email" class="form-label">Email Address*</label>
+    <input type="email" id="email" name="email" class="form-input" required>
 
-</body>
-</html>
-      
+    <label for="phone" class="form-label">Phone Number*</label>
+    <input type="tel" id="phone" name="phone" class="form-input" required>
+
+    <label for="contact_method" class="form-label">Preferred Contact Method</label>
+    <select id="contact_method" name="contact_method" class="form-select">
+      <option>Email</option><option>Phone</option><option>WhatsApp</option>
+    </select>
+
+    <!-- Shipment Details -->
+    <h3 class="form-section-title">Shipment Details</h3>
+    <label for="service" class="form-label">Service Type*</label>
+    <select id="service" name="service" class="form-select" required>
+      <option>Air Freight</option><option>Sea Freight</option><option>Customs Clearance</option>
+    </select>
+
+    <label for="cargo_type" class="form-label">Cargo Type*</label>
+    <select id="cargo_type" name="cargo_type" class="form-select" required>
+      <option>General</option><option>Perishable</option><option>Dangerous Goods</option><option>Oversized</option>
+    </select>
+
+    <label for="weight" class="form-label">Weight (kg)*</label>
+    <input type="number" id="weight" name="weight" class="form-input" required>
+
+    <label for="dimensions" class="form-label">Dimensions (L x W x H cm)*</label>
+    <input type="text" id="dimensions" name="dimensions" class="form-input" placeholder="e.g. 120 x 80 x 60" required>
+
+    <label for="origin" class="form-label">Origin (City/Port/Airport)*</label>
+    <input type="text" id="origin" name="origin" class="form-input" required>
+
+    <label for="destination" class="form-label">Destination (City/Port/Airport)*</label>
+    <input type="text" id="destination" name="destination" class="form-input" required>
+
+    <label for="ship_date" class="form-label">Preferred Shipping Date</label>
+    <input type="date" id="ship_date" name="ship_date" class="form-input">
+
+    <label for="incoterms" class="form-label">Incoterms</label>
+    <select id="incoterms" name="incoterms" class="form-select">
+      <option>EXW</option><option>FOB</option><option>CIF</option><option>DDP</option>
+    </select>
+
+    <!-- Additional Notes -->
+    <h3 class="form-section-title">Additional Notes</h3>
+    <label for="instructions" class="form-label">Special Instructions</label>
+    <textarea id="instructions" name="instructions" class="form-textarea" rows="4"></textarea>
+
+    <label for="file" class="form-label">Upload Supporting Document (optional)</label>
+    <input type="file" id="file" name="file" class="form-file">
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn-submit">Request Quote</button>
+  </form>
+</div>
+
+
+  
