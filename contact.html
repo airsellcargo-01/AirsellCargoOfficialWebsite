@@ -62,58 +62,71 @@
     <p>Get tailored cargo solutions with transparent pricing and reliable service. Fill out the form below to request your shipment quote.</p>
   </section>
 
-  <div class="container contact-grid">
-    <div class="info-card">
-      <h2>Request a Cargo Shipment Quote</h2>
-      <form id="quoteForm" action="https://formsubmit.co/1233a26cfc71ac026ab36a3426f8e462" method="POST" enctype="multipart/form-data">
-        
-        <!-- Hidden Settings -->
-        <input type="hidden" name="_next" value="https://airsellcargo.com/thank.html">
-        <input type="hidden" name="_subject" value="New Cargo Quote Request">
-        <input type="hidden" name="_captcha" value="false">
+  <div class="info-card">
+  <h2>Request a Cargo Shipment Quote</h2>
 
-        <h3>Client Information</h3>
-        <label for="name">Full Name*</label>
-        <input type="text" id="name" name="name" required>
-        <label for="company">Company Name</label>
-        <input type="text" id="company" name="company">
-        <label for="email">Email Address*</label>
-        <input type="email" id="email" name="email" required>
-        <label for="phone">Phone Number*</label>
-        <input type="tel" id="phone" name="phone" required>
-        <label for="contact_method">Preferred Contact Method</label>
-        <select id="contact_method" name="contact_method">
-          <option>Email</option><option>Phone</option><option>WhatsApp</option>
-        </select>
+  <form id="quoteForm" action="https://formsubmit.co/1233a26cfc71ac026ab36a3426f8e462" method="POST" enctype="multipart/form-data">
+    
+    <!-- Hidden Settings -->
+    <input type="hidden" name="_next" value="https://airsellcargo.com/thanks.html">
+    <input type="hidden" name="_subject" value="New Cargo Quote Request">
+    <input type="hidden" name="_captcha" value="false">
 
-        <h3>Shipment Details</h3>
-        <label for="service">Service Type*</label>
-        <select id="service" name="service" required>
-          <option>Air Freight</option><option>Sea Freight</option><option>Customs Clearance</option>
-        </select>
-        <label for="cargo_type">Cargo Type*</label>
-        <select id="cargo_type" name="cargo_type" required>
-          <option>General</option><option>Perishable</option><option>Dangerous Goods</option><option>Oversized</option>
-        </select>
-        <label for="weight">Weight (kg)*</label>
-        <input type="number" id="weight" name="weight" required>
-        <label for="dimensions">Dimensions (L x W x H cm)*</label>
-        <input type="text" id="dimensions" name="dimensions" placeholder="e.g. 120 x 80 x 60" required>
-        <label for="origin">Origin (City/Port/Airport)*</label>
-        <input type="text" id="origin" name="origin" required>
-        <label for="destination">Destination (City/Port/Airport)*</label>
-        <input type="text" id="destination" name="destination" required>
-        <label for="ship_date">Preferred Shipping Date</label>
-        <input type="date" id="ship_date" name="ship_date">
-        <label for="incoterms">Incoterms</label>
-        <select id>
-           <input type="hidden" name="_next" value="https://airsellcargo.com/thanks.html">
-  <input type="hidden" name="_subject" value="New Cargo Quote Request">
-  <input type="hidden" name="_captcha" value="false">
+    <!-- Client Information -->
+    <h3>Client Information</h3>
+    <label for="name">Full Name*</label>
+    <input type="text" id="name" name="name" required>
+    <label for="company">Company Name</label>
+    <input type="text" id="company" name="company">
+    <label for="email">Email Address*</label>
+    <input type="email" id="email" name="email" required>
+    <label for="phone">Phone Number*</label>
+    <input type="tel" id="phone" name="phone" required>
+    <label for="contact_method">Preferred Contact Method</label>
+    <select id="contact_method" name="contact_method">
+      <option>Email</option><option>Phone</option><option>WhatsApp</option>
+    </select>
 
-  <!-- Your existing form fields go here -->
+    <!-- Shipment Details -->
+    <h3>Shipment Details</h3>
+    <label for="service">Service Type*</label>
+    <select id="service" name="service" required>
+      <option>Air Freight</option><option>Sea Freight</option><option>Customs Clearance</option>
+    </select>
+    <label for="cargo_type">Cargo Type*</label>
+    <select id="cargo_type" name="cargo_type" required>
+      <option>General</option><option>Perishable</option><option>Dangerous Goods</option><option>Oversized</option>
+    </select>
+    <label for="weight">Weight (kg)*</label>
+    <input type="number" id="weight" name="weight" required>
+    <label for="dimensions">Dimensions (L x W x H cm)*</label>
+    <input type="text" id="dimensions" name="dimensions" placeholder="e.g. 120 x 80 x 60" required>
+    <label for="origin">Origin (City/Port/Airport)*</label>
+    <input type="text" id="origin" name="origin" required>
+    <label for="destination">Destination (City/Port/Airport)*</label>
+    <input type="text" id="destination" name="destination" required>
+    <label for="ship_date">Preferred Shipping Date</label>
+    <input type="date" id="ship_date" name="ship_date">
+    <label for="incoterms">Incoterms</label>
+    <select id="incoterms" name="incoterms">
+      <option>EXW</option><option>FOB</option><option>CIF</option><option>DDP</option>
+    </select>
 
-  <!-- Submit Button -->
+    <!-- Additional Notes -->
+    <h3>Additional Notes</h3>
+    <label for="instructions">Special Instructions</label>
+    <textarea id="instructions" name="instructions" rows="4"></textarea>
+    <label for="file">Upload Supporting Document (optional)</label>
+    <input type="file" id="file" name="file">
+
+    <!-- Submit Button -->
+    <button type="submit" class="wa-button">Request Quote</button>
+  </form>
+</div>
+
   <button type="submit" class="wa-button">Request Quote</button>
 </form>
+
+</body>
+</html>
       
