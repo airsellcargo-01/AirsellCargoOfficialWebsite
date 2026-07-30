@@ -2,103 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thank You | Airsell Cargo</title>
-  <link rel="stylesheet" href="style.css">
   <style>
-    :root {
-      --brand-red: #cc0000;
-      --brand-yellow: #ffcc00;
-      --primary-dark: #001f3f;
-      --text-gray: #64748b;
-    }
-    body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; margin:0; background:#f1f5f9; color:#1e293b; line-height:1.6; }
-    .container { max-width:1200px; margin:auto; padding:0 24px; }
-    header { background:white; border-bottom:4px solid var(--brand-yellow); box-shadow:0 4px 6px rgba(0,0,0,0.15); }
-    .header-flex { display:flex; justify-content:space-between; align-items:center; }
-    .nav-links { list-style:none; display:flex; gap:6px; margin:0; }
-    .nav-links a { text-decoration:none; color:var(--primary-dark); font-weight:600; text-transform:uppercase; font-size:0.85rem; transition:0.3s; }
-    .nav-links a.active { color:var(--brand-red); border-bottom:2px solid var(--brand-red); padding-bottom:5px; }
-    .thank-banner { text-align:center; padding:100px 20px; background:white; }
-    .thank-banner h1 { font-size:2.5rem; font-weight:800; color:var(--primary-dark); margin-bottom:20px; }
-    .thank-banner p { font-size:1.1rem; color:var(--text-gray); margin-bottom:30px; }
-    .button { display:inline-block; padding:12px 24px; background:var(--brand-red); color:white; border-radius:6px; text-decoration:none; font-weight:700; }
-    .button:hover { background:#990000; }
-    .site-footer { background:var(--primary-dark); color:white; padding:60px 0 30px; margin-top:50px; }
-    .footer-row { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; }
-    .brand-yellow-text { color:var(--brand-yellow); text-transform:uppercase; font-size:0.9rem; margin-bottom:20px; display:block; }
-    .footer-links { list-style:none; padding:0; margin:0; }
-    .footer-links li { margin-bottom:10px; font-size:0.9rem; }
-    .footer-links a { color:#94a3b8; text-decoration:none; transition:0.3s; }
-    .footer-links a:hover { color:white; }
-    @media(max-width:900px){ .footer-row{grid-template-columns:1fr;} }
+    body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; background: #f1f5f9; color: #1e293b; text-align: center; padding: 80px; }
+    h1 { color: #008800; font-size: 2.5rem; margin-bottom: 20px; }
+    p { font-size: 1.1rem; color: #64748b; margin-bottom: 40px; }
+    a { background: #25D366; color: white; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: 600; }
+    a:hover { background: #128c7e; }
   </style>
 </head>
 <body>
-
-<!-- Header -->
-<header>
-  <div class="container header-flex">
-    <div class="logo">
-      <a href="/"><img src="logo.png" alt="Airsell Cargo" width="180"></a>
-    </div>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="tracking.html">Tracking</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<!-- Thank You Section -->
-<main>
-  <section class="thank-banner">
-    <div class="container">
-      <h1>Thank You!</h1>
-      <p>Your message has been successfully submitted. Our team will get back to you shortly.</p>
-      <a href="index.html" class="button">Return to Home</a>
-    </div>
-  </section>
-</main>
-
-<!-- Footer -->
-<footer class="site-footer">
-  <div class="container footer-row">
-    <div class="footer-column">
-      <span class="brand-yellow-text">Airsell Cargo</span>
-      <p style="font-size:0.85rem; color:#94a3b8;">Professional non-IATA freight forwarder providing multimodal logistics and digital tracking innovation from Hargeisa.</p>
-    </div>
-    <div class="footer-column">
-      <span class="brand-yellow-text">Operations</span>
-      <ul class="footer-links">
-        <li><a href="services.html">Services</a></li>
-        <li><a href="tracking.html">Airsell Portal</a></li>
-        <li><a href="terms.html">Trading Terms</a></li>
-      </ul>
-    </div>
-    <div class="footer-column">
-      <span class="brand-yellow-text">Verification</span>
-      <ul class="footer-links" style="font-size:0.8rem;">
-        <li><a href="https://www.iata.org/en/publications/directories/cargolink/directory/airsell-cargo-service-agent/12787/" target="_blank">IATA Cargolink</a></li>
-        <li><a href="https://fiata.org/directory/so/" target="_blank">FIATA Directory</a></li>
-        <li><a href="https://www.iata.org/en/programs/cargo/e/one-record/multi-lateral-agreement/" target="_blank">ONE Record Standards</a></li>
-      </ul>
-    </div>
-    <div class="footer-column">
-      <span class="brand-yellow-text">Support</span>
-      <p style="font-size:0.85rem; color:#cbd5e1; margin-bottom:10px;">📧 info@airsellcargo.com</p>
-      <a href="https://wa.me/252634823310" target="_blank" style="background:#25D366; color:white; padding:6px 12px; border-radius:4px; text-decoration:none; font-weight:bold; font-size:0.75rem; display:inline-block;">💬 Support Chat</a>
-    </div>
-  </div>
-  <div class="container" style="border-top:1px solid rgba(255,255,255,0.1); margin-top:40px; padding-top:20px; text-align:center;">
-    <p style="font-size:0.75rem; color:#64748b;">&copy; 2026 Airsell Cargo. All rights reserved. | Professional Logistics Standards</p>
-  </div>
-</footer>
-
+  <h1>✅ Thank You!</h1>
+  <p>Your cargo quote request has been submitted successfully. Our team will contact you within 24 hours.</p>
+  <a href="index.html">Back to Home</a>
 </body>
 </html>
