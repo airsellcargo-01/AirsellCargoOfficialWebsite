@@ -76,14 +76,30 @@
     <div class="contact-grid">
       <!-- Left Card -->
       <div class="info-card">
-        <h2 style="font-size:1.8rem; margin:0 0 10px; color:var(--primary-dark);">Client Support Portal</h2>
-        <p style="color:var(--text-gray); margin-bottom:30px;">For instant rate inquiries, shipment status, or booking requests, connect directly with our coordination team.</p>
+  <h2>Client Support Portal</h2>
+  <p>For instant rate inquiries, shipment status, or booking requests, connect directly with our coordination team.</p>
 
-        <div style="border-left:4px solid var(--brand-yellow); padding-left:20px; margin-bottom:40px;">
-          <span class="dept-label">Instant Logistics Support</span>
-          <a href="https://wa.me/252634823310" class="wa-button"><span>💬 Chat with a Coordinator</span></a>
-          <p style="font-size:0.85rem; color:var(--brand-green); font-weight:700;">✓ Active for Global Quote Requests</p>
-        </div>
+  <!-- WhatsApp Support -->
+  <div style="border-left:4px solid var(--brand-yellow); padding-left:20px; margin-bottom:40px;">
+    <span class="dept-label">Instant Logistics Support</span>
+    <a href="https://wa.me/252634823310" class="wa-button">💬 Chat with a Coordinator</a>
+    <p style="font-size:0.85rem; color:var(--brand-green); font-weight:700;">✓ Active for Global Quote Requests</p>
+  </div>
+
+  <!-- Contact Form -->
+  <form action="https://formsubmit.co/sales@airsellcargo.com" method="POST" style="margin-top:30px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
+      <input type="text" name="name" placeholder="Full Name" required style="padding:12px; border:1px solid #e2e8f0; border-radius:6px;">
+      <input type="email" name="email" placeholder="Email Address" required style="padding:12px; border:1px solid #e2e8f0; border-radius:6px;">
+    </div>
+    <textarea name="message" placeholder="Your Message" rows="6" required style="width:100%; padding:12px; border:1px solid #e2e8f0; border-radius:6px; margin-bottom:20px;"></textarea>
+    <input type="hidden" name="_next" value="https://airsellcargo.com/thank.html">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="New Contact Form Submission - Airsell Cargo">
+    <button type="submit" style="background:var(--brand-red); color:white; padding:14px 28px; border:none; border-radius:8px; font-weight:700; cursor:pointer;">✉ Send Message</button>
+  </form>
+</div>
+
 
         <!-- Contact Form -->
         <form action="https://formsubmit.co/info@airsellcargo.com" method="POST" style="margin-top:30px;">
