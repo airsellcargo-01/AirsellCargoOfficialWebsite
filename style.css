@@ -520,3 +520,77 @@ footer {
         font-size: 1.6rem;
     }
 }
+/* === Contact Form Styling === */
+
+/* Section Headings */
+.info-card h3 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--brand-red);
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 5px;
+}
+
+/* Labels */
+form label {
+  font-weight: 600;
+  color: var(--primary-dark);
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* Inputs, Selects, Textareas */
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: var(--brand-red);
+  box-shadow: 0 0 0 3px rgba(204,0,0,0.1);
+  outline: none;
+}
+
+/* Submit Button */
+.wa-button {
+  background: var(--brand-green);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.wa-button:hover {
+  background: #006600;
+  transform: translateY(-2px);
+}
+
+/* File Upload */
+form input[type="file"] {
+  border: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
