@@ -49,7 +49,7 @@
     <div class="container header-flex">
       <h2>Airsell Cargo</h2>
       <ul class="nav-links">
-        <li><a href="/" >Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="/services">Services</a></li>
         <li><a href="/about">About Us</a></li>
         <li><a href="/contact" class="active">Contact</a></li>
@@ -57,11 +57,21 @@
     </div>
   </header>
 
+  <section class="hero-banner">
+    <h1>Contact Our Logistics Experts</h1>
+    <p>Get tailored cargo solutions with transparent pricing and reliable service. Fill out the form below to request your shipment quote.</p>
+  </section>
+
   <div class="container contact-grid">
     <div class="info-card">
       <h2>Request a Cargo Shipment Quote</h2>
       <form id="quoteForm" action="https://formsubmit.co/1233a26cfc71ac026ab36a3426f8e462" method="POST" enctype="multipart/form-data">
         
+        <!-- Hidden Settings -->
+        <input type="hidden" name="_next" value="https://airsellcargo.com/thanks.html">
+        <input type="hidden" name="_subject" value="New Cargo Quote Request">
+        <input type="hidden" name="_captcha" value="false">
+
         <h3>Client Information</h3>
         <label for="name">Full Name*</label>
         <input type="text" id="name" name="name" required>
@@ -96,29 +106,4 @@
         <label for="ship_date">Preferred Shipping Date</label>
         <input type="date" id="ship_date" name="ship_date">
         <label for="incoterms">Incoterms</label>
-        <select id="incoterms" name="incoterms">
-          <option>EXW</option><option>FOB</option><option>CIF</option><option>DDP</option>
-        </select>
-
-        <h3>Additional Notes</h>
-
-        <div class="info-card">
-  <h2>Request a Cargo Shipment Quote</h2>
-
-  <form id="quoteForm" action="https://formsubmit.co/1233a26cfc71ac026ab36a3426f8e462" method="POST" enctype="multipart/form-data">
-    
-    <!-- Hidden Settings -->
-    <input type="hidden" name="_next" value="https://airsellcargo.com/thanks.html">
-    <input type="hidden" name="_subject" value="New Cargo Quote Request">
-    <input type="hidden" name="_captcha" value="false">
-
-    <!-- Your existing form fields go here -->
-    <label for="name">Full Name*</label>
-    <input type="text" id="name" name="name" required>
-    <!-- … other fields … -->
-
-    <!-- Submit Button -->
-    <button type="submit" class="wa-button">Request Quote</button>
-  </form>
-</div>
-
+        <select id
