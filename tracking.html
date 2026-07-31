@@ -1,141 +1,491 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Track Shipment | Airsell Cargo - Real-Time Manifest Tracking</title>
-  <meta name="description" content="Use the Airsell Cargo manifest system to track your air and sea shipments from Hargeisa to worldwide destinations in real-time.">
-  
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    
+    <title>Track Shipment | Airsell Cargo - Real-Time Manifest Tracking</title>
+    <meta name="description" content="Use the Airsell Cargo manifest system to track your air and sea shipments from Hargeisa to worldwide destinations in real-time.">
+    
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#0a192f">
+
+    <style>
+        :root {
+            --brand-red: #cc0000;
+            --brand-green: #008800;
+            --brand-yellow: #ffcc00;
+            --primary-dark: #001f3f;
+            --text-gray: #64748b;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            margin: 0;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 24px;
+        }
+
+        /* Header Layout */
+        header {
+            background: white;
+            border-bottom: 4px solid var(--brand-yellow);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a.active {
+            color: var(--brand-red);
+            border-bottom: 2px solid var(--brand-red);
+            padding-bottom: 5px;
+        }
+
+        /* Hero Banner */
+        .tracking-hero {
+            background: white;
+            padding: 70px 0 60px;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .tracking-hero h1 {
+            font-size: 2.8rem;
+            color: var(--primary-dark);
+            margin: 0 0 15px;
+            font-weight: 800;
+        }
+
+        .tracking-hero p {
+            font-size: 1.15rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            border-top: 4px solid var(--brand-red);
+            padding-top: 20px;
+            line-height: 1.7;
+        }
+
+        /* Form Card Styling */
+        .tracking-card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            max-width: 800px;
+            margin: 0 auto;
+            border-top: 5px solid var(--primary-dark);
+        }
+
+        .tracking-input-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .tracking-input-group input {
+            flex: 2;
+            min-width: 260px;
+            padding: 14px 18px;
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .tracking-input-group input:focus {
+            border-color: var(--primary-dark);
+        }
+
+        .btn-track {
+            flex: 1;
+            min-width: 140px;
+            background: var(--brand-green);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-track:hover {
+            opacity: 0.9;
+        }
+
+        /* Result Panel Styling */
+        .result-panel {
+            margin-top: 35px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .status-badge {
+            background: var(--brand-green);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .info-item label {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .info-item span {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        /* Timeline Styling */
+        .timeline-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0;
+            position: relative;
+        }
+
+        .timeline-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            color: #334155;
+        }
+
+        .timeline-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 20px;
+            height: 20px;
+            background: var(--brand-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        /* Footer Custom Styling */
+        .site-footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 50px;
+        }
+
+        .footer-row {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .footer-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .brand-yellow-text {
+            color: var(--brand-yellow);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
 <header>
-  <div class="container header-flex">
-    <div class="logo">
-      <a href="index.html">
-        <img src="logo.png" alt="Airsell Logo" width="150">
-      </a>
+    <div class="container header-flex">
+        <div class="logo">
+            <a href="/">
+                <img src="logo.png" alt="Airsell Cargo" width="180">
+            </a>
+        </div>
+        
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="tracking.html" class="active">Tracking</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
     </div>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="tracking.html" class="active">Tracking</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
 </header>
 
 <main>
-  <!-- Hero Section -->
-  <section class="services-hero">
-    <div class="container">
-      <h1>Global Shipment Tracking</h1>
-      <p>Real-time updates from Hargeisa Airport and Berbera Port to worldwide hubs.</p>
-    </div>
-  </section>
-
-  <!-- Tracking Input Section -->
-  <section class="contact-section">
-    <div class="container">
-      <div class="contact-form-container" style="max-width: 800px; margin: 0 auto; text-align: center;">
-        <span class="badge red">Live Manifest</span>
-        <h3 style="margin-bottom: 15px;">Enter Tracking Number</h3>
-        <p style="color: var(--text-muted); margin-bottom: 30px;">
-          Enter your Airway Bill (AWB) to see real-time updates from our regional hubs.
-        </p>
-        
-        <form id="main-track-form" class="tracking-form" style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-          <input type="text" id="awb-input" placeholder="e.g., ASL-8829104" required style="flex: 2; min-width: 280px;">
-          <button type="submit" id="track-btn" class="btn-primary" style="flex: 1; min-width: 150px;">Track Now</button>
-        </form>
-
-        <!-- Result Area -->
-        <div id="tracking-result" style="display: none; margin-top: 40px; text-align: left;">
-          <div class="service-card green" style="border-top-width: 8px;">
-            <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 20px;">
-              <small style="color: var(--text-muted); text-transform: uppercase; font-weight: bold; font-size: 0.75rem;">Manifest Details:</small>
-              <h2 id="display-awb" style="margin: 5px 0; color: var(--primary-dark);"></h2>
-            </div>
-            <div id="shipment-info-content"></div>
-            <ul id="timeline" style="margin-top:20px; list-style:none; padding:0;"></ul>
-          </div>
+    <!-- Tracking Hero Section -->
+    <section class="tracking-hero">
+        <div class="container">
+            <h1>Global Shipment Tracking</h1>
+            <p>Access real-time manifest status and milestone tracking for air and ocean freight departing from Hargeisa Airport and Berbera Port.</p>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Tracking Interface Section -->
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <div class="tracking-card">
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <span style="background: #fee2e2; color: var(--brand-red); font-size: 0.8rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; text-transform: uppercase;">
+                        Live Digital Manifest Portal
+                    </span>
+                    <h2 style="color: var(--primary-dark); font-size: 1.8rem; margin: 15px 0 5px;">Enter Airway Bill / Tracking ID</h2>
+                    <p style="color: var(--text-gray); font-size: 0.95rem; margin: 0;">
+                        Input your Airway Bill (AWB) or Container Number to retrieve instant status updates from our cloud tracking system.
+                    </p>
+                </div>
+
+                <form id="main-track-form" class="tracking-input-group">
+                    <input type="text" id="awb-input" placeholder="e.g., ASL-8829104" required aria-label="Tracking Number">
+                    <button type="submit" id="track-btn" class="btn-track">🔍 Track Freight</button>
+                </form>
+
+                <!-- Dynamic Tracking Results Display -->
+                <div id="tracking-result" style="display: none;">
+                    <div class="result-panel">
+                        <div class="result-header">
+                            <div>
+                                <small style="color: var(--text-gray); text-transform: uppercase; font-weight: bold; font-size: 0.75rem;">Waybill / Manifest ID</small>
+                                <h3 id="display-awb" style="margin: 3px 0 0; color: var(--primary-dark); font-size: 1.5rem;"></h3>
+                            </div>
+                            <span id="status-badge-el" class="status-badge">In Transit</span>
+                        </div>
+
+                        <!-- Freight Overview Grid -->
+                        <div id="shipment-info-content"></div>
+
+                        <div style="border-top: 1px dashed #cbd5e1; padding-top: 20px; margin-top: 20px;">
+                            <h4 style="margin: 0 0 15px; color: var(--primary-dark); font-size: 1.1rem;">Milestone Timeline</h4>
+                            <ul id="timeline" class="timeline-list"></ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
 </main>
 
 <footer class="site-footer">
-  <div class="container footer-row">
-    <div class="footer-column">
-      <h4 class="brand-yellow-text">Airsell Cargo</h4>
-      <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6;">
-        A professional, non-IATA freight forwarder and multimodal logistics provider. 
-        Strategically positioned in Hargeisa to bridge regional trade with global markets through digital innovation.
-      </p>
+    <div class="container footer-row">
+        <!-- Column 1: Brand Authority -->
+        <div class="footer-column">
+            <h4 class="brand-yellow-text">Airsell Cargo</h4>
+            <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6;">
+                A trusted freight forwarder and multimodal logistics provider strategically headquartered in Hargeisa to connect regional Horn of Africa trade with global commercial networks through digital innovation.
+            </p>
+        </div>
+
+        <!-- Column 2: Operations & Portal -->
+        <div class="footer-column">
+            <h4 class="brand-yellow-text">Operations</h4>
+            <ul class="footer-links">
+                <li><a href="services.html">Freight Services</a></li>
+                <li><a href="tracking.html">Airsell Web Portal</a></li>
+                <li><a href="about.html">Company Profile</a></li>
+                <li><a href="terms.html">Standard Trading Conditions</a></li>
+            </ul>
+        </div>
+
+        <!-- Column 3: Professional Verification -->
+        <div class="footer-column">
+            <h4 class="brand-yellow-text">Member Verification</h4>
+            <ul class="footer-links" style="font-size: 0.85rem;">
+                <li>
+                    <a href="https://www.iata.org/en/publications/directories/cargolink/directory/airsell-cargo-service-agent/12787/" target="_blank" rel="noopener">
+                        ✓ IATA Cargolink Directory
+                    </a>
+                </li>
+                <li>
+                    <a href="https://fiata.org/directory/so/" target="_blank" rel="noopener">
+                        ✓ FIATA Member Directory
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.iata.org/en/programs/cargo/e/one-record/multi-lateral-agreement/" target="_blank" rel="noopener">
+                        ✓ IATA ONE Record Standard
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Column 4: Contact & Live Support -->
+        <div class="footer-column">
+            <h4 class="brand-yellow-text">Global Contact</h4>
+            <div style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.8;">
+                📍 Hargeisa, Somaliland<br>
+                📧 <a href="mailto:info@airsellcargo.com" style="color: white; text-decoration: none;">info@airsellcargo.com</a><br>
+                
+                <div style="margin-top: 15px;">
+                    <a href="https://wa.me/252634823310" target="_blank" rel="noopener" 
+                       style="background: #25D366; color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; font-size: 0.88rem;">
+                       <span>💬 Live Support Chat</span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="footer-column">
-      <h4 class="brand-yellow-text">Operations</h4>
-      <ul class="footer-links">
-        <li><a href="services.html">Freight Services</a></li>
-        <li><a href="tracking.html">Airsell Web Portal</a></li>
-        <li><a href="about.html">Company Profile</a></li>
-        <li><a href="terms.html">Standard Trading Conditions</a></li>
-      </ul>
+
+    <!-- Legal & Compliance Bar -->
+    <div class="footer-bottom">
+        <div class="container" style="border-top: 1px solid rgba(255,255,255,0.08); margin-top: 40px; padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <p style="color: #64748b; font-size: 0.8rem; margin: 0;">&copy; 2026 Airsell Cargo. All rights reserved.</p>
+            <div style="font-size: 0.8rem;">
+                <a href="terms.html" style="color: #64748b; text-decoration: none;">Terms of Service</a>
+                <span style="color: #64748b; margin: 0 10px;">|</span>
+                <span style="color: #64748b;">Logistics Excellence for East Africa</span>
+            </div>
+        </div>
     </div>
-    <div class="footer-column">
-      <h4 class="brand-yellow-text">Member Verification</h4>
-      <ul class="footer-links" style="font-size: 0.85rem;">
-        <li><a href="https://www.iata.org/en/publications/directories/cargolink/directory/airsell-cargo-service-agent/12787/" target="_blank">✓ IATA Cargolink Directory</a></li>
-        <li><a href="https://fiata.org/directory/so/" target="_blank">✓ FIATA Member Directory</a></li>
-        <li><a href="https://www.iata.org/en/programs/cargo/e/one-record/multi-lateral-agreement/" target="_blank">✓ IATA ONE Record Standard</a></li>
-      </ul>
-    </div>
-    <div class="footer-column">
-      <h4 class="brand-yellow-text">Global Contact</h4>
-      <div style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.8;">
-        📍 Hargeisa, Somaliland<br>
-        🌐 www.airsellcargo.com<br>
-        📧 <a href="mailto:info@airsellcargo.com" style="color: white; text-decoration: none;">info@airsellcargo.com</a><br>
-        📞 +252‑63‑412‑5763
-      </div>
-    </div>
-  </div>
 </footer>
 
 <script>
 document.getElementById('main-track-form').addEventListener('submit', function(e) {
   e.preventDefault();
   const awb = document.getElementById('awb-input').value.trim();
-  
+  const trackingResultEl = document.getElementById('tracking-result');
+  const infoContentEl = document.getElementById('shipment-info-content');
+  const timelineEl = document.getElementById('timeline');
+
   fetch('shipment.json')
     .then(res => res.json())
     .then(data => {
       document.getElementById('display-awb').innerText = awb;
-      document.getElementById('shipment-info-content').innerHTML = `
-        <p><strong>Status:</strong> ${data.Status}</p>
-        <p><strong>Origin:</strong> ${data.Origin}</p>
-        <p><strong>Destination:</strong> ${data.Destination}</p>
-        <p><strong>Estimated Arrival:</strong> ${data.Timeline[data.Timeline.length-1].date}</p>
+      
+      infoContentEl.innerHTML = `
+        <div class="info-grid">
+          <div class="info-item">
+            <label>Current Status</label>
+            <span>${data.Status || 'Active Transit'}</span>
+          </div>
+          <div class="info-item">
+            <label>Origin Hub</label>
+            <span>${data.Origin || 'N/A'}</span>
+          </div>
+          <div class="info-item">
+            <label>Destination</label>
+            <span>${data.Destination || 'N/A'}</span>
+          </div>
+          <div class="info-item">
+            <label>Estimated Arrival</label>
+            <span>${data.Timeline && data.Timeline.length ? data.Timeline[data.Timeline.length - 1].date : 'N/A'}</span>
+          </div>
+        </div>
       `;
-      const timelineEl = document.getElementById('timeline');
+
       timelineEl.innerHTML = '';
-      data.Timeline.forEach(step => {
-        const li = document.createElement('li');
-        li.innerHTML = `✅ <strong>${step.stage}</strong> — ${step.date}`;
-        timelineEl.appendChild(li);
-      });
-      document.getElementById('tracking-result').style.display = 'block';
+      if (data.Timeline && Array.isArray(data.Timeline)) {
+        data.Timeline.forEach(step => {
+          const li = document.createElement('li');
+          li.innerHTML = `<strong>${step.stage}</strong> — <span style="color: var(--text-gray); font-size: 0.88rem;">${step.date}</span>`;
+          timelineEl.appendChild(li);
+        });
+      }
+
+      trackingResultEl.style.display = 'block';
     })
     .catch(err => {
-      document.getElementById('shipment-info-content').innerHTML = `<p style="color:red;">Error loading shipment data.</p>`;
-      document.getElementById('tracking-result').style.display = 'block';
+      infoContentEl.innerHTML = `<p style="color: var(--brand-red); font-weight: bold; text-align: center; margin: 15px 0;">Shipment ID not found or error loading manifest data. Please check your tracking number and try again.</p>`;
+      timelineEl.innerHTML = '';
+      trackingResultEl.style.display = 'block';
     });
 });
 </script>
