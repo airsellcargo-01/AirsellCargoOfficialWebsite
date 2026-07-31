@@ -3,17 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     
-    <title>Our Logistics Services | Airsell Cargo - Air & Sea Freight</title>
-    <meta name="description" content="Explore our range of logistics services in Hargeisa and Berbera, including Air Cargo, Sea Freight, and specialized livestock export solutions.">
+    <title>About Us | Airsell Cargo - Multimodal Freight & Logistics Solutions</title>
+    <meta name="description" content="Discover Airsell Cargo, a premier multimodal logistics provider in Hargeisa and Berbera, connecting regional supply chains with global trade networks.">
     
     <link rel="stylesheet" href="style.css">
-
     <meta name="theme-color" content="#0a192f">
+    <style>
+        :root {
+            --brand-red: #cc0000;
+            --brand-green: #008800;
+            --brand-yellow: #ffcc00;
+            --primary-dark: #001f3f;
+            --text-gray: #64748b;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            margin: 0;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 24px;
+        }
+
+        /* Hero Banner */
+        .about-hero {
+            background: white;
+            padding: 70px 0 60px;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .about-hero h1 {
+            font-size: 2.8rem;
+            color: var(--primary-dark);
+            margin: 0 0 15px;
+            font-weight: 800;
+        }
+
+        .about-hero p {
+            font-size: 1.15rem;
+            color: var(--text-gray);
+            max-width: 800px;
+            margin: 0 auto;
+            border-top: 4px solid var(--brand-red);
+            padding-top: 20px;
+            line-height: 1.8;
+        }
+
+        /* Core Services Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            border-top: 4px solid var(--primary-dark);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .service-card h3 {
+            color: var(--primary-dark);
+            margin-top: 0;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* Accredited Buttons */
+        .btn-accreditation {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-accreditation:hover {
+            opacity: 0.9;
+        }
+
+        /* Footer Custom Styling */
+        .site-footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 50px;
+        }
+
+        .footer-row {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .footer-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .brand-yellow-text {
+            color: var(--brand-yellow);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+    </style>
 </head>
 <body>
+
 <header>
     <div class="container header-flex">
         <div class="logo">
@@ -25,56 +178,64 @@
         <nav>
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
-                <li><a href="about" class="active">About</a></li>
-                <li><a href="services">Services</a></li>
-                <li><a href="tracking">Tracking</a></li>
-                <li><a href="contact">Contact</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="tracking.html">Tracking</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </div>
 </header>
+
 <main>
-    <section class="services-hero">
+    <!-- About Hero Section -->
+    <section class="about-hero">
         <div class="container">
-            <h1>Airsell Cargo | About Us</h1>
-            <p>Airsell Cargo is a premier multimodal logistics and freight forwarding agent headquartered in Hargeisa, Somaliland. Founded in 2024, we specialize in bridging the gap between local markets and global trade hubs through Hargeisa Airport and Berbera Port. As a forward-thinking, non-IATA agent, 
-                we are dedicated to professionalizing the logistics industry by integrating digital manifest systems and cloud-based tracking to ensure seamless, transparent, and secure cargo movement.</p>
+            <h1>About Airsell Cargo</h1>
+            <p>Airsell Cargo is a premier multimodal logistics and freight forwarding provider headquartered in Hargeisa, Somaliland. Founded in 2024, we empower regional and international trade by seamlessly connecting local commerce with global markets through key trade gateways, including Hargeisa Airport and the Port of Berbera. Driven by technology and operational excellence, we deliver end-to-end supply chain transparency, cloud-based tracking, and digital manifest integration—ensuring secure, efficient, and reliable cargo movement across East Africa and beyond.</p>
         </div>
     </section>
 
-   
-<div class="container" style="padding: 60px 0;">
-    <div class="services-header" style="text-align: center; margin-bottom: 50px;">
-        <h1 style="color: #001d3d; font-size: 2.5rem; margin-bottom: 15px;">Core Services</h1>
-        <p style="max-width: 700px; margin: 0 auto; color: #555; font-size: 1.1rem;">
-            We provide comprehensive end-to-end logistics support, ensuring your cargo reaches its destination efficiently.
-        </p>
+    <!-- Core Capabilities Overview -->
+    <div class="container" style="padding: 60px 24px;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2 style="color: var(--primary-dark); font-size: 2.2rem; margin-bottom: 10px;">Core Operational Capabilities</h2>
+            <p style="max-width: 700px; margin: 0 auto; color: var(--text-gray); font-size: 1.05rem;">
+                We provide comprehensive end-to-end logistics solutions designed to optimize your supply chain and keep global freight moving smoothly.
+            </p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Air Freight Forwarding</h3>
+                <p>Expedited, reliable air transport solutions routed seamlessly via Hargeisa Airport for time-sensitive cargo and high-value shipments.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>Sea Freight Forwarding</h3>
+                <p>Full Container Load (FCL) and Less-than-Container Load (LCL) consolidation services through the strategic deep-water Port of Berbera.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>Multimodal Supply Chain</h3>
+                <p>Customized land, sea, and air integration for streamlined end-to-end freight distribution across regional and international borders.</p>
+            </div>
+        </div>
     </div>
 
-    <div class="services-grid">
-        <div class="service-card">
-            <h3>Air Freight Forwarding</h3>
-            <p>Expert handling and expedited air transport via Hargeisa Airport.</p>
-        </div>
-
-        <div class="service-card">
-            <h3>Sea Freight Forwarding</h3>
-            <p>Reliable ocean freight and cargo consolidation through Berbera Port.</p>
-        </div>
-
-        <div class="service-card">
-            <h3>Multimodal Logistics</h3>
-            <p>Seamless integration of transport modes for optimized global delivery.</p>
-        </div>
-    </div>
-</div>
-    <section style="background: var(--white); padding: 60px 0; text-align: center; border-top: 1px solid #e2e8f0;">
+    <!-- Memberships & Verifications -->
+    <section style="background: white; padding: 60px 0; text-align: center; border-top: 1px solid #e2e8f0;">
         <div class="container">
-            <h2 style="color: var(--primary-dark);">Memberships & Accreditations</h2>
-            <p style="max-width: 600px; margin: 10px auto;">Our operations are backed by internationally recognized credentials, ensuring global compliance and reliability:</p>
-            <div style="margin-top: 30px; display: flex; gap: 15px; justify-content: center;">
-                <a href="https://www.iata.org/en/publications/directories/cargolink/directory/airsell-cargo-service-agent/12787/" class="btn-primary" style="text-decoration: none; background: var(--brand-green);">IATA CargoLink Member</a>
-                <a href="https://fiata.org/directory/so/" class="btn-primary" style="text-decoration: none; background: var(--brand-yellow); color: var(--primary-dark);">FIATA Individual Membership</a>
+            <h2 style="color: var(--primary-dark); font-size: 2rem;">Accreditations & Global Compliance</h2>
+            <p style="max-width: 650px; margin: 10px auto 30px; color: var(--text-gray);">Our operations adhere to internationally recognized logistics standards, ensuring transparency, regulatory compliance, and operational reliability:</p>
+            
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://www.iata.org/en/publications/directories/cargolink/directory/airsell-cargo-service-agent/12787/" target="_blank" rel="noopener" class="btn-accreditation" style="background: var(--brand-green); color: white;">
+                    ✓ Verified IATA CargoLink Member
+                </a>
+                <a href="https://fiata.org/directory/so/" target="_blank" rel="noopener" class="btn-accreditation" style="background: var(--brand-yellow); color: var(--primary-dark);">
+                    ✓ FIATA Individual Member
+                </a>
             </div>
         </div>
     </section>
@@ -86,8 +247,7 @@
         <div class="footer-column">
             <h4 class="brand-yellow-text">Airsell Cargo</h4>
             <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6;">
-                A professional, non-IATA freight forwarder and multimodal logistics provider. 
-                Strategically positioned in Hargeisa to bridge regional trade with global markets through digital innovation.
+                A trusted freight forwarder and multimodal logistics provider strategically headquartered in Hargeisa to connect regional Horn of Africa trade with global commercial networks through digital innovation.
             </p>
         </div>
 
@@ -107,33 +267,33 @@
             <h4 class="brand-yellow-text">Member Verification</h4>
             <ul class="footer-links" style="font-size: 0.85rem;">
                 <li>
-                    <a href="https://www.iata.org/en/publications/directories/cargolink/directory/airsell-cargo-service-agent/12787/" target="_blank">
+                    <a href="https://www.iata.org/en/publications/directories/cargolink/directory/airsell-cargo-service-agent/12787/" target="_blank" rel="noopener">
                         ✓ IATA Cargolink Directory
                     </a>
                 </li>
                 <li>
-                    <a href="https://fiata.org/directory/so/" target="_blank">
+                    <a href="https://fiata.org/directory/so/" target="_blank" rel="noopener">
                         ✓ FIATA Member Directory
                     </a>
                 </li>
                 <li>
-                    <a href="https://www.iata.org/en/programs/cargo/e/one-record/multi-lateral-agreement/" target="_blank">
+                    <a href="https://www.iata.org/en/programs/cargo/e/one-record/multi-lateral-agreement/" target="_blank" rel="noopener">
                         ✓ IATA ONE Record Standard
                     </a>
                 </li>
             </ul>
         </div>
 
-        <!-- Column 4: Contact (Hidden Number Support) -->
+        <!-- Column 4: Contact & Live Support -->
         <div class="footer-column">
             <h4 class="brand-yellow-text">Global Contact</h4>
             <div style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.8;">
                 📍 Hargeisa, Somaliland<br>
                 📧 <a href="mailto:info@airsellcargo.com" style="color: white; text-decoration: none;">info@airsellcargo.com</a><br>
-                <!-- Hidden Number Button -->
-                <div style="margin-top: 10px;">
-                    <a href="https://wa.me/252634823310" target="_blank" 
-                       style="background: #25D366; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem;">
+                
+                <div style="margin-top: 15px;">
+                    <a href="https://wa.me/252634823310" target="_blank" rel="noopener" 
+                       style="background: #25D366; color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; font-size: 0.88rem;">
                        <span>💬 Live Support Chat</span>
                     </a>
                 </div>
@@ -143,14 +303,16 @@
 
     <!-- Legal & Compliance Bar -->
     <div class="footer-bottom">
-        <div class="container" style="border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-            <p style="color: #64748b; font-size: 0.8rem;">&copy; 2026 Airsell Cargo. All rights reserved.</p>
+        <div class="container" style="border-top: 1px solid rgba(255,255,255,0.08); margin-top: 40px; padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <p style="color: #64748b; font-size: 0.8rem; margin: 0;">&copy; 2026 Airsell Cargo. All rights reserved.</p>
             <div style="font-size: 0.8rem;">
-                <a href="terms.html" style="color: #64748b; text-decoration: none; margin-left: 20px;">Terms of Service</a>
-                <span style="color: #64748b; margin-left: 20px;">Logistics Excellence for East Africa</span>
+                <a href="terms.html" style="color: #64748b; text-decoration: none;">Terms of Service</a>
+                <span style="color: #64748b; margin: 0 10px;">|</span>
+                <span style="color: #64748b;">Logistics Excellence for East Africa</span>
             </div>
         </div>
     </div>
 </footer>
+
 </body>
 </html>
