@@ -258,136 +258,29 @@
     </div>
   </header>
 
-  <section class="hero-banner">
-    <div class="container">
-      <h1>Contact Our Freight Experts</h1>
-      <p>Get fast quotes, air & ocean logistics consultation, and custom supply chain solutions tailored to your business needs.</p>
-    </div>
-  </section>
-
-  <main class="container">
-    <div class="contact-grid">
-      
-      <!-- Quote Form Container -->
-      <div class="info-card">
-        <h2>Request a Cargo Shipment Quote</h2>
-
-        <form id="quoteForm" action="https://formsubmit.co/1233a26cfc71ac026ab36a3426f8e462" method="POST" enctype="multipart/form-data">
-          
-          <!-- Hidden Settings -->
-          <input type="hidden" name="_next" value="https://airsellcargo.com/thank.html">
-          <input type="hidden" name="_subject" value="New Cargo Quote Request">
-          <input type="hidden" name="_captcha" value="false">
-
-          <!-- Parallel Grid Container -->
-          <div class="form-parallel-wrapper">
-            
-            <!-- SECTION 1 (LEFT COLUMN) -->
-            <div class="form-section-column">
-              <h3 class="form-section-title">1. Contact & Company</h3>
-              
-              <label for="name" class="form-label">Full Name*</label>
-              <input type="text" id="name" name="name" class="form-input" required autocomplete="name">
-
-              <label for="company" class="form-label">Company Name</label>
-              <input type="text" id="company" name="company" class="form-input" autocomplete="organization">
-
-              <label for="email" class="form-label">Email Address*</label>
-              <input type="email" id="email" name="email" class="form-input" required autocomplete="email">
-
-              <label for="phone" class="form-label">Phone Number*</label>
-              <input type="tel" id="phone" name="phone" class="form-input" required autocomplete="tel">
-
-              <label for="instructions" class="form-label">Special Notes / Packing List</label>
-              <textarea id="instructions" name="instructions" class="form-textarea" rows="3" placeholder="Additional details or handling notes..."></textarea>
-            </div>
-
-            <!-- SECTION 2 (RIGHT COLUMN) -->
-            <div class="form-section-column">
-              <h3 class="form-section-title">2. Shipment Specifications</h3>
-              
-              <div class="form-row">
-                <div>
-                  <label for="origin" class="form-label">Origin (City/Port)*</label>
-                  <input type="text" id="origin" name="origin" class="form-input" placeholder="e.g. Shanghai" required>
-                </div>
-                <div>
-                  <label for="destination" class="form-label">Destination (City/Port)*</label>
-                  <input type="text" id="destination" name="destination" class="form-input" placeholder="e.g. Los Angeles" required>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div>
-                  <label for="service" class="form-label">Service Type*</label>
-                  <select id="service" name="service" class="form-select" required>
-                    <option value="Air Freight">Air Freight</option>
-                    <option value="Sea Freight">Sea Freight</option>
-                    <option value="Customs Clearance">Customs Clearance</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="cargo_type" class="form-label">Cargo Type*</label>
-                  <select id="cargo_type" name="cargo_type" class="form-select" required>
-                    <option value="General">General Cargo</option>
-                    <option value="Perishable">Perishable</option>
-                    <option value="Dangerous Goods">Dangerous Goods</option>
-                    <option value="Oversized">Oversized / Heavy</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div>
-                  <label for="weight" class="form-label">Weight (kg)*</label>
-                  <input type="number" id="weight" name="weight" class="form-input" min="0" step="any" placeholder="e.g. 500" required>
-                </div>
-                <div>
-                  <label for="dimensions" class="form-label">Dimensions (L x W x H)*</label>
-                  <input type="text" id="dimensions" name="dimensions" class="form-input" placeholder="120 x 80 x 60 cm" required>
-                </div>
-              </div>
-              <div class="form-row">
-                <div>
-                  <label for="Number of Piece" class="form-label">Number of Piece (pcs)*</label>
-                  <input type="number" id="Piece" name="Piece" class="form-input" min="0" step="any" placeholder="e.g. 10" required>
-                </div>
-                <div>
-                  <label for="Nature of Goods" class="form-label">Nature of Goods*</label>
-                  <input type="text" id="Nature of Goods" name="Nature of Goods" class="form-input" placeholder="Nature of Goods" required>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div>
-                  <label for="ship_date" class="form-label">Shipping Date</label>
-                  <input type="date" id="ship_date" name="ship_date" class="form-input">
-                </div>
-                <div>
-                  <label for="incoterms" class="form-label">Incoterms</label>
-                  <select id="incoterms" name="incoterms" class="form-select">
-                    <option value="FOB">FOB - Free on Board</option>
-                    <option value="EXW">EXW - Ex Works</option>
-                    <option value="CIF">CIF - Cost, Insurance & Freight</option>
-                    <option value="DDP">DDP - Delivered Duty Paid</option>
-                  </select>
-                </div>
-              </div>
-
-              <label for="file" class="form-label">Upload Document (Optional)</label>
-              <input type="file" id="file" name="file" class="form-file">
-            </div>
-
-          </div>
-
-          <!-- Submit Button Spans Across Bottom -->
-          <button type="submit" class="btn-submit">Request Instant Quote</button>
-        </form>
-      </div>
-
-    </div>
-  </main>
-
+  <div class="contact-info-card">
+  <h3>Get in Touch Directly</h3>
+  <p>Prefer to speak with our freight specialists right away? Reach out via phone, email, or visit our office.</p>
+  
+  <ul class="contact-details-list">
+    <li>
+      <strong>📞 Phone / WhatsApp:</strong> 
+      <a href="tel:+252634823310">+252 63 482 3310</a>
+    </li>
+    <li>
+      <strong>✉️ General Inquiries:</strong> 
+      <a href="mailto:info@airsellcargo.com">info@airsellcargo.com</a>
+    </li>
+    <li>
+      <strong>💼 Sales Team:</strong> 
+      <a href="mailto:sales@airsellcargo.com">sales@airsellcargo.com</a>
+    </li>
+    <li>
+      <strong>📍 Head Office:</strong> 
+      <span>Hargeisa, Somaliland</span>
+    </li>
+  </ul>
+</div>
   <footer class="site-footer">
     <div class="container">
       <div class="footer-row">
