@@ -122,8 +122,26 @@
     
     .form-section-title { 
       margin-top: 25px; 
+      margin-bottom: 15px;
       color: var(--brand-red); 
-      font-size: 1.2rem; 
+      font-size: 1.1rem; 
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 5px;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
     }
     
     .form-label {
@@ -154,6 +172,7 @@
       cursor: pointer;
       width: 100%;
       transition: background 0.3s;
+      margin-top: 10px;
     }
 
     .btn-submit:hover {
@@ -278,83 +297,103 @@
           <input type="hidden" name="_subject" value="New Cargo Quote Request">
           <input type="hidden" name="_captcha" value="false">
 
-          <!-- Client Information -->
-          <h3 class="form-section-title">Client Information</h3>
+          <!-- 1. Contact Information -->
+          <h3 class="form-section-title">1. Contact Information</h3>
           
-          <label for="name" class="form-label">Full Name*</label>
-          <input type="text" id="name" name="name" class="form-input" required autocomplete="name">
+          <div class="form-row">
+            <div>
+              <label for="name" class="form-label">Full Name*</label>
+              <input type="text" id="name" name="name" class="form-input" required autocomplete="name">
+            </div>
+            <div>
+              <label for="company" class="form-label">Company Name</label>
+              <input type="text" id="company" name="company" class="form-input" autocomplete="organization">
+            </div>
+          </div>
 
-          <label for="company" class="form-label">Company Name</label>
-          <input type="text" id="company" name="company" class="form-input" autocomplete="organization">
+          <div class="form-row">
+            <div>
+              <label for="email" class="form-label">Email Address*</label>
+              <input type="email" id="email" name="email" class="form-input" required autocomplete="email">
+            </div>
+            <div>
+              <label for="phone" class="form-label">Phone Number*</label>
+              <input type="tel" id="phone" name="phone" class="form-input" required autocomplete="tel">
+            </div>
+          </div>
 
-          <label for="address" class="form-label">Postal Address*</label>
-          <input type="text" id="address" name="address" class="form-input" required autocomplete="street-address">
-
-          <label for="email" class="form-label">Email Address*</label>
-          <input type="email" id="email" name="email" class="form-input" required autocomplete="email">
-
-          <label for="phone" class="form-label">Phone Number*</label>
-          <input type="tel" id="phone" name="phone" class="form-input" required autocomplete="tel">
-
-          <label for="contact_method" class="form-label">Preferred Contact Method</label>
-          <select id="contact_method" name="contact_method" class="form-select">
-            <option value="Email">Email</option>
-            <option value="Phone">Phone</option>
-            <option value="WhatsApp">WhatsApp</option>
-          </select>
-
-          <!-- Shipment Details -->
-          <h3 class="form-section-title">Shipment Details</h3>
+          <!-- 2. Shipment Details -->
+          <h3 class="form-section-title">2. Shipment Details</h3>
           
-          <label for="service" class="form-label">Service Type*</label>
-          <select id="service" name="service" class="form-select" required>
-            <option value="Air Freight">Air Freight</option>
-            <option value="Sea Freight">Sea Freight</option>
-            <option value="Customs Clearance">Customs Clearance</option>
-          </select>
+          <div class="form-row">
+            <div>
+              <label for="origin" class="form-label">Origin (City/Port)*</label>
+              <input type="text" id="origin" name="origin" class="form-input" placeholder="e.g. Shanghai Port" required>
+            </div>
+            <div>
+              <label for="destination" class="form-label">Destination (City/Port)*</label>
+              <input type="text" id="destination" name="destination" class="form-input" placeholder="e.g. Los Angeles" required>
+            </div>
+          </div>
 
-          <label for="cargo_type" class="form-label">Cargo Type*</label>
-          <select id="cargo_type" name="cargo_type" class="form-select" required>
-            <option value="General">General</option>
-            <option value="Perishable">Perishable</option>
-            <option value="Dangerous Goods">Dangerous Goods</option>
-            <option value="Oversized">Oversized</option>
-          </select>
+          <div class="form-row">
+            <div>
+              <label for="service" class="form-label">Service Type*</label>
+              <select id="service" name="service" class="form-select" required>
+                <option value="Air Freight">Air Freight</option>
+                <option value="Sea Freight">Sea Freight</option>
+                <option value="Customs Clearance">Customs Clearance</option>
+              </select>
+            </div>
+            <div>
+              <label for="cargo_type" class="form-label">Cargo Type*</label>
+              <select id="cargo_type" name="cargo_type" class="form-select" required>
+                <option value="General">General Cargo</option>
+                <option value="Perishable">Perishable</option>
+                <option value="Dangerous Goods">Dangerous Goods</option>
+                <option value="Oversized">Oversized / Heavy</option>
+              </select>
+            </div>
+          </div>
 
-          <label for="weight" class="form-label">Weight (kg)*</label>
-          <input type="number" id="weight" name="weight" class="form-input" min="0" step="any" required>
+          <div class="form-row">
+            <div>
+              <label for="weight" class="form-label">Total Weight (kg)*</label>
+              <input type="number" id="weight" name="weight" class="form-input" min="0" step="any" placeholder="e.g. 500" required>
+            </div>
+            <div>
+              <label for="dimensions" class="form-label">Dimensions (L x W x H cm)*</label>
+              <input type="text" id="dimensions" name="dimensions" class="form-input" placeholder="e.g. 120 x 80 x 60" required>
+            </div>
+          </div>
 
-          <label for="dimensions" class="form-label">Dimensions (L x W x H cm)*</label>
-          <input type="text" id="dimensions" name="dimensions" class="form-input" placeholder="e.g. 120 x 80 x 60" required>
+          <div class="form-row">
+            <div>
+              <label for="ship_date" class="form-label">Target Shipping Date</label>
+              <input type="date" id="ship_date" name="ship_date" class="form-input">
+            </div>
+            <div>
+              <label for="incoterms" class="form-label">Incoterms</label>
+              <select id="incoterms" name="incoterms" class="form-select">
+                <option value="FOB">FOB - Free on Board</option>
+                <option value="EXW">EXW - Ex Works</option>
+                <option value="CIF">CIF - Cost, Insurance & Freight</option>
+                <option value="DDP">DDP - Delivered Duty Paid</option>
+              </select>
+            </div>
+          </div>
 
-          <label for="origin" class="form-label">Origin (City/Port/Airport)*</label>
-          <input type="text" id="origin" name="origin" class="form-input" required>
-
-          <label for="destination" class="form-label">Destination (City/Port/Airport)*</label>
-          <input type="text" id="destination" name="destination" class="form-input" required>
-
-          <label for="ship_date" class="form-label">Preferred Shipping Date</label>
-          <input type="date" id="ship_date" name="ship_date" class="form-input">
-
-          <label for="incoterms" class="form-label">Incoterms</label>
-          <select id="incoterms" name="incoterms" class="form-select">
-            <option value="EXW">EXW</option>
-            <option value="FOB">FOB</option>
-            <option value="CIF">CIF</option>
-            <option value="DDP">DDP</option>
-          </select>
-
-          <!-- Additional Notes -->
-          <h3 class="form-section-title">Additional Notes</h3>
+          <!-- 3. Additional Details -->
+          <h3 class="form-section-title">3. Additional Details</h3>
           
-          <label for="instructions" class="form-label">Special Instructions</label>
-          <textarea id="instructions" name="instructions" class="form-textarea" rows="4"></textarea>
+          <label for="instructions" class="form-label">Special Instructions or Packing Details</label>
+          <textarea id="instructions" name="instructions" class="form-textarea" rows="3" placeholder="Provide any additional cargo details, hazmat notes, or handling requests..."></textarea>
 
-          <label for="file" class="form-label">Upload Supporting Document (optional)</label>
+          <label for="file" class="form-label">Upload Packing List / Document (Optional)</label>
           <input type="file" id="file" name="file" class="form-file">
 
           <!-- Submit Button -->
-          <button type="submit" class="btn-submit">Request Quote</button>
+          <button type="submit" class="btn-submit">Request Instant Quote</button>
         </form>
       </div>
 
