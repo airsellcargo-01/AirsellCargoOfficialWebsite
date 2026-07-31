@@ -3,207 +3,491 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0"> 
     
-    <title>Airsell Cargo | Professional Freight Forwarding & Logistics Services</title>
-    <meta name="description" content="Airsell Cargo: Licensed freight forwarder specializing in air cargo, sea freight, customs clearance, and supply chain solutions. IATA & FIATA certified. Serving Hargeisa, Berbera, and East Africa.">
+    <title>Airsell Cargo | Multimodal Logistics & Freight Forwarding Services</title>
+    <meta name="description" content="Airsell Cargo is a trusted multimodal freight forwarder specializing in air cargo, sea freight, customs clearance, and digital supply chain solutions connecting Hargeisa and Berbera to global trade hubs.">
 
     <!-- Primary Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    <meta name="theme-color" content="#1e293b">
+    <meta name="theme-color" content="#0a192f">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <style>
+        :root {
+            --brand-red: #cc0000;
+            --brand-green: #008800;
+            --brand-yellow: #ffcc00;
+            --primary-dark: #001f3f;
+            --text-gray: #64748b;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            margin: 0;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 24px;
+        }
+
+        /* Header Layout */
+        header {
+            background: white;
+            border-bottom: 4px solid var(--brand-yellow);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a.active {
+            color: var(--brand-red);
+            border-bottom: 2px solid var(--brand-red);
+            padding-bottom: 5px;
+        }
+
+        /* Hero Banner */
+        .home-hero {
+            background: white;
+            padding: 80px 0 70px;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .home-hero h1 {
+            font-size: 3rem;
+            color: var(--primary-dark);
+            margin: 0 0 15px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .home-hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 750px;
+            margin: 0 auto 30px;
+            border-top: 4px solid var(--brand-red);
+            padding-top: 20px;
+            line-height: 1.7;
+        }
+
+        .cta-btn-hero {
+            display: inline-block;
+            background: var(--brand-red);
+            color: white;
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .cta-btn-hero:hover {
+            background: #b30000;
+            transform: translateY(-2px);
+        }
+
+        /* Welcome Intro Section */
+        .welcome-section {
+            background: #f8fafc;
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .welcome-section h2 {
+            color: var(--primary-dark);
+            font-size: 2.2rem;
+            margin-top: 0;
+        }
+
+        .welcome-section p {
+            max-width: 800px;
+            margin: 15px auto 0;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Services Grid Layout */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 35px 30px;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            border-top: 5px solid var(--primary-dark);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .service-card.red { border-top-color: var(--brand-red); }
+        .service-card.yellow { border-top-color: var(--brand-yellow); }
+        .service-card.green { border-top-color: var(--brand-green); }
+        .service-card.blue { border-top-color: #0284c7; }
+        .service-card.purple { border-top-color: #7c3aed; }
+
+        .service-card h3 {
+            color: var(--primary-dark);
+            margin-top: 0;
+            font-size: 1.35rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 12px;
+        }
+
+        .service-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 0;
+        }
+
+        .service-list li {
+            font-size: 0.9rem;
+            color: #475569;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .service-list li::before {
+            content: "✓";
+            color: var(--brand-green);
+            font-weight: bold;
+        }
+
+        /* Action Section */
+        .cta-banner {
+            background: white;
+            padding: 70px 0;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .cta-button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .btn-action {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: opacity 0.3s ease, transform 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-action:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+        }
+
+        /* Footer Custom Styling */
+        .site-footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 50px;
+        }
+
+        .footer-row {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .footer-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .brand-yellow-text {
+            color: var(--brand-yellow);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
 <header>
     <div class="container header-flex">
         <div class="logo">
-            <img src="logo.png" alt="Airsell Cargo - Professional Freight Forwarding" width="150">
+            <a href="index.html">
+                <img src="logo.png" alt="Airsell Cargo - Professional Freight Forwarding" width="180">
+            </a>
         </div>
     
         <nav>
             <ul class="nav-links">
-                <li><a href="index" class="active">Home</a></li>
-                <li><a href="about">About</a></li>
-                <li><a href="services">Services</a></li>
-                <li><a href="tracking">Tracking</a></li>
-                <li><a href="contact">Contact</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="tracking.html">Tracking</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </div>
-	<!-- Begin TradeTracker SuperTag Code -->
-<script type="text/javascript">
 
-	var _TradeTrackerTagOptions = {
-		t: 'a',
-		s: '501341',
-		chk: '3a6b67e630f436c8247112f13f08f09c',
-		overrideOptions: {}
-	};
+    <!-- Begin TradeTracker SuperTag Code -->
+    <script type="text/javascript">
+        var _TradeTrackerTagOptions = {
+            t: 'a',
+            s: '501341',
+            chk: '3a6b67e630f436c8247112f13f08f09c',
+            overrideOptions: {}
+        };
 
-	(function() {var tt = document.createElement('script'), s = document.getElementsByTagName('script')[0]; tt.setAttribute('type', 'text/javascript'); tt.setAttribute('src', (document.location.proto[...]
-</script>
-<!-- End TradeTracker SuperTag Code -->
+        (function() {
+            var tt = document.createElement('script'), s = document.getElementsByTagName('script')[0]; 
+            tt.setAttribute('type', 'text/javascript'); 
+            tt.setAttribute('src', 'https://tm.tradetracker.net/tag?s=501341');
+            s.parentNode.insertBefore(tt, s);
+        })();
+    </script>
+    <!-- End TradeTracker SuperTag Code -->
 </header>
 
-<!-- Hero Section -->
-<section class="services-hero">
-    <div class="container">
-        <h1>Professional Freight Forwarding</h1>
-        <p>Reliable logistics solutions connecting East Africa to global markets</p>
-        <a href="tracking.html" class="cta-btn">Track Your Shipment</a>
-    </div>
-</section>
-
-<!-- Professional Introduction -->
-<section class="welcome-section">
-    <div class="container">
-        <h2>Airsell Cargo</h2>
-        <p>
-            Licensed freight forwarder and logistics provider specializing in air cargo, sea freight, and customs clearance. 
-            IATA and FIATA certified with operations in Hargeisa and Berbera Port.
-        </p>
-    </div>
-</section>
-
-<!-- Core Services -->
-<main class="container services-section">
-    <h2 class="section-title">Our Services</h2>
-    <div class="services-grid">
-        
-        <div class="service-card red">
-            <div class="service-icon">✈️</div>
-            <h3>Air Cargo</h3>
-            <ul class="service-list">
-                <li>General cargo handling</li>
-                <li>Express shipments</li>
-                <li>Consolidation services</li>
-            </ul>
+<main>
+    <!-- Hero Section -->
+    <section class="home-hero">
+        <div class="container">
+            <h1>Multimodal Logistics & Global Trade Forwarding</h1>
+            <p>Empowering commerce across East Africa and international hubs through strategic air and ocean freight gateways at Hargeisa Airport and Berbera Port.</p>
+            <a href="tracking.html" class="cta-btn-hero">🔍 Track Your Shipment</a>
         </div>
+    </section>
 
-        <div class="service-card yellow">
-            <div class="service-icon">🚢</div>
-            <h3>Sea Freight</h3>
-            <ul class="service-list">
-                <li>Full Container Load (FCL)</li>
-                <li>Less Than Container Load (LCL)</li>
-                <li>Break-bulk services</li>
-                <li>Berbera Port operations</li>
-            </ul>
+    <!-- Professional Introduction -->
+    <section class="welcome-section">
+        <div class="container">
+            <h2>Welcome to Airsell Cargo</h2>
+            <p>
+                Headquartered in Hargeisa, Somaliland, Airsell Cargo combines deep regional operational expertise with modern digital manifest integration and cloud tracking. Verified across international standards, we streamline complex supply chains for seamless, transparent, and secure global cargo transit.
+            </p>
         </div>
+    </section>
 
-        <div class="service-card green">
-            <div class="service-icon">📋</div>
-            <h3>Customs Clearance</h3>
-            <ul class="service-list">
-                <li>Import/Export documentation</li>
-                <li>Tariff classification</li>
-                <li>Customs broker services</li>
-                <li>Digital filing systems</li>
-            </ul>
-        </div>
-
-        <div class="service-card blue">
-            <div class="service-icon">📦</div>
-            <h3>Warehousing</h3>
-            <ul class="service-list">
-                <li>Secure storage facilities</li>
-                <li>Inventory management</li>
-                <li>Cross-docking services</li>
-                <li>Distribution support</li>
-            </ul>
-        </div>
-
-        <div class="service-card purple">
-            <div class="service-icon">🔍</div>
-            <h3>Supply Chain</h3>
-            <ul class="service-list">
-                <li>End-to-end visibility</li>
-                <li>Logistics consulting</li>
-                <li>Freight optimization</li>
-                <li>Performance tracking</li>
-            </ul>
-        </div>
-    </div>
-</main>
-
-<!-- Call to Action -->
-<section class="cta">
-    <div class="container">
-        <h2>Ready to optimize your logistics?</h2>
-        <p>Request a quote for your freight forwarding needs</p>
-        <a href="contact.html" class="btn-primary">Get Started</a>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="site-footer">
-    <div class="container footer-row">
-        <!-- Column 1: Company Profile -->
-        <div class="footer-column">
-            <h4>Airsell Cargo</h4>
-            <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6;">
-                Licensed freight forwarder and multimodal logistics provider. 
-                IATA & FIATA certified specializing in air cargo, sea freight, customs clearance, and supply chain solutions.
+    <!-- Core Services Overview -->
+    <section class="container" style="padding: 60px 24px;">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h2 style="color: var(--primary-dark); font-size: 2.2rem; margin-bottom: 10px;">Our Core Freight Solutions</h2>
+            <p style="color: var(--text-gray); font-size: 1.05rem; max-width: 650px; margin: 0 auto;">
+                Tailored logistics services engineered for speed, reliability, and full regulatory compliance.
             </p>
         </div>
 
-        <!-- Column 2: Services & Operations -->
+        <div class="services-grid">
+            
+            <div class="service-card red">
+                <h3>Air Freight Forwarding</h3>
+                <ul class="service-list">
+                    <li>Expedited airport-to-airport freight</li>
+                    <li>Priority handling via Hargeisa Airport</li>
+                    <li>Perishable & high-value cargo solutions</li>
+                </ul>
+            </div>
+
+            <div class="service-card yellow">
+                <h3>Ocean Cargo Services</h3>
+                <ul class="service-list">
+                    <li>Full Container Load (FCL) & LCL options</li>
+                    <li>Port operations at deep-water Berbera Port</li>
+                    <li>Break-bulk & heavy machinery transit</li>
+                </ul>
+            </div>
+
+            <div class="service-card green">
+                <h3>Customs Clearance & Brokerage</h3>
+                <ul class="service-list">
+                    <li>Import & export regulatory compliance</li>
+                    <li>Automated digital manifest filings</li>
+                    <li>Duty assessment & tariff classification</li>
+                </ul>
+            </div>
+
+            <div class="service-card blue">
+                <h3>Warehousing & Storage</h3>
+                <ul class="service-list">
+                    <li>Secure regional holding facilities</li>
+                    <li>Inventory tracking & cross-docking</li>
+                    <li>Consolidation & distribution hubs</li>
+                </ul>
+            </div>
+
+            <div class="service-card purple">
+                <h3>Supply Chain Integration</h3>
+                <p style="font-size: 0.9rem; color: #475569; margin: 10px 0 0;">End-to-end visibility, cloud milestone tracking, and optimized route planning for East African commercial corridors.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="cta-banner">
+        <div class="container">
+            <h2 style="color: var(--primary-dark); font-size: 2.2rem; margin-top: 0;">Ready to Optimize Your Freight Strategy?</h2>
+            <p style="color: var(--text-gray); max-width: 650px; margin: 10px auto; font-size: 1.05rem;">
+                Get in touch with our logistics team today for real-time manifest tracking or a tailored shipment quotation.
+            </p>
+            <div class="cta-button-group">
+                <a href="contact.html" class="btn-action" style="background: var(--brand-red); color: white;">
+                    📋 Get a Quote
+                </a>
+                <a href="tracking.html" class="btn-action" style="background: var(--brand-green); color: white;">
+                    🔍 Track Shipment
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-row">
+        <!-- Column 1: Brand Authority -->
         <div class="footer-column">
-            <h4>Services</h4>
+            <h4 class="brand-yellow-text">Airsell Cargo</h4>
+            <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6;">
+                A trusted freight forwarder and multimodal logistics provider strategically headquartered in Hargeisa to connect regional Horn of Africa trade with global commercial networks through digital innovation.
+            </p>
+        </div>
+
+        <!-- Column 2: Operations & Portal -->
+        <div class="footer-column">
+            <h4 class="brand-yellow-text">Operations</h4>
             <ul class="footer-links">
-                <li><a href="services#air-cargo">Air Cargo</a></li>
-                <li><a href="services#sea-freight">Sea Freight</a></li>
-                <li><a href="services#customs">Customs Clearance</a></li>
-                <li><a href="services#warehousing">Warehousing</a></li>
-                <li><a href="tracking">Shipment Tracking</a></li>
+                <li><a href="services.html">Freight Services</a></li>
+                <li><a href="tracking.html">Airsell Web Portal</a></li>
+                <li><a href="about.html">Company Profile</a></li>
+                <li><a href="terms.html">Standard Trading Conditions</a></li>
             </ul>
         </div>
 
-        <!-- Column 3: Industry Compliance -->
+        <!-- Column 3: Professional Verification -->
         <div class="footer-column">
-            <h4>Professional</h4>
+            <h4 class="brand-yellow-text">Member Verification</h4>
             <ul class="footer-links" style="font-size: 0.85rem;">
                 <li>
-                    <a href="https://www.iata.org/" target="_blank" rel="noopener">
-                        ✓ IATA Member
+                    <a href="https://www.iata.org/en/publications/directories/cargolink/directory/airsell-cargo-service-agent/12787/" target="_blank" rel="noopener">
+                        ✓ IATA CargoLink Directory
                     </a>
                 </li>
                 <li>
-                    <a href="https://fiata.org/" target="_blank" rel="noopener">
-                        ✓ FIATA Member
+                    <a href="https://fiata.org/directory/so/" target="_blank" rel="noopener">
+                        ✓ FIATA Member Directory
                     </a>
                 </li>
                 <li>
-                    <a href="terms.html">Terms & Conditions</a>
+                    <a href="https://www.iata.org/en/programs/cargo/e/one-record/multi-lateral-agreement/" target="_blank" rel="noopener">
+                        ✓ IATA ONE Record Standard
+                    </a>
                 </li>
             </ul>
         </div>
 
-        <!-- Column 4: Contact -->
+        <!-- Column 4: Contact & Live Support -->
         <div class="footer-column">
-            <h4>Contact</h4>
+            <h4 class="brand-yellow-text">Global Contact</h4>
             <div style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.8;">
                 📍 Hargeisa, Somaliland<br>
                 📧 <a href="mailto:info@airsellcargo.com" style="color: white; text-decoration: none;">info@airsellcargo.com</a><br>
                 
-                <div style="margin-top: 12px;">
-                    <a href="https://wa.me/252634823310" target="_blank" class="whatsapp-btn">
-                        💬 WhatsApp
+                <div style="margin-top: 15px;">
+                    <a href="https://wa.me/252634823310" target="_blank" rel="noopener" 
+                       style="background: #25D366; color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; font-size: 0.88rem;">
+                       <span>💬 Live Support Chat</span>
                     </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Legal & Footer Bottom -->
+    <!-- Legal & Compliance Bar -->
     <div class="footer-bottom">
-        <div class="container" style="border-top: 1px solid rgba(255,255,255,0.08); margin-top: 40px; padding-top: 30px;">
-            <p style="color: #64748b; font-size: 0.8rem;">&copy; 2026 Airsell Cargo. All rights reserved.</p>
-            <div style="font-size: 0.8rem; display: flex; gap: 20px; flex-wrap: wrap;">
-                <a href="terms.html" style="color: #94a3b8; text-decoration: none;">Terms of Service</a>
+        <div class="container" style="border-top: 1px solid rgba(255,255,255,0.08); margin-top: 40px; padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <p style="color: #64748b; font-size: 0.8rem; margin: 0;">&copy; 2026 Airsell Cargo. All rights reserved.</p>
+            <div style="font-size: 0.8rem;">
+                <a href="terms.html" style="color: #64748b; text-decoration: none;">Terms of Service</a>
+                <span style="color: #64748b; margin: 0 10px;">|</span>
                 <span style="color: #64748b;">Logistics Excellence for East Africa</span>
             </div>
         </div>
@@ -212,13 +496,19 @@
 
 <!-- TradeTracker Analytics -->
 <script type="text/javascript">
-	var _viewTagOptions = {
-		type: 'a',
-		site: 501341,
-		version: 1
-	};
+    var _viewTagOptions = {
+        type: 'a',
+        site: 501341,
+        version: 1
+    };
 
-	(function() {var tt = document.createElement('script'), s = document.getElementsByTagName('script')[0]; tt.setAttribute('type', 'text/javascript'); tt.setAttribute('src', 'https://tm.tradetracker.net/?c=viewTag&m=log&s='+_viewTagOptions.site+'&t='+_viewTagOptions.type+'&v='+_viewTagOptions.version); tt.type = 'text/javascript'; s.parentNode.insertBefore(tt, s);})();
+    (function() {
+        var tt = document.createElement('script'), s = document.getElementsByTagName('script')[0]; 
+        tt.setAttribute('type', 'text/javascript'); 
+        tt.setAttribute('src', 'https://tm.tradetracker.net/?c=viewTag&m=log&s='+_viewTagOptions.site+'&t='+_viewTagOptions.type+'&v='+_viewTagOptions.version); 
+        tt.type = 'text/javascript'; 
+        s.parentNode.insertBefore(tt, s);
+    })();
 </script>
 <noscript><img src="https://tm.tradetracker.net/pageview?t=a&s=501341&v=1" alt="" /></noscript>
 
