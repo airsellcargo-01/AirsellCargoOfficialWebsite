@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     
     <title>About Us | Airsell Cargo - Multimodal Freight & Logistics Solutions</title>
-    <meta name="description" content="Discover Airsell Cargo, a premier multimodal logistics provider in Hargeisa and Berbera, connecting regional supply chains with global trade networks.">
+    <meta name="description" content="Airsell Cargo is a licensed multimodal freight forwarder in Hargeisa and Berbera, offering IATA and FIATA certified air cargo, sea freight, and supply chain management across East Africa.">
     
+    <!-- Primary Stylesheet -->
     <link rel="stylesheet" href="style.css">
     <meta name="theme-color" content="#0a192f">
+
     <style>
         :root {
             --brand-red: #cc0000;
@@ -34,32 +36,69 @@
             padding: 0 24px;
         }
 
+        /* Header Layout */
+        header {
+            background: white;
+            border-bottom: 4px solid var(--brand-yellow);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a.active {
+            color: var(--brand-red);
+            border-bottom: 2px solid var(--brand-red);
+            padding-bottom: 5px;
+        }
+
         /* Hero Banner */
         .about-hero {
             background: white;
-            padding: 70px 0 60px;
+            padding: 70px 0 50px;
             text-align: center;
             border-bottom: 1px solid #e2e8f0;
         }
 
         .about-hero h1 {
-            font-size: 2.8rem;
+            font-size: 2.6rem;
             color: var(--primary-dark);
             margin: 0 0 15px;
             font-weight: 800;
         }
 
         .about-hero p {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: var(--text-gray);
-            max-width: 800px;
+            max-width: 750px;
             margin: 0 auto;
             border-top: 4px solid var(--brand-red);
             padding-top: 20px;
-            line-height: 1.8;
+            line-height: 1.7;
         }
 
-        /* Core Services Cards */
+        /* Core Capabilities Grid */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -84,7 +123,7 @@
         .service-card h3 {
             color: var(--primary-dark);
             margin-top: 0;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             border-bottom: 2px solid #e2e8f0;
             padding-bottom: 10px;
         }
@@ -93,6 +132,7 @@
             color: var(--text-gray);
             font-size: 0.95rem;
             margin-bottom: 0;
+            line-height: 1.6;
         }
 
         /* Accredited Buttons */
@@ -103,6 +143,7 @@
             font-weight: 700;
             text-decoration: none;
             transition: opacity 0.3s ease;
+            font-size: 0.9rem;
         }
 
         .btn-accreditation:hover {
@@ -170,14 +211,14 @@
 <header>
     <div class="container header-flex">
         <div class="logo">
-            <a href="/">
-                <img src="logo.png" alt="Airsell Cargo" width="180">
+            <a href="index.html">
+                <img src="logo.png" alt="Airsell Cargo - Multimodal Freight Services" width="180">
             </a>
         </div>
         
         <nav>
             <ul class="nav-links">
-                <li><a href="/">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="about.html" class="active">About</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="tracking.html">Tracking</a></li>
@@ -192,49 +233,53 @@
     <section class="about-hero">
         <div class="container">
             <h1>About Airsell Cargo</h1>
-            <p>Airsell Cargo is a premier multimodal logistics and freight forwarding provider headquartered in Hargeisa, Somaliland. Founded in 2024, we empower regional and international trade by seamlessly connecting local commerce with global markets through key trade gateways, including Hargeisa Airport and the Port of Berbera. Driven by technology and operational excellence, we deliver end-to-end supply chain transparency, cloud-based tracking, and digital manifest integration—ensuring secure, efficient, and reliable cargo movement across East Africa and beyond.</p>
+            <p>
+                Headquartered in Hargeisa, Somaliland, Airsell Cargo is a premier multimodal freight forwarder connecting East Africa to international trade networks. We specialize in air cargo, ocean freight, and customs clearance via Hargeisa Airport and Berbera Port—delivering end-to-end supply chain transparency through cloud-based manifest tracking.
+            </p>
         </div>
     </section>
 
-    <!-- Core Capabilities Overview -->
-    <div class="container" style="padding: 60px 24px;">
-        <div style="text-align: center; margin-bottom: 40px;">
-            <h2 style="color: var(--primary-dark); font-size: 2.2rem; margin-bottom: 10px;">Core Operational Capabilities</h2>
-            <p style="max-width: 700px; margin: 0 auto; color: var(--text-gray); font-size: 1.05rem;">
-                We provide comprehensive end-to-end logistics solutions designed to optimize your supply chain and keep global freight moving smoothly.
+    <!-- Strategic Pillars -->
+    <div class="container" style="padding: 50px 24px;">
+        <div style="text-align: center; margin-bottom: 35px;">
+            <h2 style="color: var(--primary-dark); font-size: 2rem; margin-bottom: 10px;">Why Partner With Airsell Cargo</h2>
+            <p style="max-width: 650px; margin: 0 auto; color: var(--text-gray); font-size: 1rem;">
+                Built on international freight standards, local operational mastery, and modern digital logistics.
             </p>
         </div>
 
         <div class="services-grid">
-            <div class="service-card">
-                <h3>Air Freight Forwarding</h3>
-                <p>Expedited, reliable air transport solutions routed seamlessly via Hargeisa Airport for time-sensitive cargo and high-value shipments.</p>
+            <div class="service-card" style="border-top-color: var(--brand-red);">
+                <h3>Air Freight Leadership</h3>
+                <p>Scheduled air cargo operations and express consolidation routed seamlessly via Hargeisa Airport for time-critical regional and international shipments.</p>
             </div>
 
-            <div class="service-card">
-                <h3>Sea Freight Forwarding</h3>
-                <p>Full Container Load (FCL) and Less-than-Container Load (LCL) consolidation services through the strategic deep-water Port of Berbera.</p>
+            <div class="service-card" style="border-top-color: var(--brand-yellow);">
+                <h3>Maritime Gateway</h3>
+                <p>Full Container Load (FCL) and LCL ocean freight solutions leveraging Berbera Port’s deep-water commercial hub to connect global shipping lines.</p>
             </div>
 
-            <div class="service-card">
-                <h3>Multimodal Supply Chain</h3>
-                <p>Customized land, sea, and air integration for streamlined end-to-end freight distribution across regional and international borders.</p>
+            <div class="service-card" style="border-top-color: var(--brand-green);">
+                <h3>Digital Compliance</h3>
+                <p>Direct digital customs clearance brokerage, duty assessment, and cloud tracking engineered to eliminate supply chain friction and delay.</p>
             </div>
         </div>
     </div>
 
-    <!-- Memberships & Verifications -->
-    <section style="background: white; padding: 60px 0; text-align: center; border-top: 1px solid #e2e8f0;">
+    <!-- Accreditations & Compliance Section -->
+    <section style="background: white; padding: 50px 0; text-align: center; border-top: 1px solid #e2e8f0;">
         <div class="container">
-            <h2 style="color: var(--primary-dark); font-size: 2rem;">Accreditations & Global Compliance</h2>
-            <p style="max-width: 650px; margin: 10px auto 30px; color: var(--text-gray);">Our operations adhere to internationally recognized logistics standards, ensuring transparency, regulatory compliance, and operational reliability:</p>
+            <h2 style="color: var(--primary-dark); font-size: 1.8rem; margin-top: 0;">Global Industry Credentials</h2>
+            <p style="max-width: 600px; margin: 10px auto 25px; color: var(--text-gray); font-size: 0.95rem;">
+                Our freight operations comply strictly with international civil aviation and maritime logistics standards.
+            </p>
             
             <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
                 <a href="https://www.iata.org/en/publications/directories/cargolink/directory/airsell-cargo-service-agent/12787/" target="_blank" rel="noopener" class="btn-accreditation" style="background: var(--brand-green); color: white;">
                     ✓ Verified IATA CargoLink Member
                 </a>
                 <a href="https://fiata.org/directory/so/" target="_blank" rel="noopener" class="btn-accreditation" style="background: var(--brand-yellow); color: var(--primary-dark);">
-                    ✓ FIATA Individual Member
+                    ✓ FIATA Member Directory Listing
                 </a>
             </div>
         </div>
@@ -247,28 +292,28 @@
         <div class="footer-column">
             <h4 class="brand-yellow-text">Airsell Cargo</h4>
             <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6;">
-                A trusted freight forwarder and multimodal logistics provider strategically headquartered in Hargeisa to connect regional Horn of Africa trade with global commercial networks through digital innovation.
+                A licensed freight forwarder and multimodal logistics provider headquartered in Hargeisa, dedicated to expanding commercial trade routes across the Horn of Africa.
             </p>
         </div>
 
-        <!-- Column 2: Operations & Portal -->
+        <!-- Column 2: Quick Links -->
         <div class="footer-column">
             <h4 class="brand-yellow-text">Operations</h4>
             <ul class="footer-links">
                 <li><a href="services.html">Freight Services</a></li>
-                <li><a href="tracking.html">Airsell Web Portal</a></li>
+                <li><a href="tracking.html">Shipment Portal</a></li>
                 <li><a href="about.html">Company Profile</a></li>
-                <li><a href="terms.html">Standard Trading Conditions</a></li>
+                <li><a href="terms.html">Trading Conditions</a></li>
             </ul>
         </div>
 
-        <!-- Column 3: Professional Verification -->
+        <!-- Column 3: Member Verification -->
         <div class="footer-column">
-            <h4 class="brand-yellow-text">Member Verification</h4>
+            <h4 class="brand-yellow-text">Verification</h4>
             <ul class="footer-links" style="font-size: 0.85rem;">
                 <li>
                     <a href="https://www.iata.org/en/publications/directories/cargolink/directory/airsell-cargo-service-agent/12787/" target="_blank" rel="noopener">
-                        ✓ IATA Cargolink Directory
+                        ✓ IATA CargoLink Directory
                     </a>
                 </li>
                 <li>
@@ -284,7 +329,7 @@
             </ul>
         </div>
 
-        <!-- Column 4: Contact & Live Support -->
+        <!-- Column 4: Contact -->
         <div class="footer-column">
             <h4 class="brand-yellow-text">Global Contact</h4>
             <div style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.8;">
@@ -301,7 +346,7 @@
         </div>
     </div>
 
-    <!-- Legal & Compliance Bar -->
+    <!-- Legal Bar -->
     <div class="footer-bottom">
         <div class="container" style="border-top: 1px solid rgba(255,255,255,0.08); margin-top: 40px; padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
             <p style="color: #64748b; font-size: 0.8rem; margin: 0;">&copy; 2026 Airsell Cargo. All rights reserved.</p>
