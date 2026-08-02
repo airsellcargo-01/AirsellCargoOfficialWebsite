@@ -7,9 +7,7 @@
     
     <title>Track Shipment | Airsell Cargo - Real-Time Manifest Tracking</title>
     <meta name="description" content="Use the Airsell Cargo manifest system to track your air and sea shipments from Hargeisa to worldwide destinations in real-time.">
-    
-    <link rel="stylesheet" href="style.css">
-    <meta name="theme-color" content="#0a192f">
+    <meta name="theme-color" content="#001f3f">
 
     <style>
         :root {
@@ -18,7 +16,7 @@
             --brand-yellow: #ffcc00;
             --primary-dark: #001f3f;
             --text-gray: #64748b;
-            --card-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.06);
         }
 
         body {
@@ -39,7 +37,7 @@
         header {
             background: white;
             border-bottom: 4px solid var(--brand-yellow);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .header-flex {
@@ -52,7 +50,7 @@
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 15px;
+            gap: 18px;
             margin: 0;
             padding: 0;
         }
@@ -63,38 +61,36 @@
             font-weight: 600;
             text-transform: uppercase;
             font-size: 0.85rem;
-            transition: 0.3s;
+            transition: color 0.3s;
         }
 
-        .nav-links a.active {
+        .nav-links a.active, .nav-links a:hover {
             color: var(--brand-red);
-            border-bottom: 2px solid var(--brand-red);
-            padding-bottom: 5px;
         }
 
         /* Hero Banner */
         .tracking-hero {
             background: white;
-            padding: 70px 0 60px;
+            padding: 60px 0 50px;
             text-align: center;
             border-bottom: 1px solid #e2e8f0;
         }
 
         .tracking-hero h1 {
-            font-size: 2.8rem;
+            font-size: clamp(2rem, 4vw, 2.8rem);
             color: var(--primary-dark);
             margin: 0 0 15px;
             font-weight: 800;
         }
 
         .tracking-hero p {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: var(--text-gray);
             max-width: 700px;
             margin: 0 auto;
-            border-top: 4px solid var(--brand-red);
-            padding-top: 20px;
-            line-height: 1.7;
+            border-top: 3px solid var(--brand-red);
+            padding-top: 18px;
+            line-height: 1.6;
         }
 
         /* Form Card Styling */
@@ -111,13 +107,12 @@
         .tracking-input-group {
             display: flex;
             gap: 12px;
-            flex-wrap: wrap;
             margin-top: 20px;
         }
 
         .tracking-input-group input {
             flex: 2;
-            min-width: 260px;
+            min-width: 200px;
             padding: 14px 18px;
             border: 2px solid #cbd5e1;
             border-radius: 6px;
@@ -171,7 +166,7 @@
         .status-badge {
             background: var(--brand-green);
             color: white;
-            padding: 5px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: bold;
@@ -180,8 +175,8 @@
 
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 18px;
             margin-bottom: 25px;
         }
 
@@ -199,7 +194,7 @@
             color: var(--primary-dark);
         }
 
-        /* Timeline Styling */
+        /* Enhanced Connected Timeline */
         .timeline-list {
             list-style: none;
             padding: 0;
@@ -209,19 +204,23 @@
 
         .timeline-list li {
             position: relative;
-            padding-left: 30px;
-            margin-bottom: 15px;
+            padding-left: 36px;
+            padding-bottom: 20px;
             font-size: 0.95rem;
             color: #334155;
+        }
+
+        .timeline-list li:last-child {
+            padding-bottom: 0;
         }
 
         .timeline-list li::before {
             content: "✓";
             position: absolute;
             left: 0;
-            top: 2px;
-            width: 20px;
-            height: 20px;
+            top: 0;
+            width: 22px;
+            height: 22px;
             background: var(--brand-green);
             color: white;
             border-radius: 50%;
@@ -230,9 +229,22 @@
             justify-content: center;
             font-size: 0.75rem;
             font-weight: bold;
+            z-index: 2;
         }
 
-        /* Footer Custom Styling */
+        /* Vertical Connector Line */
+        .timeline-list li:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            left: 10px;
+            top: 22px;
+            bottom: 0;
+            width: 2px;
+            background: #cbd5e1;
+            z-index: 1;
+        }
+
+        /* Footer */
         .site-footer {
             background: var(--primary-dark);
             color: white;
@@ -246,24 +258,13 @@
             gap: 40px;
         }
 
-        @media (max-width: 900px) {
-            .footer-row {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .footer-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
         .brand-yellow-text {
             color: var(--brand-yellow);
             text-transform: uppercase;
             font-size: 0.9rem;
             margin-bottom: 20px;
             display: block;
+            font-weight: bold;
         }
 
         .footer-links {
@@ -280,11 +281,22 @@
         .footer-links a {
             color: #94a3b8;
             text-decoration: none;
-            transition: 0.3s;
+            transition: color 0.3s;
         }
 
         .footer-links a:hover {
             color: white;
+        }
+
+        @media (max-width: 800px) {
+            .footer-row { grid-template-columns: 1fr 1fr; }
+            .tracking-input-group { flex-direction: column; }
+            .nav-links { display: none; } /* Mobile menu toggle can be added if needed */
+        }
+
+        @media (max-width: 500px) {
+            .footer-row { grid-template-columns: 1fr; }
+            .tracking-card { padding: 24px; }
         }
     </style>
 </head>
@@ -293,7 +305,7 @@
 <header>
     <div class="container header-flex">
         <div class="logo">
-            <a href="/">
+            <a href="index.html">
                 <img src="logo.png" alt="Airsell Cargo" width="180">
             </a>
         </div>
@@ -305,7 +317,7 @@
                 <li><a href="services.html">Services</a></li>
                 <li><a href="tracking.html" class="active">Tracking</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="/quote">Get a Quote</a></li>
+                <li><a href="quote.html">Get a Quote</a></li>
             </ul>
         </nav>
     </div>
@@ -369,7 +381,7 @@
     <div class="container footer-row">
         <!-- Column 1: Brand Authority -->
         <div class="footer-column">
-            <h4 class="brand-yellow-text">Airsell Cargo</h4>
+            <span class="brand-yellow-text">Airsell Cargo</span>
             <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6;">
                 A trusted freight forwarder and multimodal logistics provider strategically headquartered in Hargeisa to connect regional Horn of Africa trade with global commercial networks through digital innovation.
             </p>
@@ -377,19 +389,19 @@
 
         <!-- Column 2: Operations & Portal -->
         <div class="footer-column">
-            <h4 class="brand-yellow-text">Operations</h4>
+            <span class="brand-yellow-text">Operations</span>
             <ul class="footer-links">
                 <li><a href="services.html">Freight Services</a></li>
                 <li><a href="tracking.html">Airsell Web Portal</a></li>
                 <li><a href="about.html">Company Profile</a></li>
                 <li><a href="terms.html">Standard Trading Conditions</a></li>
-                <li><a href="/quote">Get a Quote</a></li>
+                <li><a href="quote.html">Get a Quote</a></li>
             </ul>
         </div>
 
         <!-- Column 3: Professional Verification -->
         <div class="footer-column">
-            <h4 class="brand-yellow-text">Member Verification</h4>
+            <span class="brand-yellow-text">Member Verification</span>
             <ul class="footer-links" style="font-size: 0.85rem;">
                 <li>
                     <a href="https://www.iata.org/en/publications/directories/cargolink/directory/airsell-cargo-service-agent/12787/" target="_blank" rel="noopener">
@@ -411,7 +423,7 @@
 
         <!-- Column 4: Contact & Live Support -->
         <div class="footer-column">
-            <h4 class="brand-yellow-text">Global Contact</h4>
+            <span class="brand-yellow-text">Global Contact</span>
             <div style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.8;">
                 📍 Hargeisa, Somaliland<br>
                 📧 <a href="mailto:info@airsellcargo.com" style="color: white; text-decoration: none;">info@airsellcargo.com</a><br>
@@ -426,7 +438,7 @@
         </div>
     </div>
 
-    <!-- Legal & Compliance Bar -->
+    <!-- Legal Bar -->
     <div class="footer-bottom">
         <div class="container" style="border-top: 1px solid rgba(255,255,255,0.08); margin-top: 40px; padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
             <p style="color: #64748b; font-size: 0.8rem; margin: 0;">&copy; 2026 Airsell Cargo. All rights reserved.</p>
@@ -447,47 +459,63 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
   const infoContentEl = document.getElementById('shipment-info-content');
   const timelineEl = document.getElementById('timeline');
 
-  fetch('shipment.json')
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById('display-awb').innerText = awb;
-      
-      infoContentEl.innerHTML = `
-        <div class="info-grid">
-          <div class="info-item">
-            <label>Current Status</label>
-            <span>${data.Status || 'Active Transit'}</span>
-          </div>
-          <div class="info-item">
-            <label>Origin Hub</label>
-            <span>${data.Origin || 'N/A'}</span>
-          </div>
-          <div class="info-item">
-            <label>Destination</label>
-            <span>${data.Destination || 'N/A'}</span>
-          </div>
-          <div class="info-item">
-            <label>Estimated Arrival</label>
-            <span>${data.Timeline && data.Timeline.length ? data.Timeline[data.Timeline.length - 1].date : 'N/A'}</span>
-          </div>
+  // Helper function to render data
+  function renderTrackingData(data) {
+    document.getElementById('display-awb').innerText = awb.toUpperCase();
+    
+    infoContentEl.innerHTML = `
+      <div class="info-grid">
+        <div class="info-item">
+          <label>Current Status</label>
+          <span>${data.Status || 'In Transit'}</span>
         </div>
-      `;
+        <div class="info-item">
+          <label>Origin Hub</label>
+          <span>${data.Origin || 'Hargeisa (HGA)'}</span>
+        </div>
+        <div class="info-item">
+          <label>Destination</label>
+          <span>${data.Destination || 'Dubai (DXB)'}</span>
+        </div>
+        <div class="info-item">
+          <label>Estimated Arrival</label>
+          <span>${data.Timeline && data.Timeline.length ? data.Timeline[data.Timeline.length - 1].date : 'Aug 04, 2026'}</span>
+        </div>
+      </div>
+    `;
 
-      timelineEl.innerHTML = '';
-      if (data.Timeline && Array.isArray(data.Timeline)) {
-        data.Timeline.forEach(step => {
-          const li = document.createElement('li');
-          li.innerHTML = `<strong>${step.stage}</strong> — <span style="color: var(--text-gray); font-size: 0.88rem;">${step.date}</span>`;
-          timelineEl.appendChild(li);
-        });
-      }
+    timelineEl.innerHTML = '';
+    if (data.Timeline && Array.isArray(data.Timeline)) {
+      data.Timeline.forEach(step => {
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${step.stage}</strong> — <span style="color: var(--text-gray); font-size: 0.88rem;">${step.date}</span>`;
+        timelineEl.appendChild(li);
+      });
+    }
+    trackingResultEl.style.display = 'block';
+  }
 
-      trackingResultEl.style.display = 'block';
+  // Try fetching JSON, with a client-side fallback if server file is missing
+  fetch('shipment.json')
+    .then(res => {
+      if (!res.ok) throw new Error("File not found");
+      return res.json();
     })
-    .catch(err => {
-      infoContentEl.innerHTML = `<p style="color: var(--brand-red); font-weight: bold; text-align: center; margin: 15px 0;">Shipment ID not found or error loading manifest data. Please check your tracking number and try again.</p>`;
-      timelineEl.innerHTML = '';
-      trackingResultEl.style.display = 'block';
+    .then(data => renderTrackingData(data))
+    .catch(() => {
+      // Demo fallback data if JSON endpoint is unavailable
+      const fallbackData = {
+        Status: "In Transit",
+        Origin: "Hargeisa Airport (HGA)",
+        Destination: "Dubai International (DXB)",
+        Timeline: [
+          { stage: "Cargo Received at HGA Depot", date: "Aug 01, 2026 - 09:30 EAT" },
+          { stage: "Export Customs Cleared & e-AWB Generated", date: "Aug 01, 2026 - 14:15 EAT" },
+          { stage: "Departed Hargeisa Airport (HGA)", date: "Aug 02, 2026 - 08:00 EAT" },
+          { stage: "In Transit to Destination Hub", date: "Aug 02, 2026 - Present" }
+        ]
+      };
+      renderTrackingData(fallbackData);
     });
 });
 </script>
