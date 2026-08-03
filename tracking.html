@@ -451,6 +451,31 @@
     </div>
 </footer>
 <script>
+// Local embedded database dictionary
+const shipmentDatabase = {
+  "AWB123456": {
+    "store": "Store Alpha",
+    "status": "Delivered",
+    "origin": "Hargeisa (HGA)",
+    "destination": "Dubai (DXB)",
+    "timeline": [
+      { "stage": "Cargo Booked", "date": "Jul 28, 2026 - 10:00 EAT" },
+      { "stage": "In Transit", "date": "Jul 29, 2026 - 14:30 EAT" },
+      { "stage": "Delivered", "date": "Jul 31, 2026 - 11:15 EAT" }
+    ]
+  },
+  "STORE2-9988": {
+    "store": "Store Beta",
+    "status": "In Transit",
+    "origin": "Berbera Port",
+    "destination": "Mogadishu",
+    "timeline": [
+      { "stage": "Dispatched from Depot", "date": "Aug 02, 2026 - 08:30 EAT" },
+      { "stage": "In Transit", "date": "Aug 03, 2026 - 15:00 EAT" }
+    ]
+  }
+};
+
 document.getElementById('main-track-form').addEventListener('submit', function(e) {
   e.preventDefault();
   const awb = document.getElementById('awb-input').value.trim().toUpperCase();
@@ -463,86 +488,46 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
 
   document.getElementById('display-awb').innerText = awb;
   trackingResultEl.style.display = 'block';
-  infoContentEl.innerHTML = '<p style="color: var(--text-gray);">Fetching tracking record...</p>';
+
+  // Look up directly from internal dictionary
+  const data = shipmentDatabase[awb];
+
+  if (!data) {
+    statusBadgeEl.innerText = 'Not Found';
+    statusBadgeEl.style.background = 'var(--brand-red)';
+    infoContentEl.innerHTML = `
+      <div style="color: var(--brand-red); font-weight: bold; padding: 10px 0;">
+        No shipment record found for "${awb}". Please check your tracking ID and try again.
+      </div>
+    `;
+    timelineEl.innerHTML = '';
+    return;
+  }
+
+  // Display details
+  const status = data.status || 'In Transit';
+  statusBadgeEl.innerText = status;
+  statusBadgeEl.style.background = status.toLowerCase() === 'delivered' ? 'var(--brand-green)' : 'var(--primary-dark)';
+
+  infoContentEl.innerHTML = `
+    <div class="info-grid">
+      <div class="info-item"><label>Store Partner</label><span>${data.store || 'N/A'}</span></div>
+      <div class="info-item"><label>Current Status</label><span>${status}</span></div>
+      <div class="info-item"><label>Origin Hub</label><span>${data.origin || 'N/A'}</span></div>
+      <div class="info-item"><label>Destination</label><span>${data.destination || 'N/A'}</span></div>
+      <div class="info-item"><label>Est. Delivery</label><span>${data.timeline?.slice(-1)[0]?.date || 'N/A'}</span></div>
+    </div>
+  `;
+
   timelineEl.innerHTML = '';
-
-  // Fetch shipments database file
-  fetch('shipments.json')
-    .then(res => {
-      if (!res.ok) throw new Error("File not found");
-      return res.json();
-    })
-    .then(database => {
-      // Find matching key (e.g., AWB123456)
-      const data = database[awb];
-
-      if (!data) {
-        throw new Error("Shipment not found");
-      }
-
-      const status = data.status || 'In Transit';
-      const storeName = data.store || 'Partner Store';
-      const origin = data.origin || 'N/A';
-      const destination = data.destination || 'N/A';
-      const timeline = data.timeline || [];
-      const estimatedArrival = timeline.length ? timeline[timeline.length - 1].date : 'N/A';
-
-      // Update badge status and style
-      statusBadgeEl.innerText = status;
-      if (status.toLowerCase() === 'delivered') {
-        statusBadgeEl.style.background = 'var(--brand-green)';
-      } else {
-        statusBadgeEl.style.background = 'var(--primary-dark)';
-      }
-
-      // Render Overview Grid
-      infoContentEl.innerHTML = `
-        <div class="info-grid">
-          <div class="info-item">
-            <label>Store Partner</label>
-            <span>${storeName}</span>
-          </div>
-          <div class="info-item">
-            <label>Current Status</label>
-            <span>${status}</span>
-          </div>
-          <div class="info-item">
-            <label>Origin Hub</label>
-            <span>${origin}</span>
-          </div>
-          <div class="info-item">
-            <label>Destination</label>
-            <span>${destination}</span>
-          </div>
-          <div class="info-item">
-            <label>Est. Delivery</label>
-            <span>${estimatedArrival}</span>
-          </div>
-        </div>
-      `;
-
-      // Render Timeline
-      timelineEl.innerHTML = '';
-      if (Array.isArray(timeline) && timeline.length > 0) {
-        timeline.forEach(step => {
-          const li = document.createElement('li');
-          li.innerHTML = `<strong>${step.stage}</strong> — <span style="color: var(--text-gray); font-size: 0.88rem;">${step.date}</span>`;
-          timelineEl.appendChild(li);
-        });
-      }
-    })
-    .catch(err => {
-      statusBadgeEl.innerText = 'Not Found';
-      statusBadgeEl.style.background = 'var(--brand-red)';
-      infoContentEl.innerHTML = `
-        <div style="color: var(--brand-red); font-weight: bold; padding: 10px 0;">
-          No shipment record found for "${awb}". Please check your tracking ID and try again.
-        </div>
-      `;
-      timelineEl.innerHTML = '';
+  if (data.timeline) {
+    data.timeline.forEach(step => {
+      const li = document.createElement('li');
+      li.innerHTML = `<strong>${step.stage}</strong> — <span style="color: var(--text-gray); font-size: 0.88rem;">${step.date}</span>`;
+      timelineEl.appendChild(li);
     });
+  }
 });
 </script>
-
 </body>
 </html>
