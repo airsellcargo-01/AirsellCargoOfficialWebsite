@@ -453,7 +453,7 @@
 <script>
 document.getElementById('main-track-form').addEventListener('submit', function(e) {
   e.preventDefault();
-  const awb = document.getElementById('awb-input').value.trim();
+  const awb = document.getElementById('awb-input').value.trim().toUpperCase();
   const trackingResultEl = document.getElementById('tracking-result');
   const infoContentEl = document.getElementById('shipment-info-content');
   const timelineEl = document.getElementById('timeline');
@@ -462,47 +462,33 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
   if (!awb) return;
 
   // 1. Display searched ID & loading state
-  document.getElementById('display-awb').innerText = awb.toUpperCase();
+  document.getElementById('display-awb').innerText = awb;
   trackingResultEl.style.display = 'block';
   infoContentEl.innerHTML = '<p style="color: var(--text-gray);">Fetching tracking record...</p>';
   timelineEl.innerHTML = '';
 
-  // 2. Determine target URL based on prefix
-  const uppercaseAWB = awb.toUpperCase();
-  let targetUrl = '';
-
-  if (uppercaseAWB.startsWith('STR1-')) {
-    targetUrl = `https://api.store1.com/tracking/${encodeURIComponent(uppercaseAWB)}`;
-  } else if (uppercaseAWB.startsWith('STR2-')) {
-    targetUrl = `https://api.store2.com/tracking/${encodeURIComponent(uppercaseAWB)}`;
-  } else {
-    // Default: look for local JSON file (e.g., awb123456.json or shipment.json)
-    targetUrl = `${encodeURIComponent(awb.toLowerCase())}.json`;
-  }
-
-  // 3. Fetch tracking data
-  fetch(targetUrl)
+  // 2. Fetch master shipments dictionary
+  fetch('shipments.json')
     .then(res => {
-      if (res.ok) return res.json();
-      
-      // If specific local JSON file wasn't found (404), fall back to shipment.json
-      if (!targetUrl.startsWith('http')) {
-        return fetch('shipment.json').then(fallbackRes => {
-          if (!fallbackRes.ok) throw new Error("No tracking record found");
-          return fallbackRes.json();
-        });
-      }
-      throw new Error("Shipment not found");
+      if (!res.ok) throw new Error("Could not load tracking database");
+      return res.json();
     })
-    .then(data => {
-      // Normalize property names (supports Status/status, Origin/origin, etc.)
-      const status = data.Status || data.status || 'In Transit';
-      const origin = data.Origin || data.origin || 'N/A';
-      const destination = data.Destination || data.destination || 'N/A';
-      const timeline = data.Timeline || data.timeline || [];
+    .then(database => {
+      // Look up typed AWB in database object
+      const data = database[awb];
+
+      if (!data) {
+        throw new Error("Shipment not found");
+      }
+
+      const status = data.status || data.Status || 'In Transit';
+      const storeName = data.store || 'Partner Store';
+      const origin = data.origin || data.Origin || 'N/A';
+      const destination = data.destination || data.Destination || 'N/A';
+      const timeline = data.timeline || data.Timeline || [];
       const estimatedArrival = data.estimatedArrival || (timeline.length ? timeline[timeline.length - 1].date : 'N/A');
 
-      // Update status badge
+      // Update badge styling
       statusBadgeEl.innerText = status;
       if (status.toLowerCase() === 'delivered') {
         statusBadgeEl.style.background = 'var(--brand-green)';
@@ -513,6 +499,10 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
       // Render Freight Overview Grid
       infoContentEl.innerHTML = `
         <div class="info-grid">
+          <div class="info-item">
+            <label>Store Partner</label>
+            <span>${storeName}</span>
+          </div>
           <div class="info-item">
             <label>Current Status</label>
             <span>${status}</span>
@@ -526,13 +516,13 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
             <span>${destination}</span>
           </div>
           <div class="info-item">
-            <label>Estimated / Delivery Date</label>
+            <label>Est. Delivery</label>
             <span>${estimatedArrival}</span>
           </div>
         </div>
       `;
 
-      // Render Milestone Timeline
+      // Render Timeline
       timelineEl.innerHTML = '';
       if (Array.isArray(timeline) && timeline.length > 0) {
         timeline.forEach(step => {
@@ -543,7 +533,6 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
       }
     })
     .catch(err => {
-      // Handle non-existent IDs cleanly
       statusBadgeEl.innerText = 'Not Found';
       statusBadgeEl.style.background = 'var(--brand-red)';
       infoContentEl.innerHTML = `
