@@ -454,7 +454,7 @@
 <script>
 document.getElementById('main-track-form').addEventListener('submit', function(e) {
   e.preventDefault();
-  const awb = document.getElementById('awb-input').value.trim();
+  const awb = document.getElementById('awb-input').value.trim().toUpperCase();
   const trackingResultEl = document.getElementById('tracking-result');
   const infoContentEl = document.getElementById('shipment-info-content');
   const timelineEl = document.getElementById('timeline');
@@ -462,32 +462,34 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
 
   if (!awb) return;
 
-  // 1. Show UI section & display search ID
-  document.getElementById('display-awb').innerText = awb.toUpperCase();
+  document.getElementById('display-awb').innerText = awb;
   trackingResultEl.style.display = 'block';
-  infoContentEl.innerHTML = '<p style="color: var(--text-gray);">Fetching tracking record...</p>';
+  infoContentEl.innerHTML = '<p style="color: var(--text-gray);">Searching multi-store records...</p>';
   timelineEl.innerHTML = '';
 
-  // 2. Fetch specific AWB file first; if 404, fallback to shipment.json
-  fetch(`${encodeURIComponent(awb.toLowerCase())}.json`)
+  // Fetch the master database / multi-store file
+  fetch('shipments.json')
     .then(res => {
-      if (res.ok) return res.json();
-      // If specific file not found (404), fetch default shipment.json
-      return fetch('shipment.json').then(fallbackRes => {
-        if (!fallbackRes.ok) throw new Error("No tracking record found");
-        return fallbackRes.json();
-      });
+      if (!res.ok) throw new Error("Could not load tracking database");
+      return res.json();
     })
-    .then(data => {
-      // Normalize property keys (handles both Status and status)
-      const status = data.Status || data.status || 'In Transit';
-      const origin = data.Origin || data.origin || 'N/A';
-      const destination = data.Destination || data.destination || 'N/A';
-      const timeline = data.Timeline || data.timeline || [];
-      
+    .then(database => {
+      // Look up the typed AWB in the database object
+      const data = database[awb];
+
+      if (!data) {
+        throw new Error("Tracking number not found");
+      }
+
+      // Read shipment data
+      const status = data.status || 'In Transit';
+      const storeName = data.store || 'Partner Store';
+      const origin = data.origin || 'N/A';
+      const destination = data.destination || 'N/A';
+      const timeline = data.timeline || [];
       const estimatedArrival = data.estimatedArrival || (timeline.length ? timeline[timeline.length - 1].date : 'N/A');
 
-      // Update top status badge
+      // Update badge style based on status
       statusBadgeEl.innerText = status;
       if (status.toLowerCase() === 'delivered') {
         statusBadgeEl.style.background = 'var(--brand-green)';
@@ -495,9 +497,13 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
         statusBadgeEl.style.background = 'var(--primary-dark)';
       }
 
-      // Render Freight Overview Grid
+      // Display store name and shipment details
       infoContentEl.innerHTML = `
         <div class="info-grid">
+          <div class="info-item">
+            <label>Fulfillment Store</label>
+            <span>${storeName}</span>
+          </div>
           <div class="info-item">
             <label>Current Status</label>
             <span>${status}</span>
@@ -511,13 +517,13 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
             <span>${destination}</span>
           </div>
           <div class="info-item">
-            <label>Estimated / Delivery Date</label>
+            <label>Est. Delivery</label>
             <span>${estimatedArrival}</span>
           </div>
         </div>
       `;
 
-      // Render Milestone Timeline
+      // Build status timeline
       timelineEl.innerHTML = '';
       if (Array.isArray(timeline) && timeline.length > 0) {
         timeline.forEach(step => {
@@ -528,12 +534,11 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
       }
     })
     .catch(err => {
-      // Handle missing tracking records
       statusBadgeEl.innerText = 'Not Found';
       statusBadgeEl.style.background = 'var(--brand-red)';
       infoContentEl.innerHTML = `
         <div style="color: var(--brand-red); font-weight: bold; padding: 10px 0;">
-          No tracking record found for Waybill "${awb}". Please verify the number and try again.
+          No shipment record found for "${awb}". Please check your tracking ID and try again.
         </div>
       `;
       timelineEl.innerHTML = '';
