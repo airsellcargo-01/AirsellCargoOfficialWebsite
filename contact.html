@@ -373,22 +373,21 @@
         <div class="form-card">
           <h2>Send Us a Message</h2>
 
-          <form id="contactForm" action="https://formsubmit.co/1233a26cfc71ac026ab36a3426f8e462" method="POST" enctype="multipart/form-data">
-            <!-- Hidden Settings -->
-            <input type="hidden" name="_next" value="https://airsellcargo.com/thank.html">
-            <input type="hidden" name="_subject" value="New Website Contact Request - Airsell Cargo">
-            <input type="hidden" name="_captcha" value="false">
+          <form id="contactForm" action="contact_process.php" method="POST" enctype="multipart/form-data">
+            <!-- Hidden honeypot field -->
+            <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+            <input type="hidden" name="subject" value="New Website Contact Request - Airsell Cargo">
             
             <div class="form-parallel-wrapper">
               
               <div class="form-group">
                 <label for="fullName" class="form-label">Full Name *</label>
-                <input type="text" id="fullName" name="Full Name" required placeholder="John Doe">
+                <input type="text" id="fullName" name="name" required placeholder="John Doe">
               </div>
 
               <div class="form-group">
                 <label for="companyName" class="form-label">Company Name</label>
-                <input type="text" id="companyName" name="Company Name" placeholder="Global Logistics Ltd.">
+                <input type="text" id="companyName" name="company" placeholder="Global Logistics Ltd.">
               </div>
 
               <div class="form-group">
@@ -398,12 +397,12 @@
 
               <div class="form-group">
                 <label for="phone" class="form-label">Phone Number *</label>
-                <input type="tel" id="phone" name="Phone Number" required placeholder="+252 ...">
+                <input type="tel" id="phone" name="phone" required placeholder="+252 ...">
               </div>
 
               <div class="form-group full-width">
                 <label for="serviceType" class="form-label">Service Required</label>
-                <select id="serviceType" name="Service Required">
+                <select id="serviceType" name="service_type" required>
                   <option value="">Select Service Category...</option>
                   <option value="Air Freight">Air Freight</option>
                   <option value="Ocean Freight">Ocean Freight</option>
@@ -415,10 +414,11 @@
 
               <div class="form-group full-width">
                 <label for="message" class="form-label">Message / Cargo Details *</label>
-                <textarea id="message" name="Message" rows="5" required placeholder="Tell us about your cargo weight, dimensions, origin, destination..."></textarea>
+                <textarea id="message" name="details" rows="5" required placeholder="Tell us about your cargo weight, dimensions, origin, destination..."></textarea>
               </div>
 
               <div class="form-group full-width">
+                <div id="contact-response" style="display:none; padding:12px; border-radius:8px; margin-top:10px;"></div>
                 <button type="submit" class="btn-submit">Submit Request</button>
               </div>
 
@@ -472,6 +472,51 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', async function (event) {
+      event.preventDefault();
+
+      const form = event.currentTarget;
+      const responseEl = document.getElementById('contact-response');
+      const submitButton = form.querySelector('button[type="submit"]');
+
+      responseEl.style.display = 'none';
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch('contact_process.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          responseEl.style.display = 'block';
+          responseEl.style.background = '#dcfce7';
+          responseEl.style.color = '#166534';
+          responseEl.innerText = result.message;
+          form.reset();
+        } else {
+          responseEl.style.display = 'block';
+          responseEl.style.background = '#fee2e2';
+          responseEl.style.color = '#991b1b';
+          responseEl.innerText = (result.errors && result.errors.length ? result.errors.join(' ') : result.message);
+        }
+      } catch (error) {
+        responseEl.style.display = 'block';
+        responseEl.style.background = '#fee2e2';
+        responseEl.style.color = '#991b1b';
+        responseEl.innerText = 'Unable to submit your request right now. Please try again later.';
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit Request';
+      }
+    });
+  </script>
 
 </body>
 </html>
