@@ -340,14 +340,14 @@
                     <span style="background: #fee2e2; color: var(--brand-red); font-size: 0.8rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; text-transform: uppercase;">
                         Live Digital Manifest Portal
                     </span>
-                    <h2 style="color: var(--primary-dark); font-size: 1.8rem; margin: 15px 0 5px;">Enter House Airway Bill / Tracking ID</h2>
+                    <h2 style="color: var(--primary-dark); font-size: 1.8rem; margin: 15px 0 5px;">Enter Airway Bill / Tracking ID</h2>
                     <p style="color: var(--text-gray); font-size: 0.95rem; margin: 0;">
-                        Input your House Airway Bill (HAWB) or Container Number to retrieve instant status updates from our cloud tracking system.
+                        Input your Airway Bill (AWB) or Container Number to retrieve instant status updates from our cloud tracking system.
                     </p>
                 </div>
 
                 <form id="main-track-form" class="tracking-input-group">
-                    <input type="text" id="hawb-input" placeholder="e.g., ASL-8829104" required aria-label="Tracking Number">
+                    <input type="text" id="awb-input" placeholder="e.g., ASL-8829104" required aria-label="Tracking Number">
                     <button type="submit" id="track-btn" class="btn-track">🔍 Track Freight</button>
                 </form>
 
@@ -453,7 +453,7 @@
 <script>
 // Local embedded database dictionary
 const shipmentDatabase = {
-  "HAWB123456": {
+  "AWB123456": {
     "store": "Store Alpha",
     "status": "Delivered",
     "origin": "Hargeisa (HGA)",
@@ -478,7 +478,7 @@ const shipmentDatabase = {
 
 document.getElementById('main-track-form').addEventListener('submit', function(e) {
   e.preventDefault();
-  const hawb = document.getElementById('hawb-input').value.trim().toUpperCase();
+  const awb = document.getElementById('awb-input').value.trim().toUpperCase();
   const trackingResultEl = document.getElementById('tracking-result');
   const infoContentEl = document.getElementById('shipment-info-content');
   const timelineEl = document.getElementById('timeline');
