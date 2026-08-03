@@ -451,7 +451,7 @@
     </div>
 </footer>
 
-  <script>
+<script>
 document.getElementById('main-track-form').addEventListener('submit', function(e) {
   e.preventDefault();
   const awb = document.getElementById('awb-input').value.trim();
@@ -468,49 +468,57 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
   infoContentEl.innerHTML = '<p style="color: var(--text-gray);">Fetching tracking record...</p>';
   timelineEl.innerHTML = '';
 
-  // 2. Fetch tracking details dynamically from your backend API endpoint
-  fetch(`${encodeURIComponent(awb)}.json`)
+  // 2. Fetch tracking details from JSON (tries specific file first, falls back to shipment.json)
+  fetch(`${encodeURIComponent(awb.toLowerCase())}.json`)
+    .catch(() => fetch('shipment.json')) // Fallback to shipment.json if specific AWB file isn't found
     .then(res => {
       if (!res.ok) throw new Error("AWB not found");
       return res.json();
     })
     .then(data => {
-      // Update top status badge dynamically
-      statusBadgeEl.innerText = data.status || 'In Transit';
+      // Normalize property keys to support both uppercase (Status) and lowercase (status)
+      const status = data.Status || data.status || 'In Transit';
+      const origin = data.Origin || data.origin || 'N/A';
+      const destination = data.Destination || data.destination || 'N/A';
+      const timeline = data.Timeline || data.timeline || [];
       
-      // Optionally style badge based on completion
-      if (data.status && data.status.toLowerCase() === 'delivered') {
+      // Calculate estimated/delivery date from last timeline step if not explicitly provided
+      const estimatedArrival = data.estimatedArrival || (timeline.length ? timeline[timeline.length - 1].date : 'N/A');
+
+      // Update top status badge
+      statusBadgeEl.innerText = status;
+      if (status.toLowerCase() === 'delivered') {
         statusBadgeEl.style.background = 'var(--brand-green)';
       } else {
         statusBadgeEl.style.background = 'var(--primary-dark)';
       }
 
-      // Render Freight Overview Grid using API data
+      // Render Freight Overview Grid
       infoContentEl.innerHTML = `
         <div class="info-grid">
           <div class="info-item">
             <label>Current Status</label>
-            <span>${data.status || 'N/A'}</span>
+            <span>${status}</span>
           </div>
           <div class="info-item">
             <label>Origin Hub</label>
-            <span>${data.origin || 'N/A'}</span>
+            <span>${origin}</span>
           </div>
           <div class="info-item">
             <label>Destination</label>
-            <span>${data.destination || 'N/A'}</span>
+            <span>${destination}</span>
           </div>
           <div class="info-item">
             <label>Estimated / Delivery Date</label>
-            <span>${data.estimatedArrival || 'N/A'}</span>
+            <span>${estimatedArrival}</span>
           </div>
         </div>
       `;
 
-      // Render Milestone Timeline dynamically
+      // Render Milestone Timeline
       timelineEl.innerHTML = '';
-      if (data.timeline && Array.isArray(data.timeline)) {
-        data.timeline.forEach(step => {
+      if (Array.isArray(timeline) && timeline.length > 0) {
+        timeline.forEach(step => {
           const li = document.createElement('li');
           li.innerHTML = `<strong>${step.stage}</strong> — <span style="color: var(--text-gray); font-size: 0.88rem;">${step.date}</span>`;
           timelineEl.appendChild(li);
@@ -518,7 +526,7 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
       }
     })
     .catch(err => {
-      // Handle invalid or missing tracking IDs clearly
+      // Handle missing tracking record
       statusBadgeEl.innerText = 'Not Found';
       statusBadgeEl.style.background = 'var(--brand-red)';
       infoContentEl.innerHTML = `
