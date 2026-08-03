@@ -1,4 +1,6 @@
-{
+<script>
+// Local embedded database dictionary
+const shipmentDatabase = {
   "AWB123456": {
     "store": "Store Alpha",
     "status": "Delivered",
@@ -20,4 +22,58 @@
       { "stage": "In Transit", "date": "Aug 03, 2026 - 15:00 EAT" }
     ]
   }
-}
+};
+
+document.getElementById('main-track-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const awb = document.getElementById('awb-input').value.trim().toUpperCase();
+  const trackingResultEl = document.getElementById('tracking-result');
+  const infoContentEl = document.getElementById('shipment-info-content');
+  const timelineEl = document.getElementById('timeline');
+  const statusBadgeEl = document.getElementById('status-badge-el');
+
+  if (!awb) return;
+
+  document.getElementById('display-awb').innerText = awb;
+  trackingResultEl.style.display = 'block';
+
+  // Look up directly from internal dictionary
+  const data = shipmentDatabase[awb];
+
+  if (!data) {
+    statusBadgeEl.innerText = 'Not Found';
+    statusBadgeEl.style.background = 'var(--brand-red)';
+    infoContentEl.innerHTML = `
+      <div style="color: var(--brand-red); font-weight: bold; padding: 10px 0;">
+        No shipment record found for "${awb}". Please check your tracking ID and try again.
+      </div>
+    `;
+    timelineEl.innerHTML = '';
+    return;
+  }
+
+  // Display details
+  const status = data.status || 'In Transit';
+  statusBadgeEl.innerText = status;
+  statusBadgeEl.style.background = status.toLowerCase() === 'delivered' ? 'var(--brand-green)' : 'var(--primary-dark)';
+
+  infoContentEl.innerHTML = `
+    <div class="info-grid">
+      <div class="info-item"><label>Store Partner</label><span>${data.store || 'N/A'}</span></div>
+      <div class="info-item"><label>Current Status</label><span>${status}</span></div>
+      <div class="info-item"><label>Origin Hub</label><span>${data.origin || 'N/A'}</span></div>
+      <div class="info-item"><label>Destination</label><span>${data.destination || 'N/A'}</span></div>
+      <div class="info-item"><label>Est. Delivery</label><span>${data.timeline?.slice(-1)[0]?.date || 'N/A'}</span></div>
+    </div>
+  `;
+
+  timelineEl.innerHTML = '';
+  if (data.timeline) {
+    data.timeline.forEach(step => {
+      const li = document.createElement('li');
+      li.innerHTML = `<strong>${step.stage}</strong> — <span style="color: var(--text-gray); font-size: 0.88rem;">${step.date}</span>`;
+      timelineEl.appendChild(li);
+    });
+  }
+});
+</script>
