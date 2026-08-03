@@ -453,7 +453,7 @@
 <script>
 document.getElementById('main-track-form').addEventListener('submit', function(e) {
   e.preventDefault();
-  const awb = document.getElementById('awb-input').value.trim().toUpperCase();
+  const awb = document.getElementById('awb-input').value.trim();
   const trackingResultEl = document.getElementById('tracking-result');
   const infoContentEl = document.getElementById('shipment-info-content');
   const timelineEl = document.getElementById('timeline');
@@ -461,40 +461,48 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
 
   if (!awb) return;
 
-  // 1. Show UI section & display search ID
-  document.getElementById('display-awb').innerText = awb;
+  // 1. Display searched ID & loading state
+  document.getElementById('display-awb').innerText = awb.toUpperCase();
   trackingResultEl.style.display = 'block';
   infoContentEl.innerHTML = '<p style="color: var(--text-gray);">Fetching tracking record...</p>';
   timelineEl.innerHTML = '';
 
-  // ----------------------------------------------------
-  // 2. DYNAMIC STORE PREFIX ROUTING LOGIC GOES HERE:
-  // ----------------------------------------------------
+  // 2. Determine target URL based on prefix
+  const uppercaseAWB = awb.toUpperCase();
   let targetUrl = '';
 
-  if (awb.startsWith('STR1-')) {
-    targetUrl = `https://api.store1.com/tracking/${encodeURIComponent(awb)}`;
-  } else if (awb.startsWith('STR2-')) {
-    targetUrl = `https://api.store2.com/tracking/${encodeURIComponent(awb)}`;
+  if (uppercaseAWB.startsWith('STR1-')) {
+    targetUrl = `https://api.store1.com/tracking/${encodeURIComponent(uppercaseAWB)}`;
+  } else if (uppercaseAWB.startsWith('STR2-')) {
+    targetUrl = `https://api.store2.com/tracking/${encodeURIComponent(uppercaseAWB)}`;
   } else {
-    // Default fallback (local endpoint or json file)
+    // Default: look for local JSON file (e.g., awb123456.json or shipment.json)
     targetUrl = `${encodeURIComponent(awb.toLowerCase())}.json`;
   }
 
-  // 3. Fetch from the determined target URL
+  // 3. Fetch tracking data
   fetch(targetUrl)
     .then(res => {
-      if (!res.ok) throw new Error("Shipment not found");
-      return res.json();
+      if (res.ok) return res.json();
+      
+      // If specific local JSON file wasn't found (404), fall back to shipment.json
+      if (!targetUrl.startsWith('http')) {
+        return fetch('shipment.json').then(fallbackRes => {
+          if (!fallbackRes.ok) throw new Error("No tracking record found");
+          return fallbackRes.json();
+        });
+      }
+      throw new Error("Shipment not found");
     })
     .then(data => {
+      // Normalize property names (supports Status/status, Origin/origin, etc.)
       const status = data.Status || data.status || 'In Transit';
       const origin = data.Origin || data.origin || 'N/A';
       const destination = data.Destination || data.destination || 'N/A';
       const timeline = data.Timeline || data.timeline || [];
       const estimatedArrival = data.estimatedArrival || (timeline.length ? timeline[timeline.length - 1].date : 'N/A');
 
-      // Update status badge styling
+      // Update status badge
       statusBadgeEl.innerText = status;
       if (status.toLowerCase() === 'delivered') {
         statusBadgeEl.style.background = 'var(--brand-green)';
@@ -535,6 +543,7 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
       }
     })
     .catch(err => {
+      // Handle non-existent IDs cleanly
       statusBadgeEl.innerText = 'Not Found';
       statusBadgeEl.style.background = 'var(--brand-red)';
       infoContentEl.innerHTML = `
