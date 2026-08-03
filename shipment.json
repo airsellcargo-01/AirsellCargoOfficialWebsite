@@ -1,3 +1,26 @@
+{
+  "AWB123456": {
+    "store": "Store Alpha",
+    "status": "Delivered",
+    "origin": "Hargeisa (HGA)",
+    "destination": "Dubai (DXB)",
+    "timeline": [
+      { "stage": "Cargo Booked", "date": "Jul 28, 2026 - 10:00 EAT" },
+      { "stage": "In Transit", "date": "Jul 29, 2026 - 14:30 EAT" },
+      { "stage": "Delivered", "date": "Jul 31, 2026 - 11:15 EAT" }
+    ]
+  },
+  "STORE2-9988": {
+    "store": "Store Beta",
+    "status": "In Transit",
+    "origin": "Berbera Port",
+    "destination": "Mogadishu",
+    "timeline": [
+      { "stage": "Dispatched from Depot", "date": "Aug 02, 2026 - 08:30 EAT" },
+      { "stage": "In Transit", "date": "Aug 03, 2026 - 15:00 EAT" }
+    ]
+  }
+}
 <script>
 // Local embedded database dictionary
 const shipmentDatabase = {
