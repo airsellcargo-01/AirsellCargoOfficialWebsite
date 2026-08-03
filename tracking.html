@@ -451,74 +451,84 @@
     </div>
 </footer>
 
-<script>
+  <script>
 document.getElementById('main-track-form').addEventListener('submit', function(e) {
   e.preventDefault();
   const awb = document.getElementById('awb-input').value.trim();
   const trackingResultEl = document.getElementById('tracking-result');
   const infoContentEl = document.getElementById('shipment-info-content');
   const timelineEl = document.getElementById('timeline');
+  const statusBadgeEl = document.getElementById('status-badge-el');
 
-  // Helper function to render data
-  function renderTrackingData(data) {
-    document.getElementById('display-awb').innerText = awb.toUpperCase();
-    
-    infoContentEl.innerHTML = `
-      <div class="info-grid">
-        <div class="info-item">
-          <label>Current Status</label>
-          <span>${data.Status || 'In Transit'}</span>
-        </div>
-        <div class="info-item">
-          <label>Origin Hub</label>
-          <span>${data.Origin || 'Hargeisa (HGA)'}</span>
-        </div>
-        <div class="info-item">
-          <label>Destination</label>
-          <span>${data.Destination || 'Dubai (DXB)'}</span>
-        </div>
-        <div class="info-item">
-          <label>Estimated Arrival</label>
-          <span>${data.Timeline && data.Timeline.length ? data.Timeline[data.Timeline.length - 1].date : 'Aug 04, 2026'}</span>
-        </div>
-      </div>
-    `;
+  if (!awb) return;
 
-    timelineEl.innerHTML = '';
-    if (data.Timeline && Array.isArray(data.Timeline)) {
-      data.Timeline.forEach(step => {
-        const li = document.createElement('li');
-        li.innerHTML = `<strong>${step.stage}</strong> — <span style="color: var(--text-gray); font-size: 0.88rem;">${step.date}</span>`;
-        timelineEl.appendChild(li);
-      });
-    }
-    trackingResultEl.style.display = 'block';
-  }
+  // 1. Show UI section & display search ID
+  document.getElementById('display-awb').innerText = awb.toUpperCase();
+  trackingResultEl.style.display = 'block';
+  infoContentEl.innerHTML = '<p style="color: var(--text-gray);">Fetching tracking record...</p>';
+  timelineEl.innerHTML = '';
 
-  // Try fetching JSON, with a client-side fallback if server file is missing
-  fetch('shipment.json')
+  // 2. Fetch tracking details dynamically from your backend API endpoint
+  fetch(`/api/track?awb=${encodeURIComponent(awb)}`)
     .then(res => {
-      if (!res.ok) throw new Error("File not found");
+      if (!res.ok) throw new Error("AWB not found");
       return res.json();
     })
-    .then(data => renderTrackingData(data))
-    .catch(() => {
-      // Demo fallback data if JSON endpoint is unavailable
-      const fallbackData = {
-        Status: "In Transit",
-        Origin: "Hargeisa Airport (HGA)",
-        Destination: "Dubai International (DXB)",
-        Timeline: [
-          { stage: "Cargo Received at HGA Depot", date: "Aug 01, 2026 - 09:30 EAT" },
-          { stage: "Export Customs Cleared & e-AWB Generated", date: "Aug 01, 2026 - 14:15 EAT" },
-          { stage: "Departed Hargeisa Airport (HGA)", date: "Aug 02, 2026 - 08:00 EAT" },
-          { stage: "In Transit to Destination Hub", date: "Aug 02, 2026 - Present" }
-        ]
-      };
-      renderTrackingData(fallbackData);
+    .then(data => {
+      // Update top status badge dynamically
+      statusBadgeEl.innerText = data.status || 'In Transit';
+      
+      // Optionally style badge based on completion
+      if (data.status && data.status.toLowerCase() === 'delivered') {
+        statusBadgeEl.style.background = 'var(--brand-green)';
+      } else {
+        statusBadgeEl.style.background = 'var(--primary-dark)';
+      }
+
+      // Render Freight Overview Grid using API data
+      infoContentEl.innerHTML = `
+        <div class="info-grid">
+          <div class="info-item">
+            <label>Current Status</label>
+            <span>${data.status || 'N/A'}</span>
+          </div>
+          <div class="info-item">
+            <label>Origin Hub</label>
+            <span>${data.origin || 'N/A'}</span>
+          </div>
+          <div class="info-item">
+            <label>Destination</label>
+            <span>${data.destination || 'N/A'}</span>
+          </div>
+          <div class="info-item">
+            <label>Estimated / Delivery Date</label>
+            <span>${data.estimatedArrival || 'N/A'}</span>
+          </div>
+        </div>
+      `;
+
+      // Render Milestone Timeline dynamically
+      timelineEl.innerHTML = '';
+      if (data.timeline && Array.isArray(data.timeline)) {
+        data.timeline.forEach(step => {
+          const li = document.createElement('li');
+          li.innerHTML = `<strong>${step.stage}</strong> — <span style="color: var(--text-gray); font-size: 0.88rem;">${step.date}</span>`;
+          timelineEl.appendChild(li);
+        });
+      }
+    })
+    .catch(err => {
+      // Handle invalid or missing tracking IDs clearly
+      statusBadgeEl.innerText = 'Not Found';
+      statusBadgeEl.style.background = 'var(--brand-red)';
+      infoContentEl.innerHTML = `
+        <div style="color: var(--brand-red); font-weight: bold; padding: 10px 0;">
+          No tracking record found for Waybill "${awb}". Please verify the number and try again.
+        </div>
+      `;
+      timelineEl.innerHTML = '';
     });
 });
 </script>
-
 </body>
 </html>
