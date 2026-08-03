@@ -469,7 +469,7 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
   timelineEl.innerHTML = '';
 
   // 2. Fetch tracking details dynamically from your backend API endpoint
-  fetch(`/api/track?awb=${encodeURIComponent(awb)}`)
+  fetch(`${encodeURIComponent(awb)}.json`)
     .then(res => {
       if (!res.ok) throw new Error("AWB not found");
       return res.json();
