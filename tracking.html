@@ -450,7 +450,6 @@
         </div>
     </div>
 </footer>
-
 <script>
 document.getElementById('main-track-form').addEventListener('submit', function(e) {
   e.preventDefault();
@@ -462,34 +461,40 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
 
   if (!awb) return;
 
+  // 1. Show UI section & display search ID
   document.getElementById('display-awb').innerText = awb;
   trackingResultEl.style.display = 'block';
-  infoContentEl.innerHTML = '<p style="color: var(--text-gray);">Searching multi-store records...</p>';
+  infoContentEl.innerHTML = '<p style="color: var(--text-gray);">Fetching tracking record...</p>';
   timelineEl.innerHTML = '';
 
-  // Fetch the master database / multi-store file
-  fetch('shipments.json')
+  // ----------------------------------------------------
+  // 2. DYNAMIC STORE PREFIX ROUTING LOGIC GOES HERE:
+  // ----------------------------------------------------
+  let targetUrl = '';
+
+  if (awb.startsWith('STR1-')) {
+    targetUrl = `https://api.store1.com/tracking/${encodeURIComponent(awb)}`;
+  } else if (awb.startsWith('STR2-')) {
+    targetUrl = `https://api.store2.com/tracking/${encodeURIComponent(awb)}`;
+  } else {
+    // Default fallback (local endpoint or json file)
+    targetUrl = `${encodeURIComponent(awb.toLowerCase())}.json`;
+  }
+
+  // 3. Fetch from the determined target URL
+  fetch(targetUrl)
     .then(res => {
-      if (!res.ok) throw new Error("Could not load tracking database");
+      if (!res.ok) throw new Error("Shipment not found");
       return res.json();
     })
-    .then(database => {
-      // Look up the typed AWB in the database object
-      const data = database[awb];
-
-      if (!data) {
-        throw new Error("Tracking number not found");
-      }
-
-      // Read shipment data
-      const status = data.status || 'In Transit';
-      const storeName = data.store || 'Partner Store';
-      const origin = data.origin || 'N/A';
-      const destination = data.destination || 'N/A';
-      const timeline = data.timeline || [];
+    .then(data => {
+      const status = data.Status || data.status || 'In Transit';
+      const origin = data.Origin || data.origin || 'N/A';
+      const destination = data.Destination || data.destination || 'N/A';
+      const timeline = data.Timeline || data.timeline || [];
       const estimatedArrival = data.estimatedArrival || (timeline.length ? timeline[timeline.length - 1].date : 'N/A');
 
-      // Update badge style based on status
+      // Update status badge styling
       statusBadgeEl.innerText = status;
       if (status.toLowerCase() === 'delivered') {
         statusBadgeEl.style.background = 'var(--brand-green)';
@@ -497,13 +502,9 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
         statusBadgeEl.style.background = 'var(--primary-dark)';
       }
 
-      // Display store name and shipment details
+      // Render Freight Overview Grid
       infoContentEl.innerHTML = `
         <div class="info-grid">
-          <div class="info-item">
-            <label>Fulfillment Store</label>
-            <span>${storeName}</span>
-          </div>
           <div class="info-item">
             <label>Current Status</label>
             <span>${status}</span>
@@ -517,13 +518,13 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
             <span>${destination}</span>
           </div>
           <div class="info-item">
-            <label>Est. Delivery</label>
+            <label>Estimated / Delivery Date</label>
             <span>${estimatedArrival}</span>
           </div>
         </div>
       `;
 
-      // Build status timeline
+      // Render Milestone Timeline
       timelineEl.innerHTML = '';
       if (Array.isArray(timeline) && timeline.length > 0) {
         timeline.forEach(step => {
@@ -545,5 +546,6 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
     });
 });
 </script>
+
 </body>
 </html>
