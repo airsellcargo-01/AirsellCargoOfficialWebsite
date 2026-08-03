@@ -1,13 +1,13 @@
 {
   "ShipmentID": "AWB123456",
   "Weight": "1200kg",
-  "Origin": "HGA",
-  "Destination": "DXB",
-  "Status": "In Transit",
+  "Origin": "Hargeisa (HGA)",
+  "Destination": "Dubai (DXB)",
+  "Status": "Delivered",
   "Timeline": [
-    {"stage": "Booked", "date": "2026-07-28"},
-    {"stage": "In Transit", "date": "2026-07-29"},
-    {"stage": "Arrived", "date": "2026-07-30"},
-    {"stage": "Delivered", "date": "2026-07-31"}
+    { "stage": "Cargo Booked", "date": "Jul 28, 2026 - 10:00 EAT" },
+    { "stage": "In Transit to Destination Hub", "date": "Jul 29, 2026 - 14:30 EAT" },
+    { "stage": "Arrived at Destination Airport", "date": "Jul 30, 2026 - 18:00 EAT" },
+    { "stage": "Out for Delivery / Completed", "date": "Jul 31, 2026 - 11:15 EAT" }
   ]
 }
