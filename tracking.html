@@ -468,21 +468,23 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
   infoContentEl.innerHTML = '<p style="color: var(--text-gray);">Fetching tracking record...</p>';
   timelineEl.innerHTML = '';
 
-  // 2. Fetch tracking details from JSON (tries specific file first, falls back to shipment.json)
+  // 2. Fetch specific AWB file first; if 404, fallback to shipment.json
   fetch(`${encodeURIComponent(awb.toLowerCase())}.json`)
-    .catch(() => fetch('shipment.json')) // Fallback to shipment.json if specific AWB file isn't found
     .then(res => {
-      if (!res.ok) throw new Error("AWB not found");
-      return res.json();
+      if (res.ok) return res.json();
+      // If specific file not found (404), fetch default shipment.json
+      return fetch('shipment.json').then(fallbackRes => {
+        if (!fallbackRes.ok) throw new Error("No tracking record found");
+        return fallbackRes.json();
+      });
     })
     .then(data => {
-      // Normalize property keys to support both uppercase (Status) and lowercase (status)
+      // Normalize property keys (handles both Status and status)
       const status = data.Status || data.status || 'In Transit';
       const origin = data.Origin || data.origin || 'N/A';
       const destination = data.Destination || data.destination || 'N/A';
       const timeline = data.Timeline || data.timeline || [];
       
-      // Calculate estimated/delivery date from last timeline step if not explicitly provided
       const estimatedArrival = data.estimatedArrival || (timeline.length ? timeline[timeline.length - 1].date : 'N/A');
 
       // Update top status badge
@@ -526,7 +528,7 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
       }
     })
     .catch(err => {
-      // Handle missing tracking record
+      // Handle missing tracking records
       statusBadgeEl.innerText = 'Not Found';
       statusBadgeEl.style.background = 'var(--brand-red)';
       infoContentEl.innerHTML = `
