@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWB List | Airsell Cargo</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: white;
+      background: #0f172a;
+    }
+    .table-action-btn {
+      margin-right: 6px;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .edit-btn {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+    .delete-btn {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+  </style>
+</head>
+<body>
+  <main class="container" style="padding:40px; max-width:1100px;">
+    <h1>Stored AWB Records</h1>
+    <p>Review all AWBs currently available in the shipment data file.</p>
+    <a href="admin_awb.html" class="btn-primary" style="display:inline-block; margin-bottom:20px;">Back to Admin</a>
+
+    <div style="margin-bottom: 15px;">
+      <label for="awb-search" style="display:block; margin-bottom:6px; font-weight:700;">Search AWB</label>
+      <input type="text" id="awb-search" placeholder="Type AWB or store name" style="width:100%; max-width:420px; padding:10px; border:1px solid #cbd5e1; border-radius:8px;" />
+    </div>
+
+    <div style="margin-bottom: 15px; display:flex; gap:10px; flex-wrap:wrap;">
+      <button id="export-csv" class="btn-primary" type="button">Export CSV</button>
+      <button id="refresh-awbs" class="btn-primary" type="button">Refresh</button>
+    </div>
+
+    <div id="loading" style="padding:12px; color:#475569;">Loading AWBs...</div>
+
+    <div id="edit-panel" style="display:none; margin: 20px 0; padding: 20px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; max-width: 520px;">
+      <h3 style="margin-top:0;">Edit AWB</h3>
+      <form id="edit-awb-form">
+        <label>AWB</label>
+        <input type="text" id="edit-awb" readonly style="margin-bottom:12px; width:100%;" />
+
+        <label>Store</label>
+        <input type="text" id="edit-store" style="margin-bottom:12px; width:100%;" />
+
+        <label>Status</label>
+        <input type="text" id="edit-status" style="margin-bottom:12px; width:100%;" />
+
+        <label>Origin</label>
+        <input type="text" id="edit-origin" style="margin-bottom:12px; width:100%;" />
+
+        <label>Destination</label>
+        <input type="text" id="edit-destination" style="margin-bottom:12px; width:100%;" />
+
+        <button type="submit" class="btn-primary">Save Changes</button>
+        <button type="button" id="cancel-edit" style="margin-left:8px;">Cancel</button>
+      </form>
+    </div>
+
+    <table id="awb-table" style="display:none;">
+      <thead>
+        <tr>
+          <th>AWB</th>
+          <th>Store</th>
+          <th>Status</th>
+          <th>Origin</th>
+          <th>Destination</th>
+          <th>Timeline</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="awb-table-body"></tbody>
+    </table>
+  </main>
+
+  <script>
+    async function loadAWBs() {
+      const loadingEl = document.getElementById('loading');
+      const tableEl = document.getElementById('awb-table');
+      const bodyEl = document.getElementById('awb-table-body');
+      const searchEl = document.getElementById('awb-search');
+      const exportButton = document.getElementById('export-csv');
+      const refreshButton = document.getElementById('refresh-awbs');
+      const editPanelEl = document.getElementById('edit-panel');
+      const editFormEl = document.getElementById('edit-awb-form');
+      const cancelEditBtn = document.getElementById('cancel-edit');
+
+      let rows = [];
+
+      try {
+        const response = await fetch('shipment.json');
+        if (!response.ok) {
+          throw new Error('Unable to load shipment data');
+        }
+
+        const data = await response.json();
+        rows = Object.entries(data || {});
+
+        if (!rows.length) {
+          loadingEl.innerText = 'No AWBs found in shipment.json.';
+          return;
+        }
+
+        const renderRows = (filterText = '') => {
+          const term = filterText.trim().toLowerCase();
+          const filteredRows = rows.filter(([awb, item]) => {
+            if (!term) return true;
+            return (
+              awb.toLowerCase().includes(term) ||
+              (item.store || '').toLowerCase().includes(term) ||
+              (item.origin || '').toLowerCase().includes(term) ||
+              (item.destination || '').toLowerCase().includes(term)
+            );
+          });
+
+          bodyEl.innerHTML = filteredRows.map(([awb, item]) => {
+            const steps = Array.isArray(item.timeline) ? item.timeline.map(step => step.stage).join('<br>') : '—';
+            const status = (item.status || 'Booked').toLowerCase();
+            const statusBg = status === 'delivered' ? '#16a34a' : '#0f172a';
+
+            return `
+              <tr>
+                <td><strong>${awb}</strong></td>
+                <td>${item.store || 'N/A'}</td>
+                <td><span class="status-badge" style="background:${statusBg};">${item.status || 'Booked'}</span></td>
+                <td>${item.origin || 'N/A'}</td>
+                <td>${item.destination || 'N/A'}</td>
+                <td>${steps}</td>
+                <td>
+                  <button type="button" class="table-action-btn edit-btn" data-action="edit" data-awb="${awb}">Edit</button>
+                  <button type="button" class="table-action-btn delete-btn" data-action="delete" data-awb="${awb}">Delete</button>
+                </td>
+              </tr>
+            `;
+          }).join('');
+
+          if (!filteredRows.length) {
+            bodyEl.innerHTML = '<tr><td colspan="6">No AWBs match your search.</td></tr>';
+          }
+
+          exportButton.disabled = filteredRows.length === 0;
+        };
+
+        searchEl.addEventListener('input', function () {
+          renderRows(searchEl.value);
+        });
+
+        refreshButton.addEventListener('click', function () {
+          window.location.reload();
+        });
+
+        exportButton.addEventListener('click', function () {
+          const filteredRows = rows.filter(([awb, item]) => {
+            const term = searchEl.value.trim().toLowerCase();
+            if (!term) return true;
+            return (
+              awb.toLowerCase().includes(term) ||
+              (item.store || '').toLowerCase().includes(term) ||
+              (item.origin || '').toLowerCase().includes(term) ||
+              (item.destination || '').toLowerCase().includes(term)
+            );
+          });
+
+          const csvLines = [
+            'awb,store,status,origin,destination,timeline'
+          ];
+
+          filteredRows.forEach(([awb, item]) => {
+            const timeline = Array.isArray(item.timeline)
+              ? item.timeline.map(step => step.stage).join(' | ')
+              : '';
+
+            csvLines.push(
+              [
+                awb,
+                item.store || '',
+                item.status || '',
+                item.origin || '',
+                item.destination || '',
+                timeline
+              ].map(value => '"' + String(value).replace(/"/g, '""') + '"').join(',')
+            );
+          });
+
+          const blob = new Blob([csvLines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = 'awbs.csv';
+          link.click();
+          URL.revokeObjectURL(url);
+        });
+
+        bodyEl.addEventListener('click', async function (event) {
+          const button = event.target.closest('button[data-action]');
+          if (!button) {
+            return;
+          }
+
+          const action = button.dataset.action;
+          const awb = button.dataset.awb;
+          const targetRecord = rows.find(([rowAwb]) => rowAwb === awb);
+          if (!targetRecord) {
+            return;
+          }
+
+          if (action === 'edit') {
+            document.getElementById('edit-awb').value = awb;
+            document.getElementById('edit-store').value = targetRecord[1].store || '';
+            document.getElementById('edit-status').value = targetRecord[1].status || 'Booked';
+            document.getElementById('edit-origin').value = targetRecord[1].origin || '';
+            document.getElementById('edit-destination').value = targetRecord[1].destination || '';
+            editPanelEl.style.display = 'block';
+            return;
+          }
+
+          if (action === 'delete') {
+            const confirmed = window.confirm('Delete AWB ' + awb + '?');
+            if (!confirmed) {
+              return;
+            }
+
+            const response = await fetch('upload_awb.php', {
+              method: 'DELETE',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ awb: awb })
+            });
+            const result = await response.json();
+
+            if (result.success) {
+              rows = rows.filter(([rowAwb]) => rowAwb !== awb);
+              renderRows(searchEl.value);
+            } else {
+              window.alert(result.message || 'Unable to delete AWB.');
+            }
+          }
+        });
+
+        editFormEl.addEventListener('submit', async function (event) {
+          event.preventDefault();
+
+          const updatedPayload = {
+            awb: document.getElementById('edit-awb').value.trim(),
+            store: document.getElementById('edit-store').value.trim(),
+            status: document.getElementById('edit-status').value.trim(),
+            origin: document.getElementById('edit-origin').value.trim(),
+            destination: document.getElementById('edit-destination').value.trim(),
+            timeline: rows.find(([rowAwb]) => rowAwb === document.getElementById('edit-awb').value.trim())?.[1]?.timeline || []
+          };
+
+          const response = await fetch('upload_awb.php', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updatedPayload)
+          });
+          const result = await response.json();
+
+          if (result.success) {
+            const matchingIndex = rows.findIndex(([rowAwb]) => rowAwb === updatedPayload.awb);
+            if (matchingIndex >= 0) {
+              rows[matchingIndex][1] = {
+                ...rows[matchingIndex][1],
+                store: updatedPayload.store,
+                status: updatedPayload.status,
+                origin: updatedPayload.origin,
+                destination: updatedPayload.destination
+              };
+            }
+
+            editPanelEl.style.display = 'none';
+            editFormEl.reset();
+            renderRows(searchEl.value);
+          } else {
+            window.alert(result.message || 'Unable to update AWB.');
+          }
+        });
+
+        cancelEditBtn.addEventListener('click', function () {
+          editPanelEl.style.display = 'none';
+          editFormEl.reset();
+        });
+
+        renderRows();
+        loadingEl.style.display = 'none';
+        tableEl.style.display = 'table';
+      } catch (error) {
+        loadingEl.innerText = 'Unable to load AWB records. Please verify shipment.json is available.';
+      }
+    }
+
+    loadAWBs();
+  </script>
+</body>
+</html>

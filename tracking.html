@@ -451,8 +451,7 @@
     </div>
 </footer>
 <script>
-// Local embedded database dictionary
-const shipmentDatabase = {
+const fallbackShipmentDatabase = {
   "AWB123456": {
     "store": "Store Alpha",
     "status": "Delivered",
@@ -476,7 +475,28 @@ const shipmentDatabase = {
   }
 };
 
-document.getElementById('main-track-form').addEventListener('submit', function(e) {
+let shipmentDatabase = null;
+
+async function loadShipmentDatabase() {
+  if (shipmentDatabase) {
+    return shipmentDatabase;
+  }
+
+  try {
+    const response = await fetch('shipment.json');
+    if (!response.ok) {
+      throw new Error(`Unable to load shipment data (${response.status})`);
+    }
+    shipmentDatabase = await response.json();
+  } catch (error) {
+    console.warn('Falling back to embedded shipment records:', error);
+    shipmentDatabase = fallbackShipmentDatabase;
+  }
+
+  return shipmentDatabase;
+}
+
+document.getElementById('main-track-form').addEventListener('submit', async function(e) {
   e.preventDefault();
   const awb = document.getElementById('awb-input').value.trim().toUpperCase();
   const trackingResultEl = document.getElementById('tracking-result');
@@ -489,8 +509,8 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
   document.getElementById('display-awb').innerText = awb;
   trackingResultEl.style.display = 'block';
 
-  // Look up directly from internal dictionary
-  const data = shipmentDatabase[awb];
+  const database = await loadShipmentDatabase();
+  const data = database[awb];
 
   if (!data) {
     statusBadgeEl.innerText = 'Not Found';
@@ -504,7 +524,6 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
     return;
   }
 
-  // Display details
   const status = data.status || 'In Transit';
   statusBadgeEl.innerText = status;
   statusBadgeEl.style.background = status.toLowerCase() === 'delivered' ? 'var(--brand-green)' : 'var(--primary-dark)';

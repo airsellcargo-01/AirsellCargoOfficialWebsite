@@ -43,16 +43,16 @@
 
   <div id="confirmation" style="margin-top:30px; display:none;">
     <h3>Booking Confirmed</h3>
-    <p>Your HAWB Number: <strong id="hawb-number"></strong></p>
+    <p>Your AWB Number: <strong id="awb-number"></strong></p>
   </div>
 </main>
 
 <script>
-function generateHAWB(lastHAWB) {
+function generateAWB(lastAWB) {
   const year = new Date().getFullYear();
   let seq = 1;
-  if (lastHAWB) {
-    const parts = lastHAWB.split("-");
+  if (lastAWB) {
+    const parts = lastAWB.split("-");
     seq = parseInt(parts[2]) + 1;
   }
   return `ASL-${year}-${String(seq).padStart(3, '0')}`;
@@ -61,15 +61,20 @@ function generateHAWB(lastHAWB) {
 document.getElementById('booking-form').addEventListener('submit', function(e) {
   e.preventDefault();
 
-  // Example: fetch existing shipments to get last HAWB
+  // Example: fetch existing shipments to get the next AWB sequence
   fetch('shipment.json')
     .then(response => response.json())
     .then(shipments => {
-      const lastHAWB = shipments.length ? shipments[shipments.length-1].ShipmentID : null;
-      const newHAWB = generateHAWB(lastHAWB);
+      const shipmentKeys = Array.isArray(shipments)
+        ? shipments.map(item => item.ShipmentID || item.awb)
+        : Object.keys(shipments);
+
+      const lastAWB = shipmentKeys.length ? shipmentKeys[shipmentKeys.length - 1] : null;
+      const newAWB = generateAWB(lastAWB);
 
       const newShipment = {
-        ShipmentID: newHAWB,
+        ShipmentID: newAWB,
+        awb: newAWB,
         CustomerName: document.getElementById('customerName').value,
         Origin: document.getElementById('origin').value,
         Destination: document.getElementById('destination').value,
@@ -88,7 +93,7 @@ document.getElementById('booking-form').addEventListener('submit', function(e) {
       };
 
       // Show confirmation
-      document.getElementById('hawb-number').innerText = newHAWB;
+      document.getElementById('awb-number').innerText = newAWB;
       document.getElementById('confirmation').style.display = 'block';
 
       // ⚠️ Note: On GitHub Pages you cannot directly write to shipment.json.

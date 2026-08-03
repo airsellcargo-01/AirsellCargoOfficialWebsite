@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWB Admin | Airsell Cargo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container" style="padding:40px; max-width:700px;">
+    <h1>Upload AWB Record</h1>
+    <form id="awb-upload-form" class="booking-form">
+      <label>AWB</label>
+      <input type="text" id="awb" placeholder="AWB123456" required />
+
+      <label>Customer / Store</label>
+      <input type="text" id="store" placeholder="Store Alpha" required />
+
+      <label>Status</label>
+      <input type="text" id="status" value="Booked" required />
+
+      <label>Origin</label>
+      <input type="text" id="origin" placeholder="Hargeisa (HGA)" required />
+
+      <label>Destination</label>
+      <input type="text" id="destination" placeholder="Dubai (DXB)" required />
+
+      <button type="submit" class="btn-primary" style="margin-top:20px;">Save AWB</button>
+    </form>
+
+    <hr style="margin: 30px 0;" />
+
+    <h2>Bulk CSV Import</h2>
+    <form id="csv-upload-form" class="booking-form">
+      <label>CSV File</label>
+      <input type="file" id="csvFile" accept=".csv" required />
+      <button type="submit" class="btn-primary" style="margin-top:20px;">Import AWBs</button>
+    </form>
+
+    <div id="upload-response" style="margin-top:20px; display:none; padding:12px; border-radius:8px;"></div>
+  </main>
+
+  <script>
+    async function sendPayload(url, payload, contentType) {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: contentType ? { 'Content-Type': contentType } : undefined,
+        body: payload
+      });
+
+      return response.json();
+    }
+
+    document.getElementById('awb-upload-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const payload = {
+        awb: document.getElementById('awb').value.trim().toUpperCase(),
+        store: document.getElementById('store').value.trim(),
+        status: document.getElementById('status').value.trim(),
+        origin: document.getElementById('origin').value.trim(),
+        destination: document.getElementById('destination').value.trim(),
+        timeline: [
+          { stage: 'Booked', date: new Date().toLocaleString() }
+        ]
+      };
+
+      const responseEl = document.getElementById('upload-response');
+      responseEl.style.display = 'block';
+      responseEl.style.background = '#f8fafc';
+      responseEl.style.color = '#111827';
+      responseEl.innerText = 'Saving AWB...';
+
+      try {
+        const result = await sendPayload('upload_awb.php', JSON.stringify(payload), 'application/json');
+        if (result.success) {
+          responseEl.style.background = '#dcfce7';
+          responseEl.style.color = '#166534';
+          responseEl.innerText = 'AWB saved successfully: ' + result.awbs[0];
+          document.getElementById('awb-upload-form').reset();
+        } else {
+          responseEl.style.background = '#fee2e2';
+          responseEl.style.color = '#991b1b';
+          responseEl.innerText = result.message || 'Save failed.';
+        }
+      } catch (error) {
+        responseEl.style.background = '#fee2e2';
+        responseEl.style.color = '#991b1b';
+        responseEl.innerText = 'Unable to save AWB. Check PHP support and file permissions.';
+      }
+    });
+
+    document.getElementById('csv-upload-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const fileInput = document.getElementById('csvFile');
+      const file = fileInput.files[0];
+      if (!file) {
+        return;
+      }
+
+      const responseEl = document.getElementById('upload-response');
+      responseEl.style.display = 'block';
+      responseEl.style.background = '#f8fafc';
+      responseEl.style.color = '#111827';
+      responseEl.innerText = 'Importing AWBs...';
+
+      try {
+        const formData = new FormData();
+        formData.append('csvFile', file);
+
+        const result = await sendPayload('upload_awb.php', formData);
+        if (result.success) {
+          responseEl.style.background = '#dcfce7';
+          responseEl.style.color = '#166534';
+          responseEl.innerText = 'Imported AWBs: ' + (result.awbs || []).join(', ');
+          document.getElementById('csv-upload-form').reset();
+        } else {
+          responseEl.style.background = '#fee2e2';
+          responseEl.style.color = '#991b1b';
+          responseEl.innerText = result.message || 'Import failed.';
+        }
+      } catch (error) {
+        responseEl.style.background = '#fee2e2';
+        responseEl.style.color = '#991b1b';
+        responseEl.innerText = 'Unable to import CSV. Check PHP support and file permissions.';
+      }
+    });
+  </script>
+</body>
+</html>
