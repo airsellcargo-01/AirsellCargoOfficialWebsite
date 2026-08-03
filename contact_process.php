@@ -3,7 +3,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // -------------------------------------------------
     // CONFIGURATION
     // -------------------------------------------------
-    $to = "sales@airsellcargo.com"; // Delivery email address (update if needed)
+    $to = "info@airsellcargo.com"; // Delivery email address (update if needed)
 
     // -------------------------------------------------
     // INPUT COLLECTION & SANITIZATION
