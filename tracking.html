@@ -461,34 +461,33 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
 
   if (!awb) return;
 
-  // 1. Display searched ID & loading state
   document.getElementById('display-awb').innerText = awb;
   trackingResultEl.style.display = 'block';
   infoContentEl.innerHTML = '<p style="color: var(--text-gray);">Fetching tracking record...</p>';
   timelineEl.innerHTML = '';
 
-  // 2. Fetch master shipments dictionary
+  // Fetch shipments database file
   fetch('shipments.json')
     .then(res => {
-      if (!res.ok) throw new Error("Could not load tracking database");
+      if (!res.ok) throw new Error("File not found");
       return res.json();
     })
     .then(database => {
-      // Look up typed AWB in database object
+      // Find matching key (e.g., AWB123456)
       const data = database[awb];
 
       if (!data) {
         throw new Error("Shipment not found");
       }
 
-      const status = data.status || data.Status || 'In Transit';
+      const status = data.status || 'In Transit';
       const storeName = data.store || 'Partner Store';
-      const origin = data.origin || data.Origin || 'N/A';
-      const destination = data.destination || data.Destination || 'N/A';
-      const timeline = data.timeline || data.Timeline || [];
-      const estimatedArrival = data.estimatedArrival || (timeline.length ? timeline[timeline.length - 1].date : 'N/A');
+      const origin = data.origin || 'N/A';
+      const destination = data.destination || 'N/A';
+      const timeline = data.timeline || [];
+      const estimatedArrival = timeline.length ? timeline[timeline.length - 1].date : 'N/A';
 
-      // Update badge styling
+      // Update badge status and style
       statusBadgeEl.innerText = status;
       if (status.toLowerCase() === 'delivered') {
         statusBadgeEl.style.background = 'var(--brand-green)';
@@ -496,7 +495,7 @@ document.getElementById('main-track-form').addEventListener('submit', function(e
         statusBadgeEl.style.background = 'var(--primary-dark)';
       }
 
-      // Render Freight Overview Grid
+      // Render Overview Grid
       infoContentEl.innerHTML = `
         <div class="info-grid">
           <div class="info-item">
