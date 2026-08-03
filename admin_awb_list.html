@@ -46,6 +46,10 @@
       background: #fee2e2;
       color: #b91c1c;
     }
+    .deliver-btn {
+      background: #dcfce7;
+      color: #166534;
+    }
   </style>
 </head>
 <body>
@@ -65,6 +69,24 @@
     </div>
 
     <div id="loading" style="padding:12px; color:#475569;">Loading AWBs...</div>
+
+    <div style="margin: 20px 0; padding: 20px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; max-width: 520px;">
+      <h3 style="margin-top:0;">Update Shipment Status</h3>
+      <form id="status-update-form">
+        <label for="status-awb-input">AWB</label>
+        <input type="text" id="status-awb-input" placeholder="AWB123456" style="margin-bottom:12px; width:100%;" required />
+
+        <label for="status-select">New Status</label>
+        <select id="status-select" style="margin-bottom:12px; width:100%;" required>
+          <option value="Booked">Booked</option>
+          <option value="In Transit">In Transit</option>
+          <option value="Arrived at Hub">Arrived at Hub</option>
+          <option value="Delivered">Delivered</option>
+        </select>
+
+        <button type="submit" class="btn-primary">Save Status</button>
+      </form>
+    </div>
 
     <div id="edit-panel" style="display:none; margin: 20px 0; padding: 20px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; max-width: 520px;">
       <h3 style="margin-top:0;">Edit AWB</h3>
@@ -113,6 +135,9 @@
       const searchEl = document.getElementById('awb-search');
       const exportButton = document.getElementById('export-csv');
       const refreshButton = document.getElementById('refresh-awbs');
+      const statusUpdateFormEl = document.getElementById('status-update-form');
+      const statusAwbInputEl = document.getElementById('status-awb-input');
+      const statusSelectEl = document.getElementById('status-select');
       const editPanelEl = document.getElementById('edit-panel');
       const editFormEl = document.getElementById('edit-awb-form');
       const cancelEditBtn = document.getElementById('cancel-edit');
@@ -160,6 +185,7 @@
                 <td>${steps}</td>
                 <td>
                   <button type="button" class="table-action-btn edit-btn" data-action="edit" data-awb="${awb}">Edit</button>
+                  <button type="button" class="table-action-btn deliver-btn" data-action="deliver" data-awb="${awb}">Delivered</button>
                   <button type="button" class="table-action-btn delete-btn" data-action="delete" data-awb="${awb}">Delete</button>
                 </td>
               </tr>
@@ -246,6 +272,43 @@
             return;
           }
 
+          if (action === 'deliver') {
+            const payload = {
+              awb: awb,
+              store: targetRecord[1].store || '',
+              status: 'Delivered',
+              origin: targetRecord[1].origin || '',
+              destination: targetRecord[1].destination || '',
+              timeline: Array.isArray(targetRecord[1].timeline)
+                ? [...targetRecord[1].timeline, { stage: 'Delivered', date: new Date().toLocaleString() }]
+                : [{ stage: 'Delivered', date: new Date().toLocaleString() }]
+            };
+
+            const response = await fetch('upload_awb.php', {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            const result = await response.json();
+
+            if (result.success) {
+              const matchingIndex = rows.findIndex(([rowAwb]) => rowAwb === awb);
+              if (matchingIndex >= 0) {
+                rows[matchingIndex][1] = {
+                  ...rows[matchingIndex][1],
+                  status: 'Delivered',
+                  timeline: payload.timeline
+                };
+              }
+
+              renderRows(searchEl.value);
+              window.alert('AWB marked as delivered: ' + awb);
+            } else {
+              window.alert(result.message || 'Unable to update AWB.');
+            }
+            return;
+          }
+
           if (action === 'delete') {
             const confirmed = window.confirm('Delete AWB ' + awb + '?');
             if (!confirmed) {
@@ -310,6 +373,54 @@
         cancelEditBtn.addEventListener('click', function () {
           editPanelEl.style.display = 'none';
           editFormEl.reset();
+        });
+
+        statusUpdateFormEl.addEventListener('submit', async function (event) {
+          event.preventDefault();
+          const awb = statusAwbInputEl.value.trim().toUpperCase();
+          const newStatus = statusSelectEl.value;
+          const targetRecord = rows.find(([rowAwb]) => rowAwb === awb);
+
+          if (!targetRecord) {
+            window.alert('AWB not found. Please enter an existing AWB.');
+            return;
+          }
+
+          const payload = {
+            awb: awb,
+            store: targetRecord[1].store || '',
+            status: newStatus,
+            origin: targetRecord[1].origin || '',
+            destination: targetRecord[1].destination || '',
+            timeline: Array.isArray(targetRecord[1].timeline)
+              ? [...targetRecord[1].timeline, { stage: newStatus, date: new Date().toLocaleString() }]
+              : [{ stage: newStatus, date: new Date().toLocaleString() }]
+          };
+
+          const response = await fetch('upload_awb.php', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const result = await response.json();
+
+          if (result.success) {
+            const matchingIndex = rows.findIndex(([rowAwb]) => rowAwb === awb);
+            if (matchingIndex >= 0) {
+              rows[matchingIndex][1] = {
+                ...rows[matchingIndex][1],
+                status: newStatus,
+                timeline: payload.timeline
+              };
+            }
+
+            statusAwbInputEl.value = '';
+            statusSelectEl.value = 'Booked';
+            renderRows(searchEl.value);
+            window.alert('Status updated for ' + awb);
+          } else {
+            window.alert(result.message || 'Unable to update status.');
+          }
         });
 
         renderRows();
