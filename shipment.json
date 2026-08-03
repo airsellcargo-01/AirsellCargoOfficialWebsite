@@ -6,6 +6,7 @@
     "destination": "Dubai (DXB)",
     "timeline": [
       { "stage": "Cargo Booked", "date": "Jul 28, 2026 - 10:00 EAT" },
+      { "stage": "In Transit", "date": "Jul 29, 2026 - 14:30 EAT" },
       { "stage": "Delivered", "date": "Jul 31, 2026 - 11:15 EAT" }
     ]
   },
