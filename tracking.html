@@ -9,6 +9,8 @@
     <meta name="description" content="Use the Airsell Cargo manifest system to track your air and sea shipments from Hargeisa to worldwide destinations in real-time.">
     <meta name="theme-color" content="#001f3f">
 
+    <script type="application/ld+json" id="shipment-jsonld"></script>
+
     <style>
         :root {
             --brand-red: #cc0000;
@@ -477,6 +479,55 @@ const fallbackShipmentDatabase = {
 
 let shipmentDatabase = null;
 
+function buildShipmentJsonLd(awb, data) {
+  const timeline = Array.isArray(data.timeline) ? data.timeline : [];
+  const latestStatus = timeline.length ? timeline[timeline.length - 1].stage : (data.status || 'In Transit');
+  const pieces = Array.isArray(data.pieces) && data.pieces.length ? data.pieces : [];
+
+  if (pieces.length === 0 && (data.weightKg || data.dimensions)) {
+    pieces.push({
+      "@type": "Piece",
+      "weight": {
+        "value": Number(data.weightKg || 0),
+        "unit": "kg"
+      },
+      "dimensions": data.dimensions || {
+        "length": 0,
+        "width": 0,
+        "height": 0,
+        "unit": "cm"
+      }
+    });
+  }
+
+  return {
+    "@context": "https://onerecord.iata.org/context.jsonld",
+    "@type": "Shipment",
+    "shipmentId": awb,
+    "trackingNumber": awb,
+    "status": data.status || 'In Transit',
+    "currentStatus": latestStatus,
+    "carrier": {
+      "@type": "Organization",
+      "name": data.store || 'Airsell Cargo'
+    },
+    "origin": {
+      "@type": "Place",
+      "name": data.origin || 'N/A'
+    },
+    "destination": {
+      "@type": "Place",
+      "name": data.destination || 'N/A'
+    },
+    "pieces": pieces,
+    "event": timeline.map((step) => ({
+      "@type": "Event",
+      "name": step.stage || 'Shipment Event',
+      "date": step.date || ''
+    }))
+  };
+}
+
 async function loadShipmentDatabase() {
   if (shipmentDatabase) {
     return shipmentDatabase;
@@ -511,6 +562,7 @@ document.getElementById('main-track-form').addEventListener('submit', async func
 
   const database = await loadShipmentDatabase();
   const data = database[awb];
+  const jsonLdScript = document.getElementById('shipment-jsonld');
 
   if (!data) {
     statusBadgeEl.innerText = 'Not Found';
@@ -521,12 +573,15 @@ document.getElementById('main-track-form').addEventListener('submit', async func
       </div>
     `;
     timelineEl.innerHTML = '';
+    jsonLdScript.textContent = '';
     return;
   }
 
   const status = data.status || 'In Transit';
   statusBadgeEl.innerText = status;
   statusBadgeEl.style.background = status.toLowerCase() === 'delivered' ? 'var(--brand-green)' : 'var(--primary-dark)';
+
+  jsonLdScript.textContent = JSON.stringify(buildShipmentJsonLd(awb, data), null, 2);
 
   infoContentEl.innerHTML = `
     <div class="info-grid">

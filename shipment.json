@@ -4,6 +4,28 @@
     "status": "Delivered",
     "origin": "Hargeisa (HGA)",
     "destination": "Dubai (DXB)",
+    "weightKg": 120,
+    "dimensions": {
+      "length": 120,
+      "width": 80,
+      "height": 100,
+      "unit": "cm"
+    },
+    "pieces": [
+      {
+        "@type": "Piece",
+        "weight": {
+          "value": 120,
+          "unit": "kg"
+        },
+        "dimensions": {
+          "length": 120,
+          "width": 80,
+          "height": 100,
+          "unit": "cm"
+        }
+      }
+    ],
     "timeline": [
       { "stage": "Cargo Booked", "date": "Jul 28, 2026 - 10:00 EAT" },
       { "stage": "In Transit", "date": "Jul 29, 2026 - 14:30 EAT" },
@@ -15,6 +37,28 @@
     "status": "In Transit",
     "origin": "Berbera Port",
     "destination": "Mogadishu",
+    "weightKg": 75,
+    "dimensions": {
+      "length": 90,
+      "width": 60,
+      "height": 70,
+      "unit": "cm"
+    },
+    "pieces": [
+      {
+        "@type": "Piece",
+        "weight": {
+          "value": 75,
+          "unit": "kg"
+        },
+        "dimensions": {
+          "length": 90,
+          "width": 60,
+          "height": 70,
+          "unit": "cm"
+        }
+      }
+    ],
     "timeline": [
       { "stage": "Dispatched from Depot", "date": "Aug 02, 2026 - 08:30 EAT" },
       { "stage": "In Transit", "date": "Aug 03, 2026 - 15:00 EAT" }
