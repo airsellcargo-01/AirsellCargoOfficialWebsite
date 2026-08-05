@@ -1,135 +1,149 @@
-<main class="container">
-    <div class="contact-grid">
-        <div class="info-card" id="formContainer">
-            <h2>Request a Cargo Shipment Quote</h2>
-            <form id="quoteForm" action="https://formsubmit.co/1233a26cfc71ac026ab36a3426f8e462" method="POST" enctype="multipart/form-data">
-                
-                <!-- Remove _next redirect so FormSubmit accepts AJAX -->
-                <input type="hidden" name="_subject" value="New Cargo Quote Request | Airsell Cargo">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_captcha" value="false">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, follow">
+    <title>Thank You | Airsell Cargo</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .thank-you-wrapper {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
 
-                <!-- Hidden Inputs for Calculated Values -->
-                <input type="hidden" id="hiddenCBM" name="Calculated Total Volume (CBM)" value="0.00 CBM">
-                <input type="hidden" id="hiddenVolumetric" name="Calculated Volumetric Weight" value="0.00 kg">
-                <input type="hidden" id="hiddenChargeable" name="Billed Chargeable Weight" value="0.00 kg">
+        .thank-you-card {
+            max-width: 580px;
+            width: 100%;
+            background: #ffffff;
+            padding: 45px 35px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-top: 6px solid #28a745;
+        }
 
-                <!-- SECTION 1: CONTACT INFORMATION -->
-                <h3 class="form-section-title">1. Contact & Company</h3>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="fullName" class="form-label">Full Name *</label>
-                        <input type="text" id="fullName" name="Full Name" required placeholder="John Doe">
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="form-label">Email Address *</label>
-                        <input type="email" id="email" name="Email Address" required placeholder="john@example.com">
-                    </div>
-                </div>
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            background-color: #e8f5e9;
+            color: #28a745;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 24px;
+        }
 
-                <!-- SECTION 2: DIMENSIONS & WEIGHT -->
-                <h3 class="form-section-title">2. Dimensions & Weight</h3>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label class="form-label">Dimensions (L x W x H in cm)</label>
-                        <div class="dim-inputs">
-                            <input type="number" id="length" min="0" placeholder="L" oninput="calculateFreight()">
-                            <input type="number" id="width" min="0" placeholder="W" oninput="calculateFreight()">
-                            <input type="number" id="height" min="0" placeholder="H" oninput="calculateFreight()">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="actualWeight" class="form-label">Actual Weight (kg) *</label>
-                        <input type="number" id="actualWeight" name="Actual Weight (kg)" min="0" required oninput="calculateFreight()">
-                    </div>
-                </div>
+        .thank-you-card h1 {
+            color: #0a192f;
+            font-size: 2rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
 
-                <!-- SUMMARY BOX -->
-                <div class="summary-box" aria-live="polite">
-                    <div class="summary-item">
-                        <label>Total Volume</label>
-                        <span id="resCBM">0.00 CBM</span>
-                    </div>
-                    <div class="summary-item">
-                        <label>Chargeable Weight</label>
-                        <span id="resChargeable" style="color: var(--brand-red);">0.00 kg</span>
-                    </div>
-                </div>
+        .thank-you-card p {
+            color: #4a5568;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
 
-                <button type="submit" id="submitBtn" class="btn-submit">Request Instant Quote</button>
-            </form>
-        </div>
+        .next-steps-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: left;
+            margin: 25px 0 30px;
+        }
 
-        <!-- HIDDEN THANK YOU CARD (Revealed on Submission) -->
-        <div class="info-card" id="thankYouCard" style="display: none; text-align: center; padding: 50px 30px;">
-            <div style="width: 70px; height: 70px; background: #e6f4e6; color: #008800; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 36px; margin-bottom: 20px;">
-                ✓
-            </div>
-            <h2 style="color: var(--primary-dark); margin-bottom: 10px;">Quote Request Received!</h2>
-            <p style="color: var(--text-gray); max-width: 500px; margin: 0 auto 25px;">
-                Thank you, <strong id="userName">Customer</strong>! We have received your freight request. Our team is calculating the exact rates and will send your full quote to <strong id="userEmail">your email</strong> within <strong>24 hours</strong>.
+        .next-steps-box h3 {
+            font-size: 1rem;
+            color: #0a192f;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .next-steps-box ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #0a192f;
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: #1e293b;
+        }
+
+        .btn-outline {
+            border: 2px solid #0a192f;
+            color: #0a192f;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: #0a192f;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="thank-you-wrapper">
+        <div class="thank-you-card">
+            <!-- Green Checkmark Icon -->
+            <div class="icon-circle">✓</div>
+
+            <h1>Quote Request Received!</h1>
+            <p>
+                Thank you for choosing <strong>Airsell Cargo</strong>. Your request has been successfully submitted to our freight routing department.
             </p>
-            <button onclick="window.location.reload();" class="btn-submit" style="max-width: 220px; margin: 0 auto;">Submit Another Request</button>
+
+            <!-- What Happens Next Section -->
+            <div class="next-steps-box">
+                <h3>What Happens Next?</h3>
+                <ul>
+                    <li>Our team is calculating the exact weight and volumetric rates for your route.</li>
+                    <li>You will receive a complete, detailed pricing quote via email within <strong>24 hours</strong>.</li>
+                    <li>A logistics agent will reach out if additional documentation or cargo specs are required.</li>
+                </ul>
+            </div>
+
+            <!-- Call to Action Buttons -->
+            <div class="cta-group">
+                <a href="index.html" class="btn btn-primary">Return to Homepage</a>
+                <a href="contact.html" class="btn btn-outline">Contact Support</a>
+            </div>
         </div>
-    </div>
-</main>
+    </main>
 
-<script>
-    // 1. Freight Calculation Engine
-    function calculateFreight() {
-        const length = Math.max(0, parseFloat(document.getElementById('length').value) || 0);
-        const width = Math.max(0, parseFloat(document.getElementById('width').value) || 0);
-        const height = Math.max(0, parseFloat(document.getElementById('height').value) || 0);
-        const actualWeight = Math.max(0, parseFloat(document.getElementById('actualWeight').value) || 0);
-
-        const totalCBM = (length * width * height) / 1000000;
-        const volumetricWeight = (length * width * height) / 6000;
-        const chargeableWeight = Math.max(actualWeight, volumetricWeight);
-
-        document.getElementById('resCBM').innerText = totalCBM.toFixed(2) + ' CBM';
-        document.getElementById('resChargeable').innerText = chargeableWeight.toFixed(2) + ' kg';
-
-        document.getElementById('hiddenCBM').value = totalCBM.toFixed(2) + ' CBM';
-        document.getElementById('hiddenVolumetric').value = volumetricWeight.toFixed(2) + ' kg';
-        document.getElementById('hiddenChargeable').value = chargeableWeight.toFixed(2) + ' kg';
-    }
-
-    // 2. Single-Page AJAX Submission Handler
-    const form = document.getElementById('quoteForm');
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const submitBtn = document.getElementById('submitBtn');
-        submitBtn.innerText = 'Sending Request...';
-        submitBtn.disabled = true;
-
-        const formData = new FormData(form);
-
-        fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        })
-        .then(response => {
-            if (response.ok) {
-                // Populate user confirmation text
-                document.getElementById('userName').innerText = document.getElementById('fullName').value;
-                document.getElementById('userEmail').innerText = document.getElementById('email').value;
-
-                // Seamless Single-Page Toggle
-                document.getElementById('formContainer').style.display = 'none';
-                document.getElementById('thankYouCard').style.display = 'block';
-                window.scrollTo({ top: 100, behavior: 'smooth' });
-            } else {
-                alert('Oops! There was a problem submitting your form. Please try again.');
-                submitBtn.innerText = 'Request Instant Quote';
-                submitBtn.disabled = false;
-            }
-        })
-        .catch(() => {
-            alert('Submission failed. Please check your connection.');
-            submitBtn.innerText = 'Request Instant Quote';
-            submitBtn.disabled = false;
-        });
-    });
-</script>
+</body>
+</html>
