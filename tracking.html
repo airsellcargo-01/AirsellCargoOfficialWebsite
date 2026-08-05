@@ -378,230 +378,334 @@
         </div>
     </section>
 </main>
+</body>
+    <style>
+  /* Base Reset & Variables */
+  .site-footer {
+    background: linear-gradient(180deg, #071527 0%, #030a14 100%);
+    color: #94a3b8;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    border-top: 3px solid #fca311;
+  }
+
+  /* Upper CTA Bar */
+  .footer-cta-bar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .cta-text h3 {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+  }
+
+  .cta-text p {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 13px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .btn-primary {
+    background-color: #fca311;
+    color: #030a14;
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #e5920c;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #ffffff;
+  }
+
+  /* Main Grid */
+  .footer-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px 40px;
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 1fr);
+    gap: 40px;
+  }
+
+  .footer-brand .brand-logo {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin: 0 0 12px 0;
+    display: inline-block;
+  }
+
+  .footer-brand .brand-logo span {
+    color: #fca311;
+  }
+
+  .footer-brand p {
+    color: #94a3b8;
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
+
+  /* Section Titles */
+  .footer-title {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 18px 0;
+  }
+
+  /* Navigation Links */
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-links li {
+    margin-bottom: 10px;
+  }
+
+  .footer-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+  }
+
+  .footer-links a:hover {
+    color: #fca311;
+    transform: translateX(3px);
+  }
+
+  /* Contact Items */
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    margin-bottom: 12px;
+    color: #cbd5e1;
+  }
+
+  .contact-item a {
+    color: #cbd5e1;
+    text-decoration: none;
+  }
+
+  .contact-item a:hover {
+    color: #ffffff;
+  }
+
+  /* Social Links */
+  .social-group {
+    display: flex;
+    gap: 10px;
+  }
+
+  .social-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .social-icon:hover {
+    background: #fca311;
+    border-color: #fca311;
+    color: #030a14;
+  }
+
+  /* Bottom Bar */
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 12px;
+  }
+
+  .footer-bottom-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  .footer-bottom-links a {
+    color: #64748b;
+    text-decoration: none;
+  }
+
+  .footer-bottom-links a:hover {
+    color: #94a3b8;
+  }
+
+  /* Responsive Rules */
+  @media (max-width: 1024px) {
+    .footer-main {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .footer-brand {
+      grid-column: span 3;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer-cta-bar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .footer-main {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    .footer-brand {
+      grid-column: span 1;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>
 
 <footer class="site-footer">
-    <div class="container footer-row">
-        <!-- Column 1: Brand Authority -->
-        <div class="footer-column">
-            <span class="brand-yellow-text">Airsell Cargo</span>
-            <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6;">
-                A trusted freight forwarder and multimodal logistics provider strategically headquartered in Hargeisa to connect regional Horn of Africa trade with global commercial networks through digital innovation.
-            </p>
-        </div>
-
-        <!-- Column 2: Operations & Portal -->
-        <div class="footer-column">
-            <span class="brand-yellow-text">Operations</span>
-            <ul class="footer-links">
-                <li><a href="services.html">Freight Services</a></li>
-                <li><a href="tracking.html">Airsell Web Portal</a></li>
-                <li><a href="about.html">Company Profile</a></li>
-                <li><a href="terms.html">Standard Trading Conditions</a></li>
-                <li><a href="quote.html">Get a Quote</a></li>
-            </ul>
-        </div>
-
-        <!-- Column 3: Professional Verification -->
-        <div class="footer-column">
-            <span class="brand-yellow-text">Member Verification</span>
-            <ul class="footer-links" style="font-size: 0.85rem;">
-                <li>
-                    <a href="https://www.iata.org/en/publications/directories/cargolink/directory/airsell-cargo-service-agent/12787/" target="_blank" rel="noopener">
-                        ✓ IATA Cargolink Directory
-                    </a>
-                </li>
-                <li>
-                    <a href="https://fiata.org/directory/so/" target="_blank" rel="noopener">
-                        ✓ FIATA Member Directory
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.iata.org/en/programs/cargo/e/one-record/multi-lateral-agreement/" target="_blank" rel="noopener">
-                        ✓ IATA ONE Record Standard
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Column 4: Contact & Live Support -->
-        <div class="footer-column">
-            <span class="brand-yellow-text">Global Contact</span>
-            <div style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.8;">
-                📍 Hargeisa, Somaliland<br>
-                📧 <a href="mailto:info@airsellcargo.com" style="color: white; text-decoration: none;">info@airsellcargo.com</a><br>
-                
-                <div style="margin-top: 15px;">
-                    <a href="https://wa.me/252634823310" target="_blank" rel="noopener" 
-                       style="background: #25D366; color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; font-size: 0.88rem;">
-                       <span>💬 Live Support Chat</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+  
+  <!-- High-Conversion Action Bar -->
+  <div class="footer-cta-bar">
+    <div class="cta-text">
+      <h3>Ready to ship your cargo?</h3>
+      <p>Get instant competitive freight quotes or speak directly to our logistics planners.</p>
     </div>
-
-    <!-- Legal Bar -->
-    <div class="footer-bottom">
-        <div class="container" style="border-top: 1px solid rgba(255,255,255,0.08); margin-top: 40px; padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
-            <p style="color: #64748b; font-size: 0.8rem; margin: 0;">&copy; 2026 Airsell Cargo. All rights reserved.</p>
-            <div style="font-size: 0.8rem;">
-                <a href="terms.html" style="color: #64748b; text-decoration: none;">Terms of Service</a>
-                <span style="color: #64748b; margin: 0 10px;">|</span>
-                <span style="color: #64748b;">Logistics Excellence for East Africa</span>
-            </div>
-        </div>
+    <div class="cta-buttons">
+      <a href="quote.html" class="btn-primary">Get a Quote</a>
+      <a href="tracking.html" class="btn-secondary">Track Shipment</a>
     </div>
-</footer>
-<script>
-const fallbackShipmentDatabase = {
-  "AWB123456": {
-    "store": "Store Alpha",
-    "status": "Delivered",
-    "origin": "Hargeisa (HGA)",
-    "destination": "Dubai (DXB)",
-    "timeline": [
-      { "stage": "Cargo Booked", "date": "Jul 28, 2026 - 10:00 EAT" },
-      { "stage": "In Transit", "date": "Jul 29, 2026 - 14:30 EAT" },
-      { "stage": "Delivered", "date": "Jul 31, 2026 - 11:15 EAT" }
-    ]
-  },
-  "STORE2-9988": {
-    "store": "Store Beta",
-    "status": "In Transit",
-    "origin": "Berbera Port",
-    "destination": "Mogadishu",
-    "timeline": [
-      { "stage": "Dispatched from Depot", "date": "Aug 02, 2026 - 08:30 EAT" },
-      { "stage": "In Transit", "date": "Aug 03, 2026 - 15:00 EAT" }
-    ]
-  }
-};
+  </div>
 
-let shipmentDatabase = null;
-
-function buildShipmentJsonLd(awb, data) {
-  const timeline = Array.isArray(data.timeline) ? data.timeline : [];
-  const latestStatus = timeline.length ? timeline[timeline.length - 1].stage : (data.status || 'In Transit');
-  const pieces = Array.isArray(data.pieces) && data.pieces.length ? data.pieces : [];
-
-  if (pieces.length === 0 && (data.weightKg || data.dimensions)) {
-    pieces.push({
-      "@type": "Piece",
-      "weight": {
-        "value": Number(data.weightKg || 0),
-        "unit": "kg"
-      },
-      "dimensions": data.dimensions || {
-        "length": 0,
-        "width": 0,
-        "height": 0,
-        "unit": "cm"
-      }
-    });
-  }
-
-  return {
-    "@context": "https://onerecord.iata.org/context.jsonld",
-    "@type": "Shipment",
-    "shipmentId": awb,
-    "trackingNumber": awb,
-    "status": data.status || 'In Transit',
-    "currentStatus": latestStatus,
-    "carrier": {
-      "@type": "Organization",
-      "name": data.store || 'Airsell Cargo'
-    },
-    "origin": {
-      "@type": "Place",
-      "name": data.origin || 'N/A'
-    },
-    "destination": {
-      "@type": "Place",
-      "name": data.destination || 'N/A'
-    },
-    "pieces": pieces,
-    "event": timeline.map((step) => ({
-      "@type": "Event",
-      "name": step.stage || 'Shipment Event',
-      "date": step.date || ''
-    }))
-  };
-}
-
-async function loadShipmentDatabase() {
-  if (shipmentDatabase) {
-    return shipmentDatabase;
-  }
-
-  try {
-    const response = await fetch('shipment.json');
-    if (!response.ok) {
-      throw new Error(`Unable to load shipment data (${response.status})`);
-    }
-    shipmentDatabase = await response.json();
-  } catch (error) {
-    console.warn('Falling back to embedded shipment records:', error);
-    shipmentDatabase = fallbackShipmentDatabase;
-  }
-
-  return shipmentDatabase;
-}
-
-document.getElementById('main-track-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const awb = document.getElementById('awb-input').value.trim().toUpperCase();
-  const trackingResultEl = document.getElementById('tracking-result');
-  const infoContentEl = document.getElementById('shipment-info-content');
-  const timelineEl = document.getElementById('timeline');
-  const statusBadgeEl = document.getElementById('status-badge-el');
-
-  if (!awb) return;
-
-  document.getElementById('display-awb').innerText = awb;
-  trackingResultEl.style.display = 'block';
-
-  const database = await loadShipmentDatabase();
-  const data = database[awb];
-  const jsonLdScript = document.getElementById('shipment-jsonld');
-
-  if (!data) {
-    statusBadgeEl.innerText = 'Not Found';
-    statusBadgeEl.style.background = 'var(--brand-red)';
-    infoContentEl.innerHTML = `
-      <div style="color: var(--brand-red); font-weight: bold; padding: 10px 0;">
-        No shipment record found for "${awb}". Please check your tracking ID and try again.
+  <!-- Primary Footer Navigation -->
+  <div class="footer-main">
+    
+    <!-- Company Profile -->
+    <div class="footer-brand">
+      <div class="brand-logo">AIRSELL <span>CARGO</span></div>
+      <p>Your premier freight and logistics partner delivering end-to-end air, ocean, and land transport solutions globally.</p>
+      <div class="social-group">
+        <a href="https://wa.me/252634823310" class="social-icon" title="WhatsApp">WA</a>
+        <a href="#" class="social-icon" title="LinkedIn">LN</a>
+        <a href="#" class="social-icon" title="Facebook">FB</a>
       </div>
-    `;
-    timelineEl.innerHTML = '';
-    jsonLdScript.textContent = '';
-    return;
-  }
-
-  const status = data.status || 'In Transit';
-  statusBadgeEl.innerText = status;
-  statusBadgeEl.style.background = status.toLowerCase() === 'delivered' ? 'var(--brand-green)' : 'var(--primary-dark)';
-
-  jsonLdScript.textContent = JSON.stringify(buildShipmentJsonLd(awb, data), null, 2);
-
-  infoContentEl.innerHTML = `
-    <div class="info-grid">
-      <div class="info-item"><label>Store Partner</label><span>${data.store || 'N/A'}</span></div>
-      <div class="info-item"><label>Current Status</label><span>${status}</span></div>
-      <div class="info-item"><label>Origin Hub</label><span>${data.origin || 'N/A'}</span></div>
-      <div class="info-item"><label>Destination</label><span>${data.destination || 'N/A'}</span></div>
-      <div class="info-item"><label>Est. Delivery</label><span>${data.timeline?.slice(-1)[0]?.date || 'N/A'}</span></div>
     </div>
-  `;
 
-  timelineEl.innerHTML = '';
-  if (data.timeline) {
-    data.timeline.forEach(step => {
-      const li = document.createElement('li');
-      li.innerHTML = `<strong>${step.stage}</strong> — <span style="color: var(--text-gray); font-size: 0.88rem;">${step.date}</span>`;
-      timelineEl.appendChild(li);
-    });
-  }
-});
-</script>
-</body>
+    <!-- Column 1: Services -->
+    <div>
+      <h4 class="footer-title">Services</h4>
+      <ul class="footer-links">
+        <li><a href="air-freight.html">Air Freight</a></li>
+        <li><a href="ocean-freight.html">Ocean Freight</a></li>
+        <li><a href="land-transport.html">Land Transport</a></li>
+        <li><a href="customs-clearance.html">Customs Clearance</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 2: Quick Links -->
+    <div>
+      <h4 class="footer-title">Company</h4>
+      <ul class="footer-links">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="tracking.html">Tracking Portal</a></li>
+        <li><a href="quote.html">Request Quote</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3: Legal & Help -->
+    <div>
+      <h4 class="footer-title">Support & Legal</h4>
+      <ul class="footer-links">
+        <li><a href="faq.html">Help Center / FAQ</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-service.html">Terms of Service</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 4: Direct Details -->
+    <div>
+      <h4 class="footer-title">Headquarters</h4>
+      <div class="contact-item">
+        <span>📍</span>
+        <span>Hargeisa, Somaliland</span>
+      </div>
+      <div class="contact-item">
+        <span>📞</span>
+        <a href="tel:+252634823310">+252 63 482 3310</a>
+      </div>
+      <div class="contact-item">
+        <span>✉️</span>
+        <a href="mailto:info@airsellcargo.com">info@airsellcargo.com</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Copyright & Compliance Bar -->
+  <div class="footer-bottom">
+    <div>© 2026 Airsell Cargo Ltd. All rights reserved.</div>
+    <div class="footer-bottom-links">
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms-of-service.html">Terms</a>
+      <a href="#">Cookies Settings</a>
+    </div>
+  </div>
+
+</footer>
 </html>
