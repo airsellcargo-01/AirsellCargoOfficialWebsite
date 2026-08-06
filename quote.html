@@ -316,6 +316,11 @@
           <input type="hidden" name="_next" value="https://airsellcargo.com/thank.html">
           <input type="hidden" name="_subject" value="New Cargo Quote Request">
           <input type="hidden" name="_captcha" value="false">
+
+          <!-- Hidden Input Fields to Transmit Calculations in Email/FormSubmit -->
+          <input type="hidden" id="hidden_total_volume" name="Total Volume (CBM)" value="0.00 CBM">
+          <input type="hidden" id="hidden_volumetric_weight" name="Volumetric Weight (kg)" value="0.00 kg">
+          <input type="hidden" id="hidden_chargeable_weight" name="Billed Chargeable Weight (kg)" value="0.00 kg">
           
           <!-- SECTION 1 -->
           <h3 class="form-section-title">1. Contact & Company</h3>
@@ -483,14 +488,27 @@
       const volumetricWeight = totalCBM * serviceFactor;
       const chargeableWeight = Math.max(grossWeight, volumetricWeight);
 
-      // 3. Render calculations to screen safely
+      const strCBM = totalCBM.toFixed(2) + ' CBM';
+      const strVolWeight = volumetricWeight.toFixed(2) + ' kg';
+      const strChargeable = chargeableWeight.toFixed(2) + ' kg';
+
+      // 3. Render calculations to screen UI
       const cbmDisplay = document.getElementById('displayTotalVolume');
       const volDisplay = document.getElementById('displayVolumetricWeight');
       const chgDisplay = document.getElementById('displayChargeableWeight');
 
-      if (cbmDisplay) cbmDisplay.innerText = totalCBM.toFixed(2) + ' CBM';
-      if (volDisplay) volDisplay.innerText = volumetricWeight.toFixed(2) + ' kg';
-      if (chgDisplay) chgDisplay.innerText = chargeableWeight.toFixed(2) + ' kg';
+      if (cbmDisplay) cbmDisplay.innerText = strCBM;
+      if (volDisplay) volDisplay.innerText = strVolWeight;
+      if (chgDisplay) chgDisplay.innerText = strChargeable;
+
+      // 4. Update hidden input fields to send data in FormSubmit email
+      const hiddenCBM = document.getElementById('hidden_total_volume');
+      const hiddenVol = document.getElementById('hidden_volumetric_weight');
+      const hiddenChg = document.getElementById('hidden_chargeable_weight');
+
+      if (hiddenCBM) hiddenCBM.value = strCBM;
+      if (hiddenVol) hiddenVol.value = strVolWeight;
+      if (hiddenChg) hiddenChg.value = strChargeable;
     }
 
     // Attach listeners once DOM elements load
