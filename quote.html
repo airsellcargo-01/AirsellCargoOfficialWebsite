@@ -318,33 +318,37 @@
       <div class="info-card">
         <h2>Request a Cargo Shipment Quote</h2>
 
-        <form id="quoteForm" action="https://formsubmit.co/1233a26cfc71ac026ab36a3426f8e462" method="POST" enctype="multipart/form-data">
+        <form id="quoteForm" action="https://formsubmit.co/1233a26cfc71ac026ab36a3426f8e462" method="POST" enctype="multipart/form-data" onsubmit="calculateFreightValues()">
           
-          <!-- Hidden Settings -->
+          <!-- FormSubmit Configuration -->
           <input type="hidden" name="_next" value="https://airsellcargo.com/thank.html">
           <input type="hidden" name="_subject" value="New Cargo Quote Request">
           <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
           
+          <!-- StoresReadable Service Name for Email -->
+          <input type="hidden" id="selectedServiceText" name="Service_Type_Selected" value="Air Freight (1:167)">
+
           <!-- SECTION 1 -->
           <h3 class="form-section-title">1. Contact & Company</h3>
           <div class="form-row">
             <div>
               <label for="name" class="form-label">Full Name*</label>
-              <input type="text" id="name" name="name" required placeholder="John Doe" autocomplete="name">
+              <input type="text" id="name" name="Full_Name" required placeholder="John Doe" autocomplete="name">
             </div>
             <div>
               <label for="company" class="form-label">Company Name</label>
-              <input type="text" id="company" name="company" placeholder="Acme Corp" autocomplete="organization">
+              <input type="text" id="company" name="Company_Name" placeholder="Acme Corp" autocomplete="organization">
             </div>
           </div>
           <div class="form-row">
             <div>
               <label for="email" class="form-label">Email Address*</label>
-              <input type="email" id="email" name="email" required placeholder="john@example.com" autocomplete="email">
+              <input type="email" id="email" name="Email_Address" required placeholder="john@example.com" autocomplete="email">
             </div>
             <div>
               <label for="phone" class="form-label">Phone Number*</label>
-              <input type="tel" id="phone" name="phone" required placeholder="+1 555-0199" autocomplete="tel">
+              <input type="tel" id="phone" name="Phone_Number" required placeholder="+1 555-0199" autocomplete="tel">
             </div>
           </div>
 
@@ -353,17 +357,17 @@
           <div class="form-row">
             <div>
               <label for="origin" class="form-label">Origin (City/Port)*</label>
-              <input type="text" id="origin" name="origin" placeholder="e.g. Shanghai (CNSHA)" required>
+              <input type="text" id="origin" name="Origin" placeholder="e.g. Shanghai (CNSHA)" required>
             </div>
             <div>
               <label for="destination" class="form-label">Destination (City/Port)*</label>
-              <input type="text" id="destination" name="destination" placeholder="e.g. Los Angeles (USLAX)" required>
+              <input type="text" id="destination" name="Destination" placeholder="e.g. Los Angeles (USLAX)" required>
             </div>
           </div>
           <div class="form-row">
             <div>
               <label for="service" class="form-label">Service Type*</label>
-              <select id="service" name="service" required>
+              <select id="service" required>
                 <option value="166.67" selected>Air Freight (1:167)</option>
                 <option value="200">Express Courier (1:200)</option>
                 <option value="1000">Sea Freight LCL (1:1000)</option>
@@ -372,7 +376,7 @@
             </div>
             <div>
               <label for="incoterms" class="form-label">Incoterms</label>
-              <select id="incoterms" name="incoterms">
+              <select id="incoterms" name="Incoterms">
                 <option value="FOB">FOB - Free on Board</option>
                 <option value="EXW">EXW - Ex Works</option>
                 <option value="CIF">CIF - Cost, Insurance & Freight</option>
@@ -386,26 +390,26 @@
           
           <label class="form-label">Dimensions Per Piece (L x W x H in cm)*</label>
           <div class="dims-row">
-            <input type="number" id="length" name="length" placeholder="L (cm)" min="0" step="any" required>
-            <input type="number" id="width" name="width" placeholder="W (cm)" min="0" step="any" required>
-            <input type="number" id="height" name="height" placeholder="H (cm)" min="0" step="any" required>
+            <input type="number" id="length" name="Length_CM" placeholder="L (cm)" min="0" step="any" required>
+            <input type="number" id="width" name="Width_CM" placeholder="W (cm)" min="0" step="any" required>
+            <input type="number" id="height" name="Height_CM" placeholder="H (cm)" min="0" step="any" required>
           </div>
 
           <div class="form-row">
             <div>
               <label for="piece" class="form-label">Number of Pieces (pcs)*</label>
-              <input type="number" id="piece" name="piece" min="1" step="1" value="1" placeholder="e.g. 10" required>
+              <input type="number" id="piece" name="Pieces_Qty" min="1" step="1" value="1" placeholder="e.g. 10" required>
             </div>
             <div>
               <label for="weight" class="form-label">Total Actual Gross Weight (kg)*</label>
-              <input type="number" id="weight" name="weight" min="0" step="any" placeholder="e.g. 500" required>
+              <input type="number" id="weight" name="Gross_Weight_KG" min="0" step="any" placeholder="e.g. 500" required>
             </div>
           </div>
 
           <div class="form-row">
             <div>
               <label for="cargo_type" class="form-label">Cargo Type</label>
-              <select id="cargo_type" name="cargo_type">
+              <select id="cargo_type" name="Cargo_Type">
                 <option value="General Cargo">General Cargo</option>
                 <option value="Perishable">Perishable</option>
                 <option value="Dangerous Goods">Dangerous Goods (HAZMAT)</option>
@@ -414,7 +418,7 @@
             </div>
           </div>
 
-          <!-- Dynamic Live Calculation Card (Read-Only Inputs for Guaranteed Submission) -->
+          <!-- Dynamic Live Calculation Inputs -->
           <div class="calc-results-card">
             <div class="calc-item">
               <label for="displayTotalVolume" class="calc-label">TOTAL VOLUME</label>
@@ -434,12 +438,11 @@
           <h3 class="form-section-title">4. Additional Details</h3>
           
           <label for="instructions" class="form-label">Special Notes / Handling Instructions</label>
-          <textarea id="instructions" name="instructions" rows="3" placeholder="Specify if stackable, temperature controls needed, residential delivery, etc."></textarea>
+          <textarea id="instructions" name="Special_Instructions" rows="3" placeholder="Specify if stackable, temperature controls needed, residential delivery, etc."></textarea>
 
           <label for="file" class="form-label" style="margin-top: 15px;">Upload Document / Packing List (Optional)</label>
           <input type="file" id="file" name="file">
 
-          <!-- Submit Button Spans Across Bottom -->
           <button type="submit" class="btn-submit">Request Instant Quote</button>
         </form>
       </div>
@@ -468,7 +471,7 @@
     </div>
   </footer>
 
-  <!-- JavaScript Calculation Engine -->
+  <!-- JavaScript Engine -->
   <script>
     function calculateFreightValues() {
       function getNumVal(id) {
@@ -477,20 +480,26 @@
         return parseFloat(inputElement.value) || 0;
       }
 
-      // 1. Get raw values
+      // 1. Raw values
       const length = getNumVal('length');
       const width = getNumVal('width');
       const height = getNumVal('height');
       const pieces = parseInt(document.getElementById('piece')?.value) || 1;
       const grossWeight = getNumVal('weight');
-      const serviceFactor = getNumVal('service') || 166.67;
+      const serviceSelect = document.getElementById('service');
+      const serviceFactor = parseFloat(serviceSelect?.value) || 166.67;
 
-      // 2. Perform volumetric calculations
+      // Update readable service name hidden input
+      const serviceText = serviceSelect?.options[serviceSelect.selectedIndex]?.text || '';
+      const hiddenServiceText = document.getElementById('selectedServiceText');
+      if (hiddenServiceText) hiddenServiceText.value = serviceText;
+
+      // 2. Volumetric calculations
       const totalCBM = ((length * width * height) / 1000000) * pieces;
       const volumetricWeight = totalCBM * serviceFactor;
       const chargeableWeight = Math.max(grossWeight, volumetricWeight);
 
-      // 3. Write directly into input element values
+      // 3. Update inputs directly
       const cbmDisplay = document.getElementById('displayTotalVolume');
       const volDisplay = document.getElementById('displayVolumetricWeight');
       const chgDisplay = document.getElementById('displayChargeableWeight');
@@ -500,7 +509,6 @@
       if (chgDisplay) chgDisplay.value = chargeableWeight.toFixed(2) + ' kg';
     }
 
-    // Attach listeners once DOM elements load
     document.addEventListener('DOMContentLoaded', () => {
       const fieldIDs = ['length', 'width', 'height', 'piece', 'weight', 'service'];
       
@@ -513,13 +521,6 @@
         }
       });
 
-      // Recalculate right before submission
-      const form = document.getElementById('quoteForm');
-      if (form) {
-        form.addEventListener('submit', calculateFreightValues);
-      }
-
-      // Run initial check
       calculateFreightValues();
     });
   </script>
