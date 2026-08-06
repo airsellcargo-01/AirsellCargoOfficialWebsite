@@ -202,13 +202,21 @@
       margin-bottom: 5px;
     }
 
-    .calc-value {
+    /* Styling for the Read-Only Form Inputs */
+    .calc-input {
+      border: none !important;
+      background: transparent !important;
+      text-align: center;
       font-size: 1.3rem;
       font-weight: 800;
       color: var(--primary-dark);
+      padding: 0 !important;
+      width: 100%;
+      pointer-events: none;
+      box-shadow: none !important;
     }
 
-    .calc-value.highlight {
+    .calc-input.highlight {
       color: var(--brand-red);
     }
 
@@ -316,11 +324,6 @@
           <input type="hidden" name="_next" value="https://airsellcargo.com/thank.html">
           <input type="hidden" name="_subject" value="New Cargo Quote Request">
           <input type="hidden" name="_captcha" value="false">
-
-          <!-- Hidden Input Fields to Transmit Calculations in Email/FormSubmit -->
-          <input type="hidden" id="hidden_total_volume" name="Total Volume (CBM)" value="0.00 CBM">
-          <input type="hidden" id="hidden_volumetric_weight" name="Volumetric Weight (kg)" value="0.00 kg">
-          <input type="hidden" id="hidden_chargeable_weight" name="Billed Chargeable Weight (kg)" value="0.00 kg">
           
           <!-- SECTION 1 -->
           <h3 class="form-section-title">1. Contact & Company</h3>
@@ -411,19 +414,19 @@
             </div>
           </div>
 
-          <!-- Dynamic Live Calculation Card -->
+          <!-- Dynamic Live Calculation Card (Read-Only Inputs for Guaranteed Submission) -->
           <div class="calc-results-card">
             <div class="calc-item">
-              <span class="calc-label">TOTAL VOLUME</span>
-              <div class="calc-value" id="displayTotalVolume">0.00 CBM</div>
+              <label for="displayTotalVolume" class="calc-label">TOTAL VOLUME</label>
+              <input type="text" id="displayTotalVolume" name="Total_Volume_CBM" value="0.00 CBM" readonly class="calc-input">
             </div>
             <div class="calc-item">
-              <span class="calc-label">VOLUMETRIC WEIGHT</span>
-              <div class="calc-value" id="displayVolumetricWeight">0.00 kg</div>
+              <label for="displayVolumetricWeight" class="calc-label">VOLUMETRIC WEIGHT</label>
+              <input type="text" id="displayVolumetricWeight" name="Volumetric_Weight_KG" value="0.00 kg" readonly class="calc-input">
             </div>
             <div class="calc-item">
-              <span class="calc-label">BILLED CHARGEABLE WEIGHT</span>
-              <div class="calc-value highlight" id="displayChargeableWeight">0.00 kg</div>
+              <label for="displayChargeableWeight" class="calc-label">BILLED CHARGEABLE WEIGHT</label>
+              <input type="text" id="displayChargeableWeight" name="Billed_Chargeable_Weight_KG" value="0.00 kg" readonly class="calc-input highlight">
             </div>
           </div>
 
@@ -468,7 +471,6 @@
   <!-- JavaScript Calculation Engine -->
   <script>
     function calculateFreightValues() {
-      // Helper function to extract numerical values from input fields
       function getNumVal(id) {
         const inputElement = document.getElementById(id);
         if (!inputElement) return 0;
@@ -488,27 +490,14 @@
       const volumetricWeight = totalCBM * serviceFactor;
       const chargeableWeight = Math.max(grossWeight, volumetricWeight);
 
-      const strCBM = totalCBM.toFixed(2) + ' CBM';
-      const strVolWeight = volumetricWeight.toFixed(2) + ' kg';
-      const strChargeable = chargeableWeight.toFixed(2) + ' kg';
-
-      // 3. Render calculations to screen UI
+      // 3. Write directly into input element values
       const cbmDisplay = document.getElementById('displayTotalVolume');
       const volDisplay = document.getElementById('displayVolumetricWeight');
       const chgDisplay = document.getElementById('displayChargeableWeight');
 
-      if (cbmDisplay) cbmDisplay.innerText = strCBM;
-      if (volDisplay) volDisplay.innerText = strVolWeight;
-      if (chgDisplay) chgDisplay.innerText = strChargeable;
-
-      // 4. Update hidden input fields to send data in FormSubmit email
-      const hiddenCBM = document.getElementById('hidden_total_volume');
-      const hiddenVol = document.getElementById('hidden_volumetric_weight');
-      const hiddenChg = document.getElementById('hidden_chargeable_weight');
-
-      if (hiddenCBM) hiddenCBM.value = strCBM;
-      if (hiddenVol) hiddenVol.value = strVolWeight;
-      if (hiddenChg) hiddenChg.value = strChargeable;
+      if (cbmDisplay) cbmDisplay.value = totalCBM.toFixed(2) + ' CBM';
+      if (volDisplay) volDisplay.value = volumetricWeight.toFixed(2) + ' kg';
+      if (chgDisplay) chgDisplay.value = chargeableWeight.toFixed(2) + ' kg';
     }
 
     // Attach listeners once DOM elements load
@@ -523,6 +512,12 @@
           element.addEventListener('keyup', calculateFreightValues);
         }
       });
+
+      // Recalculate right before submission
+      const form = document.getElementById('quoteForm');
+      if (form) {
+        form.addEventListener('submit', calculateFreightValues);
+      }
 
       // Run initial check
       calculateFreightValues();
