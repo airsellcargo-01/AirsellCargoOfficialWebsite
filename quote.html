@@ -168,7 +168,7 @@
       box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
     }
     
-    /* Dynamic Calculation Results Display Box */
+    /* Dynamic Calculation Results Box */
     .calc-results-card {
       background: #f8fafc;
       border-left: 5px solid var(--brand-red);
@@ -202,7 +202,7 @@
       margin-bottom: 5px;
     }
 
-    /* Styling for the Read-Only Form Inputs */
+    /* Read-Only Form Inputs */
     .calc-input {
       border: none !important;
       background: transparent !important;
@@ -320,13 +320,13 @@
 
         <form id="quoteForm" action="https://formsubmit.co/1233a26cfc71ac026ab36a3426f8e462" method="POST" enctype="multipart/form-data" onsubmit="calculateFreightValues()">
           
-          <!-- FormSubmit Configuration -->
+          <!-- FormSubmit Hidden Settings -->
           <input type="hidden" name="_next" value="https://airsellcargo.com/thank.html">
           <input type="hidden" name="_subject" value="New Cargo Quote Request">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_template" value="table">
           
-          <!-- StoresReadable Service Name for Email -->
+          <!-- Captures Human-Readable Service Name for Email -->
           <input type="hidden" id="selectedServiceText" name="Service_Type_Selected" value="Air Freight (1:167)">
 
           <!-- SECTION 1 -->
@@ -418,7 +418,7 @@
             </div>
           </div>
 
-          <!-- Dynamic Live Calculation Inputs -->
+          <!-- Dynamic Live Calculation Card (Read-Only Inputs Sent to FormSubmit) -->
           <div class="calc-results-card">
             <div class="calc-item">
               <label for="displayTotalVolume" class="calc-label">TOTAL VOLUME</label>
@@ -471,7 +471,7 @@
     </div>
   </footer>
 
-  <!-- JavaScript Engine -->
+  <!-- JavaScript Calculation Engine -->
   <script>
     function calculateFreightValues() {
       function getNumVal(id) {
@@ -480,7 +480,7 @@
         return parseFloat(inputElement.value) || 0;
       }
 
-      // 1. Raw values
+      // 1. Get raw inputs
       const length = getNumVal('length');
       const width = getNumVal('width');
       const height = getNumVal('height');
@@ -494,12 +494,12 @@
       const hiddenServiceText = document.getElementById('selectedServiceText');
       if (hiddenServiceText) hiddenServiceText.value = serviceText;
 
-      // 2. Volumetric calculations
+      // 2. Perform volumetric calculations
       const totalCBM = ((length * width * height) / 1000000) * pieces;
       const volumetricWeight = totalCBM * serviceFactor;
       const chargeableWeight = Math.max(grossWeight, volumetricWeight);
 
-      // 3. Update inputs directly
+      // 3. Update form input values directly
       const cbmDisplay = document.getElementById('displayTotalVolume');
       const volDisplay = document.getElementById('displayVolumetricWeight');
       const chgDisplay = document.getElementById('displayChargeableWeight');
