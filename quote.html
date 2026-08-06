@@ -5,7 +5,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Get a Freight Quote | Airsell Cargo</title>
-  <link rel="stylesheet" href="style.css">
   <style>  
     :root {
       --brand-red: #cc0000;
@@ -14,7 +13,6 @@
       --primary-dark: #001f3f;
       --text-gray: #64748b;
       --card-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      --border-color: #cbd5e1;
     }
     
     body { 
@@ -88,7 +86,7 @@
       margin: 0 auto; 
       border-top: 4px solid var(--brand-red); 
       padding-top: 20px; 
-    } 
+    }
     
     .contact-grid { 
       display: grid; 
@@ -114,14 +112,6 @@
       font-size: 1.8rem;
     }
 
-    /* Form Layout Grid */
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-
     .form-section-title { 
       margin-top: 25px; 
       margin-bottom: 20px;
@@ -129,17 +119,29 @@
       font-size: 1.1rem; 
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      border-bottom: 2px solid var(--border-color);
+      border-bottom: 2px solid #cbd5e1;
       padding-bottom: 8px;
     }
     
-    .form-group {
-      display: flex;
-      flex-direction: column;
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 15px;
     }
 
-    .form-group.full-width {
-      grid-column: 1 / -1;
+    .dims-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    @media (max-width: 650px) {
+      .form-row, .dims-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
     }
     
     .form-label {
@@ -153,12 +155,11 @@
     form input, form select, form textarea { 
       width: 100%; 
       padding: 11px; 
-      border: 1px solid var(--border-color); 
+      border: 1px solid #cbd5e1; 
       border-radius: 6px; 
       font-size: 0.95rem; 
       box-sizing: border-box;
       background: white;
-      transition: border-color 0.2s;
     }
 
     form input:focus, form select:focus, form textarea:focus {
@@ -166,43 +167,51 @@
       border-color: var(--primary-dark);
       box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
     }
-
-    .dim-inputs {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 10px;
-    }
-
-    /* Live Output Summary Box */
-    .summary-box {
-      background-color: #f8fafc;
-      border-left: 4px solid var(--brand-red);
-      border-top: 1px solid #e2e8f0;
-      border-right: 1px solid #e2e8f0;
-      border-bottom: 1px solid #e2e8f0;
+    
+    /* Dynamic Calculation Results Display Box */
+    .calc-results-card {
+      background: #f8fafc;
+      border-left: 5px solid var(--brand-red);
+      border-radius: 8px;
       padding: 20px;
-      border-radius: 6px;
-      margin-bottom: 30px;
+      margin: 25px 0;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 15px;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
     }
 
-    .summary-item label {
+    @media (max-width: 650px) {
+      .calc-results-card {
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+    }
+
+    .calc-item {
+      text-align: center;
+    }
+
+    .calc-label {
       display: block;
-      font-size: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
       color: var(--text-gray);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      font-weight: 600;
+      margin-bottom: 5px;
     }
 
-    .summary-item span {
-      font-size: 20px;
-      font-weight: 700;
+    .calc-value {
+      font-size: 1.3rem;
+      font-weight: 800;
       color: var(--primary-dark);
     }
-    
+
+    .calc-value.highlight {
+      color: var(--brand-red);
+    }
+
     .btn-submit {
       background: var(--brand-red);
       color: white;
@@ -214,6 +223,7 @@
       cursor: pointer;
       width: 100%;
       transition: background 0.3s;
+      margin-top: 15px;
     }
 
     .btn-submit:hover {
@@ -229,7 +239,7 @@
 
     .footer-row { 
       display: grid; 
-      grid-template-columns: 1.5fr 1fr; 
+      grid-template-columns: 1.5fr 1fr 1fr 1fr; 
       gap: 40px; 
     }
 
@@ -286,478 +296,220 @@
   </div>
 </header>
 
-<section class="hero-banner">
-  <div class="container">
-    <h1>Get Your Fast, Free Freight Quote</h1>
-    <p>Complete the details below to receive real-time accurate volumetric calculations and pricing for global air, sea, and land cargo transport.</p>
-  </div>
-</section>
+  <section class="hero-banner">
+    <div class="container">
+      <h1>Get Your Fast, Free Freight Quote</h1>
+      <p>Complete the details below to receive real-time accurate volumetric calculations and pricing for global air, sea, and land cargo transport.</p>
+    </div>
+  </section>
 
-<main class="container">
-  <div class="contact-grid">
-    
-    <div class="info-card">
-      <h2>Request a Cargo Shipment Quote</h2>
+  <main class="container">
+    <div class="contact-grid">
+      
+      <!-- Quote Form Container -->
+      <div class="info-card">
+        <h2>Request a Cargo Shipment Quote</h2>
 
-      <form id="quoteForm" action="https://formsubmit.co/1233a26cfc71ac026ab36a3426f8e462" method="POST" enctype="multipart/form-data">
-        
-        <!-- Standard FormSubmit Backend Configuration -->
-        <input type="hidden" name="_next" value="https://airsellcargo.com/thank.html">
-        <input type="hidden" name="_subject" value="New Cargo Quote Request | Airsell Cargo">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_autorespond" value="Thank you for requesting a freight quote from Airsell Cargo. Our team will review your shipment details and contact you shortly.">
-
-        <!-- Hidden Inputs Transmitting Calculated Figures via Email -->
-        <input type="hidden" id="hiddenCBM" name="Calculated Total Volume (CBM)" value="0.00 CBM">
-        <input type="hidden" id="hiddenVolumetric" name="Calculated Volumetric Weight" value="0.00 kg">
-        <input type="hidden" id="hiddenChargeable" name="Billed Chargeable Weight" value="0.00 kg">
-
-        <!-- SECTION 1: CONTACT INFORMATION -->
-        <h3 class="form-section-title">1. Contact & Company</h3>
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="fullName" class="form-label">Full Name *</label>
-            <input type="text" id="fullName" name="Full Name" required placeholder="John Doe" autocomplete="name">
-          </div>
-          <div class="form-group">
-            <label for="company" class="form-label">Company Name</label>
-            <input type="text" id="company" name="Company Name" placeholder="Acme Corp" autocomplete="organization">
-          </div>
-          <div class="form-group">
-            <label for="email" class="form-label">Email Address *</label>
-            <input type="email" id="email" name="Email Address" required placeholder="john@example.com" autocomplete="email">
-          </div>
-          <div class="form-group">
-            <label for="phone" class="form-label">Phone Number *</label>
-            <input type="tel" id="phone" name="Phone Number" required placeholder="+1 555-0199" autocomplete="tel">
-          </div>
-        </div>
-
-        <!-- SECTION 2: SHIPMENT SPECIFICATIONS -->
-        <h3 class="form-section-title">2. Shipment Specifications</h3>
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="origin" class="form-label">Origin (City/Port) *</label>
-            <input type="text" id="origin" name="Origin" required placeholder="e.g. Shanghai (CNSHA)">
-          </div>
-          <div class="form-group">
-            <label for="destination" class="form-label">Destination (City/Port) *</label>
-            <input type="text" id="destination" name="Destination" required placeholder="e.g. Los Angeles (USLAX)">
-          </div>
-          <div class="form-group">
-            <label for="serviceType" class="form-label">Service Type *</label>
-            <select id="serviceType" name="Service Type" onchange="calculateFreight()">
-              <option value="air">Air Freight (1:167)</option>
-              <option value="express">Express Courier (1:200)</option>
-              <option value="sea">Sea Freight LCL (1:1000)</option>
-              <option value="road">Road Freight LTL (1:333)</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="incoterms" class="form-label">Incoterms</label>
-            <select id="incoterms" name="Incoterms">
-              <option value="FOB">FOB - Free on Board</option>
-              <option value="EXW">EXW - Ex Works</option>
-              <option value="CIF">CIF - Cost, Insurance & Freight</option>
-              <option value="DDP">DDP - Delivered Duty Paid</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- SECTION 3: CARGO DIMENSIONS & WEIGHT -->
-        <h3 class="form-section-title">3. Cargo Dimensions & Weight</h3>
-        <div class="form-grid">
-          <div class="form-group">
-            <label class="form-label">Dimensions (Per Piece in cm) *</label>
-            <div class="dim-inputs">
-              <input type="number" id="length" name="Length (cm)" placeholder="L (cm)" min="0" oninput="calculateFreight()">
-              <input type="number" id="width" name="Width (cm)" placeholder="W (cm)" min="0" oninput="calculateFreight()">
-              <input type="number" id="height" name="Height (cm)" placeholder="H (cm)" min="0" oninput="calculateFreight()">
+        <form id="quoteForm" action="https://formsubmit.co/1233a26cfc71ac026ab36a3426f8e462" method="POST" enctype="multipart/form-data">
+          
+          <!-- Hidden Settings -->
+          <input type="hidden" name="_next" value="https://airsellcargo.com/thank.html">
+          <input type="hidden" name="_subject" value="New Cargo Quote Request">
+          <input type="hidden" name="_captcha" value="false">
+          
+          <!-- SECTION 1 -->
+          <h3 class="form-section-title">1. Contact & Company</h3>
+          <div class="form-row">
+            <div>
+              <label for="name" class="form-label">Full Name*</label>
+              <input type="text" id="name" name="name" required placeholder="John Doe" autocomplete="name">
+            </div>
+            <div>
+              <label for="company" class="form-label">Company Name</label>
+              <input type="text" id="company" name="company" placeholder="Acme Corp" autocomplete="organization">
             </div>
           </div>
-          <div class="form-group">
-            <label for="pieces" class="form-label">Number of Pieces (pcs) *</label>
-            <input type="number" id="pieces" name="Number of Pieces" value="1" min="1" required oninput="calculateFreight()">
+          <div class="form-row">
+            <div>
+              <label for="email" class="form-label">Email Address*</label>
+              <input type="email" id="email" name="email" required placeholder="john@example.com" autocomplete="email">
+            </div>
+            <div>
+              <label for="phone" class="form-label">Phone Number*</label>
+              <input type="tel" id="phone" name="phone" required placeholder="+1 555-0199" autocomplete="tel">
+            </div>
           </div>
-          <div class="form-group">
-            <label for="actualWeight" class="form-label">Total Actual Gross Weight (kg) *</label>
-            <input type="number" id="actualWeight" name="Actual Weight (kg)" placeholder="e.g. 500" min="0" required oninput="calculateFreight()">
-          </div>
-          <div class="form-group">
-            <label for="cargoType" class="form-label">Cargo Type</label>
-            <select id="cargoType" name="Cargo Type">
-              <option value="General Cargo">General Cargo</option>
-              <option value="Perishable">Perishable</option>
-              <option value="Dangerous Goods (HAZMAT)">Dangerous Goods (HAZMAT)</option>
-              <option value="Oversized / Heavy">Oversized / Heavy</option>
-            </select>
-          </div>
-        </div>
 
-        <!-- LIVE FREIGHT SUMMARY CALCULATION -->
-        <div class="summary-box">
-          <div class="summary-item">
-            <label>Total Volume</label>
-            <span id="resCBM">0.00 CBM</span>
+          <!-- SECTION 2 -->
+          <h3 class="form-section-title">2. Shipment Specifications</h3>
+          <div class="form-row">
+            <div>
+              <label for="origin" class="form-label">Origin (City/Port)*</label>
+              <input type="text" id="origin" name="origin" placeholder="e.g. Shanghai (CNSHA)" required>
+            </div>
+            <div>
+              <label for="destination" class="form-label">Destination (City/Port)*</label>
+              <input type="text" id="destination" name="destination" placeholder="e.g. Los Angeles (USLAX)" required>
+            </div>
           </div>
-          <div class="summary-item">
-            <label>Volumetric Weight</label>
-            <span id="resVolumetric">0.00 kg</span>
+          <div class="form-row">
+            <div>
+              <label for="service" class="form-label">Service Type*</label>
+              <select id="service" name="service" required>
+                <option value="166.67" selected>Air Freight (1:167)</option>
+                <option value="200">Express Courier (1:200)</option>
+                <option value="1000">Sea Freight LCL (1:1000)</option>
+                <option value="333.33">Road Freight LTL (1:333)</option>
+              </select>
+            </div>
+            <div>
+              <label for="incoterms" class="form-label">Incoterms</label>
+              <select id="incoterms" name="incoterms">
+                <option value="FOB">FOB - Free on Board</option>
+                <option value="EXW">EXW - Ex Works</option>
+                <option value="CIF">CIF - Cost, Insurance & Freight</option>
+                <option value="DDP">DDP - Delivered Duty Paid</option>
+              </select>
+            </div>
           </div>
-          <div class="summary-item">
-            <label>Billed Chargeable Weight</label>
-            <span id="resChargeable" style="color: var(--brand-red);">0.00 kg</span>
-          </div>
-        </div>
 
-        <!-- SECTION 4: ADDITIONAL DETAILS -->
-        <h3 class="form-section-title">4. Additional Details</h3>
-        <div class="form-grid">
-          <div class="form-group full-width">
-            <label for="notes" class="form-label">Special Notes / Handling Instructions</label>
-            <textarea id="notes" name="Special Notes" rows="3" placeholder="Specify if stackable, temperature controls needed, residential delivery, etc."></textarea>
+          <!-- SECTION 3 -->
+          <h3 class="form-section-title">3. Cargo Dimensions & Weight</h3>
+          
+          <label class="form-label">Dimensions Per Piece (L x W x H in cm)*</label>
+          <div class="dims-row">
+            <input type="number" id="length" name="length" placeholder="L (cm)" min="0" step="any" required>
+            <input type="number" id="width" name="width" placeholder="W (cm)" min="0" step="any" required>
+            <input type="number" id="height" name="height" placeholder="H (cm)" min="0" step="any" required>
           </div>
-          <div class="form-group full-width">
-            <label for="file" class="form-label">Upload Document / Packing List (Optional)</label>
-            <input type="file" id="file" name="Attachment">
-          </div>
-        </div>
 
-        <button type="submit" class="btn-submit">Request Instant Quote</button>
-      </form>
+          <div class="form-row">
+            <div>
+              <label for="piece" class="form-label">Number of Pieces (pcs)*</label>
+              <input type="number" id="piece" name="piece" min="1" step="1" value="1" placeholder="e.g. 10" required>
+            </div>
+            <div>
+              <label for="weight" class="form-label">Total Actual Gross Weight (kg)*</label>
+              <input type="number" id="weight" name="weight" min="0" step="any" placeholder="e.g. 500" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="cargo_type" class="form-label">Cargo Type</label>
+              <select id="cargo_type" name="cargo_type">
+                <option value="General Cargo">General Cargo</option>
+                <option value="Perishable">Perishable</option>
+                <option value="Dangerous Goods">Dangerous Goods (HAZMAT)</option>
+                <option value="Oversized">Oversized / Heavy</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dynamic Live Calculation Card -->
+          <div class="calc-results-card">
+            <div class="calc-item">
+              <span class="calc-label">TOTAL VOLUME</span>
+              <div class="calc-value" id="displayTotalVolume">0.00 CBM</div>
+            </div>
+            <div class="calc-item">
+              <span class="calc-label">VOLUMETRIC WEIGHT</span>
+              <div class="calc-value" id="displayVolumetricWeight">0.00 kg</div>
+            </div>
+            <div class="calc-item">
+              <span class="calc-label">BILLED CHARGEABLE WEIGHT</span>
+              <div class="calc-value highlight" id="displayChargeableWeight">0.00 kg</div>
+            </div>
+          </div>
+
+          <!-- SECTION 4 -->
+          <h3 class="form-section-title">4. Additional Details</h3>
+          
+          <label for="instructions" class="form-label">Special Notes / Handling Instructions</label>
+          <textarea id="instructions" name="instructions" rows="3" placeholder="Specify if stackable, temperature controls needed, residential delivery, etc."></textarea>
+
+          <label for="file" class="form-label" style="margin-top: 15px;">Upload Document / Packing List (Optional)</label>
+          <input type="file" id="file" name="file">
+
+          <!-- Submit Button Spans Across Bottom -->
+          <button type="submit" class="btn-submit">Request Instant Quote</button>
+        </form>
+      </div>
+
     </div>
+  </main>
 
-  </div>
-</main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-row">
+        <div>
+          <span class="brand-yellow-text">Airsell Cargo</span>
+          <p>Your premier freight and logistics partner delivering end-to-end air, ocean, and land transport solutions globally.</p>
+        </div>
+        <div>
+          <span class="brand-yellow-text">Quick Links</span>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/quote">Get a Quote</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript Calculation Engine -->
+  <script>
+    function calculateFreightValues() {
+      // Helper function to extract numerical values from input fields
+      function getNumVal(id) {
+        const inputElement = document.getElementById(id);
+        if (!inputElement) return 0;
+        return parseFloat(inputElement.value) || 0;
+      }
+
+      // 1. Get raw values
+      const length = getNumVal('length');
+      const width = getNumVal('width');
+      const height = getNumVal('height');
+      const pieces = parseInt(document.getElementById('piece')?.value) || 1;
+      const grossWeight = getNumVal('weight');
+      const serviceFactor = getNumVal('service') || 166.67;
+
+      // 2. Perform volumetric calculations
+      const totalCBM = ((length * width * height) / 1000000) * pieces;
+      const volumetricWeight = totalCBM * serviceFactor;
+      const chargeableWeight = Math.max(grossWeight, volumetricWeight);
+
+      // 3. Render calculations to screen safely
+      const cbmDisplay = document.getElementById('displayTotalVolume');
+      const volDisplay = document.getElementById('displayVolumetricWeight');
+      const chgDisplay = document.getElementById('displayChargeableWeight');
+
+      if (cbmDisplay) cbmDisplay.innerText = totalCBM.toFixed(2) + ' CBM';
+      if (volDisplay) volDisplay.innerText = volumetricWeight.toFixed(2) + ' kg';
+      if (chgDisplay) chgDisplay.innerText = chargeableWeight.toFixed(2) + ' kg';
+    }
+
+    // Attach listeners once DOM elements load
+    document.addEventListener('DOMContentLoaded', () => {
+      const fieldIDs = ['length', 'width', 'height', 'piece', 'weight', 'service'];
+      
+      fieldIDs.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.addEventListener('input', calculateFreightValues);
+          element.addEventListener('change', calculateFreightValues);
+          element.addEventListener('keyup', calculateFreightValues);
+        }
+      });
+
+      // Run initial check
+      calculateFreightValues();
+    });
+  </script>
+
 </body>
-  <style>
-  /* Base Reset & Variables */
-  .site-footer {
-    background: linear-gradient(180deg, #071527 0%, #030a14 100%);
-    color: #94a3b8;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
-    border-top: 3px solid #fca311;
-  }
-
-  /* Upper CTA Bar */
-  .footer-cta-bar {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-  .cta-text h3 {
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 600;
-    margin: 0 0 4px 0;
-  }
-
-  .cta-text p {
-    margin: 0;
-    color: #cbd5e1;
-    font-size: 13px;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 12px;
-  }
-
-  .btn-primary {
-    background-color: #fca311;
-    color: #030a14;
-    padding: 10px 20px;
-    font-weight: 600;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-
-  .btn-primary:hover {
-    background-color: #e5920c;
-    transform: translateY(-1px);
-  }
-
-  .btn-secondary {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    padding: 10px 20px;
-    font-weight: 600;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-
-  .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: #ffffff;
-  }
-
-  /* Main Grid */
-  .footer-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 50px 20px 40px;
-    display: grid;
-    grid-template-columns: 2fr repeat(4, 1fr);
-    gap: 40px;
-  }
-
-  .footer-brand .brand-logo {
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    margin: 0 0 12px 0;
-    display: inline-block;
-  }
-
-  .footer-brand .brand-logo span {
-    color: #fca311;
-  }
-
-  .footer-brand p {
-    color: #94a3b8;
-    margin-bottom: 20px;
-    font-size: 13px;
-  }
-
-  /* Section Titles */
-  .footer-title {
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0 0 18px 0;
-  }
-
-  /* Navigation Links */
-  .footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .footer-links li {
-    margin-bottom: 10px;
-  }
-
-  .footer-links a {
-    color: #cbd5e1;
-    text-decoration: none;
-    font-size: 13px;
-    transition: color 0.2s ease, transform 0.2s ease;
-    display: inline-block;
-  }
-
-  .footer-links a:hover {
-    color: #fca311;
-    transform: translateX(3px);
-  }
-
-  /* Contact Items */
-  .contact-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 13px;
-    margin-bottom: 12px;
-    color: #cbd5e1;
-  }
-
-  .contact-item a {
-    color: #cbd5e1;
-    text-decoration: none;
-  }
-
-  .contact-item a:hover {
-    color: #ffffff;
-  }
-
-  /* Social Links */
-  .social-group {
-    display: flex;
-    gap: 10px;
-  }
-
-  .social-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 600;
-    transition: all 0.2s ease;
-  }
-
-  .social-icon:hover {
-    background: #fca311;
-    border-color: #fca311;
-    color: #030a14;
-  }
-
-  /* Bottom Bar */
-  .footer-bottom {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 24px 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    font-size: 12px;
-  }
-
-  .footer-bottom-links {
-    display: flex;
-    gap: 20px;
-  }
-
-  .footer-bottom-links a {
-    color: #64748b;
-    text-decoration: none;
-  }
-
-  .footer-bottom-links a:hover {
-    color: #94a3b8;
-  }
-
-  /* Responsive Rules */
-  @media (max-width: 1024px) {
-    .footer-main {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .footer-brand {
-      grid-column: span 3;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .footer-cta-bar {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .footer-main {
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-    .footer-brand {
-      grid-column: span 1;
-    }
-    .footer-bottom {
-      flex-direction: column;
-      text-align: center;
-    }
-  }
-</style>
-
-<footer class="site-footer">
-  
-  <!-- High-Conversion Action Bar -->
-  <div class="footer-cta-bar">
-    <div class="cta-text">
-      <h3>Ready to ship your cargo?</h3>
-      <p>Get instant competitive freight quotes or speak directly to our logistics planners.</p>
-    </div>
-    <div class="cta-buttons">
-      <a href="quote.html" class="btn-primary">Get a Quote</a>
-      <a href="tracking.html" class="btn-secondary">Track Shipment</a>
-    </div>
-  </div>
-
-  <!-- Primary Footer Navigation -->
-  <div class="footer-main">
-    
-    <!-- Company Profile -->
-    <div class="footer-brand">
-      <div class="brand-logo">AIRSELL <span>CARGO</span></div>
-      <p>Your premier freight and logistics partner delivering end-to-end air, ocean, and land transport solutions globally.</p>
-      <div class="social-group">
-        <a href="https://wa.me/252634823310" class="social-icon" title="WhatsApp">WA</a>
-        <a href="#" class="social-icon" title="LinkedIn">LN</a>
-        <a href="#" class="social-icon" title="Facebook">FB</a>
-      </div>
-    </div>
-
-    <!-- Column 1: Services -->
-    <div>
-      <h4 class="footer-title">Services</h4>
-      <ul class="footer-links">
-        <li><a href="air-freight.html">Air Freight</a></li>
-        <li><a href="ocean-freight.html">Ocean Freight</a></li>
-        <li><a href="land-transport.html">Land Transport</a></li>
-        <li><a href="customs-clearance.html">Customs Clearance</a></li>
-      </ul>
-    </div>
-
-    <!-- Column 2: Quick Links -->
-    <div>
-      <h4 class="footer-title">Company</h4>
-      <ul class="footer-links">
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="tracking.html">Tracking Portal</a></li>
-        <li><a href="quote.html">Request Quote</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-      </ul>
-    </div>
-
-    <!-- Column 3: Legal & Help -->
-    <div>
-      <h4 class="footer-title">Support & Legal</h4>
-      <ul class="footer-links">
-        <li><a href="faq.html">Help Center / FAQ</a></li>
-        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-        <li><a href="terms-of-service.html">Terms of Service</a></li>
-      </ul>
-    </div>
-
-    <!-- Column 4: Direct Details -->
-    <div>
-      <h4 class="footer-title">Headquarters</h4>
-      <div class="contact-item">
-        <span>📍</span>
-        <span>Hargeisa, Somaliland</span>
-      </div>
-      <div class="contact-item">
-        <span>📞</span>
-        <a href="tel:+252634823310">+252 63 482 3310</a>
-      </div>
-      <div class="contact-item">
-        <span>✉️</span>
-        <a href="mailto:info@airsellcargo.com">info@airsellcargo.com</a>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Copyright & Compliance Bar -->
-  <div class="footer-bottom">
-    <div>© 2026 Airsell Cargo Ltd. All rights reserved.</div>
-    <div class="footer-bottom-links">
-      <a href="privacy-policy.html">Privacy</a>
-      <a href="terms-of-service.html">Terms</a>
-      <a href="#">Cookies Settings</a>
-    </div>
-  </div>
-
-</footer>
 </html>
