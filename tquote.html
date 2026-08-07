@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Get a Freight Quote | Airsell Cargo</title>
+  <style>  
+    :root {
+      --brand-red: #cc0000;
+      --brand-green: #008800;
+      --brand-yellow: #ffcc00;
+      --primary-dark: #001f3f;
+      --text-gray: #64748b;
+      --card-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    
+    body { 
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif; 
+      margin: 0; 
+      background: #f1f5f9; 
+      color: #1e293b; 
+      line-height: 1.6; 
+    }
+    
+    .container { 
+      max-width: 1200px; 
+      margin: auto; 
+      padding: 0 24px; 
+    }
+    
+    header { 
+      background: white; 
+      border-bottom: 4px solid var(--brand-yellow); 
+      box-shadow: 0 4px 6px rgba(0,0,0,0.15); 
+    }
+    
+    .header-flex { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 15px 0;
+    }
+    
+    .nav-links { 
+      list-style: none; 
+      display: flex; 
+      gap: 15px; 
+      margin: 0; 
+      padding: 0;
+    }
+    
+    .nav-links a { 
+      text-decoration: none; 
+      color: var(--primary-dark); 
+      font-weight: 600; 
+      text-transform: uppercase; 
+      font-size: 0.85rem; 
+      transition: 0.3s; 
+    }
+    
+    .nav-links a.active { 
+      color: var(--brand-red); 
+      border-bottom: 2px solid var(--brand-red); 
+      padding-bottom: 5px; 
+    }
+    
+    .hero-banner { 
+      text-align: center; 
+      padding: 60px 0 100px; 
+      background: white; 
+      border-bottom: 1px solid #e2e8f0; 
+    }
+    
+    .hero-banner h1 { 
+      font-size: 2.8rem; 
+      margin: 0 0 15px; 
+      font-weight: 800; 
+      color: var(--primary-dark); 
+    } 
+    
+    .hero-banner p { 
+      font-size: 1.1rem; 
+      color: var(--text-gray); 
+      max-width: 650px; 
+      margin: 0 auto; 
+      border-top: 4px solid var(--brand-red); 
+      padding-top: 20px; 
+    }
+    
+    .contact-grid { 
+      display: grid; 
+      grid-template-columns: 1fr; 
+      gap: 30px; 
+      margin-top: -60px; 
+      padding-bottom: 80px; 
+    }
+
+    .info-card { 
+      background: white; 
+      padding: 40px; 
+      border-radius: 12px; 
+      box-shadow: var(--card-shadow); 
+      box-sizing: border-box;
+      border-top: 6px solid var(--brand-red); 
+    }
+    
+    .info-card h2 { 
+      margin-top: 0; 
+      margin-bottom: 25px;
+      color: var(--primary-dark); 
+      font-size: 1.8rem;
+    }
+
+    .form-section-title { 
+      margin-top: 25px; 
+      margin-bottom: 20px;
+      color: var(--brand-red); 
+      font-size: 1.1rem; 
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 8px;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+
+    .dims-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    @media (max-width: 650px) {
+      .form-row, .dims-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+    }
+    
+    .form-label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 0.88rem;
+      color: #334155;
+    }
+    
+    form input, form select, form textarea { 
+      width: 100%; 
+      padding: 11px; 
+      border: 1px solid #cbd5e1; 
+      border-radius: 6px; 
+      font-size: 0.95rem; 
+      box-sizing: border-box;
+      background: white;
+    }
+
+    form input:focus, form select:focus, form textarea:focus {
+      outline: none;
+      border-color: var(--primary-dark);
+      box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
+    }
+    
+    /* Dynamic Calculation Results Box */
+    .calc-results-card {
+      background: #f8fafc;
+      border-left: 5px solid var(--brand-red);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 25px 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
+    }
+
+    @media (max-width: 650px) {
+      .calc-results-card {
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+    }
+
+    .calc-item {
+      text-align: center;
+    }
+
+    .calc-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+    }
+
+    /* Read-Only Form Inputs */
+    .calc-input {
+      border: none !important;
+      background: transparent !important;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      padding: 0 !important;
+      width: 100%;
+      pointer-events: none;
+      box-shadow: none !important;
+    }
+
+    .calc-input.highlight {
+      color: var(--brand-red);
+    }
+
+    .btn-submit {
+      background: var(--brand-red);
+      color: white;
+      border: none;
+      padding: 16px 28px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s;
+      margin-top: 15px;
+    }
+
+    .btn-submit:hover {
+      background: #a30000;
+    }
+
+    .site-footer { 
+      background: var(--primary-dark); 
+      color: white; 
+      padding: 60px 0 30px; 
+      margin-top: 50px; 
+    }
+
+    .footer-row { 
+      display: grid; 
+      grid-template-columns: 1.5fr 1fr 1fr 1fr; 
+      gap: 40px; 
+    }
+
+    .brand-yellow-text { 
+      color: var(--brand-yellow); 
+      text-transform: uppercase; 
+      font-size: 0.9rem; 
+      margin-bottom: 20px; 
+      display: block; 
+    }
+
+    .footer-links { 
+      list-style: none; 
+      padding: 0; 
+      margin: 0; 
+    }
+
+    .footer-links li { 
+      margin-bottom: 10px; 
+      font-size: 0.9rem; 
+    }
+
+    .footer-links a { 
+      color: #94a3b8; 
+      text-decoration: none; 
+      transition: 0.3s; 
+    }
+
+    .footer-links a:hover { 
+      color: white; 
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container header-flex">
+    <div class="logo">
+      <a href="/">
+        <img src="logo.png" alt="Airsell Cargo" width="180">
+      </a>
+    </div>
+    
+    <nav aria-label="Main Navigation">
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/tracking">Tracking</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/quote" class="active" aria-current="page">Get a Quote</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <section class="hero-banner">
+    <div class="container">
+      <h1>Get Your Fast, Free Freight Quote</h1>
+      <p>Complete the details below to receive real-time accurate volumetric calculations and pricing for global air, sea, and land cargo transport.</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="contact-grid">
+      
+      <!-- Quote Form Container -->
+      <div class="info-card">
+        <h2>Request a Cargo Shipment Quote</h2>
+
+        <form id="quoteForm" action="https://formsubmit.co/1233a26cfc71ac026ab36a3426f8e462" method="POST" enctype="multipart/form-data" onsubmit="calculateFreightValues()">
+          
+          <!-- FormSubmit Hidden Settings -->
+          <input type="hidden" name="_next" value="https://airsellcargo.com/thank.html">
+          <input type="hidden" name="_subject" value="New Cargo Quote Request">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="chargeable_weight" id="chargeable_weight_input">
+          <!-- Captures Human-Readable Service Name for Email -->
+          <input type="hidden" id="selectedServiceText" name="Service_Type_Selected" value="Air Freight (1:167)">
+
+          <!-- SECTION 1 -->
+          <h3 class="form-section-title">1. Contact & Company</h3>
+          <div class="form-row">
+            <div>
+              <label for="name" class="form-label">Full Name*</label>
+              <input type="text" id="name" name="Full_Name" required placeholder="John Doe" autocomplete="name">
+            </div>
+            <div>
+              <label for="company" class="form-label">Company Name</label>
+              <input type="text" id="company" name="Company_Name" placeholder="Acme Corp" autocomplete="organization">
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label for="email" class="form-label">Email Address*</label>
+              <input type="email" id="email" name="Email_Address" required placeholder="john@example.com" autocomplete="email">
+            </div>
+            <div>
+              <label for="phone" class="form-label">Phone Number*</label>
+              <input type="tel" id="phone" name="Phone_Number" required placeholder="+1 555-0199" autocomplete="tel">
+            </div>
+          </div>
+
+          <!-- SECTION 2 -->
+          <h3 class="form-section-title">2. Shipment Specifications</h3>
+          <div class="form-row">
+            <div>
+              <label for="origin" class="form-label">Origin (City/Port)*</label>
+              <input type="text" id="origin" name="Origin" placeholder="e.g. Shanghai (CNSHA)" required>
+            </div>
+            <div>
+              <label for="destination" class="form-label">Destination (City/Port)*</label>
+              <input type="text" id="destination" name="Destination" placeholder="e.g. Los Angeles (USLAX)" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label for="service" class="form-label">Service Type*</label>
+              <select id="service" required>
+                <option value="166.67" selected>Air Freight (1:167)</option>
+                <option value="200">Express Courier (1:200)</option>
+                <option value="1000">Sea Freight LCL (1:1000)</option>
+                <option value="333.33">Road Freight LTL (1:333)</option>
+              </select>
+            </div>
+            <div>
+              <label for="incoterms" class="form-label">Incoterms</label>
+              <select id="incoterms" name="Incoterms">
+                <option value="FOB">FOB - Free on Board</option>
+                <option value="EXW">EXW - Ex Works</option>
+                <option value="CIF">CIF - Cost, Insurance & Freight</option>
+                <option value="DDP">DDP - Delivered Duty Paid</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- SECTION 3 -->
+          <h3 class="form-section-title">3. Cargo Dimensions & Weight</h3>
+          
+          <label class="form-label">Dimensions Per Piece (L x W x H in cm)*</label>
+          <div class="dims-row">
+            <input type="number" id="length" name="Length_CM" placeholder="L (cm)" min="0" step="any" required>
+            <input type="number" id="width" name="Width_CM" placeholder="W (cm)" min="0" step="any" required>
+            <input type="number" id="height" name="Height_CM" placeholder="H (cm)" min="0" step="any" required>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="piece" class="form-label">Number of Pieces (pcs)*</label>
+              <input type="number" id="piece" name="Pieces_Qty" min="1" step="1" value="1" placeholder="e.g. 10" required>
+            </div>
+            <div>
+              <label for="weight" class="form-label">Total Actual Gross Weight (kg)*</label>
+              <input type="number" id="weight" name="Gross_Weight_KG" min="0" step="any" placeholder="e.g. 500" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="cargo_type" class="form-label">Cargo Type</label>
+              <select id="cargo_type" name="Cargo_Type">
+                <option value="General Cargo">General Cargo</option>
+                <option value="Perishable">Perishable</option>
+                <option value="Dangerous Goods">Dangerous Goods (HAZMAT)</option>
+                <option value="Oversized">Oversized / Heavy</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dynamic Live Calculation Card (Read-Only Inputs Sent to FormSubmit) -->
+          <div class="calc-results-card">
+            <div class="calc-item">
+              <label for="displayTotalVolume" class="calc-label">TOTAL VOLUME</label>
+              <input type="text" id="displayTotalVolume" name="Total_Volume_CBM" value="0.00 CBM" readonly class="calc-input">
+            </div>
+            <div class="calc-item">
+              <label for="displayVolumetricWeight" class="calc-label">VOLUMETRIC WEIGHT</label>
+              <input type="text" id="displayVolumetricWeight" name="Volumetric_Weight_KG" value="0.00 kg" readonly class="calc-input">
+            </div>
+            <div class="calc-item">
+              <label for="displayChargeableWeight" class="calc-label">BILLED CHARGEABLE WEIGHT</label>
+              <input type="text" id="chargeable_weight" name="chargeable_weight" readonly>
+            </div>
+          </div>
+
+          <!-- SECTION 4 -->
+          <h3 class="form-section-title">4. Additional Details</h3>
+          
+          <label for="instructions" class="form-label">Special Notes / Handling Instructions</label>
+          <textarea id="instructions" name="Special_Instructions" rows="3" placeholder="Specify if stackable, temperature controls needed, residential delivery, etc."></textarea>
+
+          <label for="file" class="form-label" style="margin-top: 15px;">Upload Document / Packing List (Optional)</label>
+          <input type="file" id="file" name="file">
+
+          <button type="submit" class="btn-submit">Request Instant Quote</button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-row">
+        <div>
+          <span class="brand-yellow-text">Airsell Cargo</span>
+          <p>Your premier freight and logistics partner delivering end-to-end air, ocean, and land transport solutions globally.</p>
+        </div>
+        <div>
+          <span class="brand-yellow-text">Quick Links</span>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/quote">Get a Quote</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript Calculation Engine -->
+  <script>
+    function calculateFreightValues() {
+      function getNumVal(id) {
+        const inputElement = document.getElementById(id);
+        if (!inputElement) return 0;
+        return parseFloat(inputElement.value) || 0;
+      }
+
+      // 1. Get raw inputs
+      const length = getNumVal('length');
+      const width = getNumVal('width');
+      const height = getNumVal('height');
+      const pieces = parseInt(document.getElementById('piece')?.value) || 1;
+      const grossWeight = getNumVal('weight');
+      const serviceSelect = document.getElementById('service');
+      const serviceFactor = parseFloat(serviceSelect?.value) || 166.67;
+
+      // Update readable service name hidden input
+      const serviceText = serviceSelect?.options[serviceSelect.selectedIndex]?.text || '';
+      const hiddenServiceText = document.getElementById('selectedServiceText');
+      if (hiddenServiceText) hiddenServiceText.value = serviceText;
+
+      // 2. Perform volumetric calculations
+      const totalCBM = ((length * width * height) / 1000000) * pieces;
+      const volumetricWeight = totalCBM * serviceFactor;
+      const chargeableWeight = Math.max(grossWeight, volumetricWeight);
+
+      // 3. Update form input values directly
+      const cbmDisplay = document.getElementById('displayTotalVolume');
+      const volDisplay = document.getElementById('displayVolumetricWeight');
+      const chgDisplay = document.getElementById('displayChargeableWeight');
+
+      if (cbmDisplay) cbmDisplay.value = totalCBM.toFixed(2) + ' CBM';
+      if (volDisplay) volDisplay.value = volumetricWeight.toFixed(2) + ' kg';
+      if (chgDisplay) chgDisplay.value = chargeableWeight.toFixed(2) + ' kg';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const fieldIDs = ['length', 'width', 'height', 'piece', 'weight', 'service'];
+      
+      fieldIDs.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.addEventListener('input', calculateFreightValues);
+          element.addEventListener('change', calculateFreightValues);
+          element.addEventListener('keyup', calculateFreightValues);
+        }
+      });
+
+      calculateFreightValues();
+    });
+  </script>
+
+</body>
+</html>
