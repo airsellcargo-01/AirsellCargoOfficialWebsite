@@ -2,137 +2,449 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy | Airsell Cargo</title>
-  <link rel="stylesheet" href="style.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Privacy Policy | Airsell Cargo - Global Logistics Data Protection</title>
+  <meta name="description" content="Learn how Airsell Cargo collects, protects, and uses shipment, customer, and tracking data across our global freight network.">
+  
+  <style>  
+    :root {
+      --brand-red: #cc0000;
+      --brand-green: #008800;
+      --brand-yellow: #fca311;
+      --primary-dark: #001f3f;
+      --text-dark: #0f172a;
+      --text-gray: #64748b;
+      --bg-light: #f8fafc;
+      --card-shadow: 0 12px 35px rgba(0, 31, 63, 0.08);
+      --border-color: #cbd5e1;
+    }
+    
+    * { box-sizing: border-box; }
+
+    body { 
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif; 
+      margin: 0; 
+      background: #ffffff; 
+      color: var(--text-dark); 
+      line-height: 1.7; 
+    }
+    
+    .container { 
+      max-width: 1200px; 
+      margin: auto; 
+      padding: 0 24px; 
+    }
+    
+    /* Top Bar */
+    .top-bar {
+      background: var(--primary-dark);
+      color: #94a3b8;
+      font-size: 0.82rem;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .top-bar-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-bar-info span { margin-right: 20px; }
+    .top-bar-info a { color: #cbd5e1; text-decoration: none; }
+    .top-bar-info a:hover { color: var(--brand-yellow); }
+
+    /* Header Navigation */
+    header { 
+      background: #ffffff; 
+      border-bottom: 5px solid var(--brand-yellow); 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06); 
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .header-flex { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 15px 0;
+    }
+    
+    .nav-links { 
+      list-style: none; 
+      display: flex; 
+      align-items: center;
+      gap: 20px; 
+      margin: 0; 
+      padding: 0;
+    }
+    
+    .nav-links a { 
+      text-decoration: none; 
+      color: var(--primary-dark); 
+      font-weight: 600; 
+      text-transform: uppercase; 
+      font-size: 0.85rem; 
+      transition: color 0.3s ease; 
+    }
+    
+    .nav-links a.active, .nav-links a:hover { 
+      color: var(--brand-red); 
+    }
+
+    .btn-nav-cta {
+      background: var(--brand-red);
+      color: #ffffff !important;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 700 !important;
+    }
+
+    .btn-nav-cta:hover {
+      background: var(--primary-dark);
+    }
+    
+    /* Hero Banner */
+    .hero-banner { 
+      text-align: center; 
+      padding: 50px 20px 60px; 
+      background: linear-gradient(180deg, var(--primary-dark) 0%, #001226 100%);
+      color: #ffffff;
+      border-bottom: 5px solid var(--brand-yellow); 
+    }
+    
+    .hero-banner h1 { 
+      font-size: 2.5rem; 
+      margin: 0 0 10px; 
+      font-weight: 800; 
+    } 
+
+    .hero-banner p {
+      max-width: 650px;
+      margin: 0 auto 15px;
+      color: #cbd5e1;
+      font-size: 1rem;
+    }
+
+    .breadcrumbs {
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+
+    .breadcrumbs a {
+      color: var(--brand-yellow);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* Content Layout */
+    .legal-content {
+      padding: 60px 0;
+    }
+
+    .legal-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+    }
+
+    .sidebar-nav {
+      background: var(--bg-light);
+      border-radius: 10px;
+      padding: 25px 20px;
+      border: 1px solid #e2e8f0;
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+    }
+
+    .sidebar-nav h4 {
+      margin-top: 0;
+      color: var(--primary-dark);
+      font-size: 1.05rem;
+      border-bottom: 2px solid var(--brand-yellow);
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+    }
+
+    .sidebar-nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar-nav li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar-nav a {
+      color: var(--text-gray);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .sidebar-nav a:hover {
+      color: var(--brand-red);
+    }
+
+    .privacy-article {
+      background: #ffffff;
+    }
+
+    .privacy-article h2 {
+      font-size: 1.5rem;
+      color: var(--primary-dark);
+      margin-top: 35px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 8px;
+    }
+
+    .privacy-article h2:first-of-type {
+      margin-top: 0;
+    }
+
+    .privacy-article p, .privacy-article li {
+      color: #334155;
+      font-size: 0.95rem;
+    }
+
+    .privacy-article ul {
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    .privacy-article li {
+      margin-bottom: 8px;
+    }
+
+    .highlight-card {
+      background: rgba(0, 31, 63, 0.03);
+      border-left: 4px solid var(--brand-red);
+      padding: 18px 20px;
+      border-radius: 6px;
+      margin: 25px 0;
+    }
+
+    .highlight-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .site-footer { 
+      background: var(--primary-dark); 
+      color: #ffffff; 
+      padding: 50px 0 30px; 
+      font-size: 0.9rem;
+      border-top: 3px solid var(--brand-yellow);
+    }
+
+    .footer-grid { 
+      display: grid; 
+      grid-template-columns: 1.5fr repeat(4, 1fr); 
+      gap: 30px; 
+    }
+
+    .footer-col h4 {
+      color: var(--brand-yellow);
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    .footer-col ul { list-style: none; padding: 0; margin: 0; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; text-decoration: none; transition: color 0.3s ease; }
+    .footer-col a:hover { color: #ffffff; }
+
+    @media (max-width: 992px) {
+      .legal-grid { grid-template-columns: 1fr; }
+      .sidebar-nav { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 25px; }
+      .top-bar { display: none; }
+    }
+  </style>
 </head>
 <body>
-<header>
-    <div class="container header-flex"> <!-- Must have 'header-flex' -->
-        <div class="logo">
-            <img src="logo.png" alt="Airsell Logo" width="150">
-        </div>
-        
-        <nav>
-            <ul class="nav-links"> <!-- Must have 'nav-links' -->
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="tracking.html">Tracking</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+
+<!-- Top Navigation Bar -->
+<div class="top-bar">
+  <div class="container top-bar-flex">
+    <div class="top-bar-info">
+      <span>📍 Hargeisa Airport & Berbera Port Hubs</span>
+      <span>📞 <a href="tel:+252634125763">+252 63 412 5763</a></span>
     </div>
+    <div>
+      <span>🕒 Mon–Sat: 8:00 AM – 6:00 PM EAT</span>
+    </div>
+  </div>
+</div>
+
+<!-- Header Navigation -->
+<header>
+  <div class="container header-flex">
+    <div class="logo">
+      <a href="index.html">
+        <img src="logo.png" alt="Airsell Cargo" width="180">
+      </a>
+    </div>
+    
+    <nav aria-label="Main Navigation">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="tracking.html">Tracking</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="quote.html" class="btn-nav-cta">Get a Quote</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
-<main class="container" style="padding:60px 0;">
-  <h1>Privacy Policy</h1>
-  <p>At Airsell Cargo, we respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you interact with our website and services.</p>
+<!-- Hero Section -->
+<section class="hero-banner">
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <p>How Airsell Cargo collects, protects, and manages customer, shipment, and waybill data across our operations.</p>
+    <div class="breadcrumbs"><a href="index.html">Home</a> / Privacy Policy</div>
+  </div>
+</section>
 
-  <h2>Information We Collect</h2>
-  <ul>
-    <li>Contact details submitted via forms (name, email, phone).</li>
-    <li>Shipment and service inquiries.</li>
-    <li>Affiliate marketing referral data (if applicable).</li>
-    <li>Technical data such as cookies and usage patterns.</li>
-  </ul>
+<!-- Legal Content Section -->
+<main class="legal-content">
+  <div class="container legal-grid">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar-nav">
+      <h4>Section Navigation</h4>
+      <ul>
+        <li><a href="#section-1">1. Information We Collect</a></li>
+        <li><a href="#section-2">2. How We Use Data</a></li>
+        <li><a href="#section-3">3. Tracking & Waybills</a></li>
+        <li><a href="#section-4">4. Sharing & Third Parties</a></li>
+        <li><a href="#section-5">5. Data Retention & Security</a></li>
+        <li><a href="#section-6">6. Your Data Rights</a></li>
+        <li><a href="#section-7">7. Privacy Inquiries</a></li>
+      </ul>
+    </aside>
 
-  <h2>How We Use Your Information</h2>
-  <ul>
-    <li>Respond to inquiries and provide logistics services.</li>
-    <li>Improve our website and client communication.</li>
-    <li>Track affiliate referrals and ensure proper crediting.</li>
-    <li>Comply with legal and regulatory requirements.</li>
-  </ul>
+    <!-- Article Content -->
+    <article class="privacy-article">
+      
+      <p style="font-size: 0.85rem; color: var(--text-gray); margin-top: 0;"><strong>Effective Date:</strong> January 1, 2026 | Last Updated: August 2026</p>
 
-  <h2>Data Sharing</h2>
-  <p>We do not sell or share personal data with third parties, except when required by law or to fulfill service obligations. Affiliate tracking data may be shared with partners strictly for commission purposes.</p>
+      <section id="section-1">
+        <h2>1. Information We Collect</h2>
+        <p>To process freight bookings, provide shipping quotes, and fulfill logistics operations, <strong>Airsell Cargo</strong> ("we", "our", or "us") collects the following types of information:</p>
+        <ul>
+          <li><strong>Contact Details:</strong> Names, company affiliations, phone numbers, email addresses, and physical addresses of shippers and consignees.</li>
+          <li><strong>Cargo Specifications:</strong> Weight, dimensions, package counts, commodity descriptions, declared values, and customs documentation.</li>
+          <li><strong>Website Usage Data:</strong> IP addresses, browser types, and tracking code searches entered into our portal.</li>
+        </ul>
+      </section>
 
-  <h2>Cookies & Tracking</h2>
-  <p>Our website may use cookies to enhance user experience and track affiliate referrals. You can disable cookies in your browser settings, but some features may not function properly.</p>
+      <section id="section-2">
+        <h2>2. How We Use Your Data</h2>
+        <p>Information collected is used strictly to execute freight operations and support customer interactions:</p>
+        <ul>
+          <li>Generating air waybills (AWB) and bills of lading (BOL).</li>
+          <li>Processing customs clearance filings at airport and port entry points.</li>
+          <li>Sending automated status updates and responding to quote requests via `quote.html` or `contact.html`.</li>
+          <li>Maintaining regulatory record-keeping compliance for civil aviation and customs authorities.</li>
+        </ul>
+      </section>
 
-  <h2>Your Rights</h2>
-  <p>You may request access, correction, or deletion of your personal data at any time by contacting us directly.</p>
+      <div class="highlight-card">
+        <p>🔒 Data Guarantee: Airsell Cargo does not sell, rent, or monetize personal customer details or commercial shipment logs to external third-party advertisers.</p>
+      </div>
 
-  <h2>Affiliate Disclosure</h2>
-  <p>Some links on our website may be affiliate links. This means we may earn a commission if you click or make a purchase through these links. This does not affect the price you pay and helps support our services.</p>
+      <section id="section-3">
+        <h2>3. Waybill Tracking & Visibility</h2>
+        <p>Waybill tracking IDs (e.g., <code>ASC-2026-8891</code>) queried on `tracking.html` display operational progress milestones (e.g., origin warehouse receipt, export customs clearance, flight departure, port arrival). Standard tracking outputs display milestone locations without publicly revealing full confidential commercial invoice pricing.</p>
+      </section>
 
-  <h2>Updates</h2>
-  <p>This Privacy Policy may be updated periodically. Changes will be posted on this page with the revised date.</p>
+      <section id="section-4">
+        <h2>4. Third-Party Data Sharing</h2>
+        <p>We share operational data only with trusted partners directly involved in completing your shipment corridor:</p>
+        <ul>
+          <li><strong>Carrier Partners:</strong> Commercial airlines, charter operators, ocean shipping lines, and local transport carriers.</li>
+          <li><strong>Regulatory Authorities:</strong> Customs officials, airport authorities, and port security officials where legally mandated.</li>
+        </ul>
+      </section>
 
-  <p><strong>Effective Date:</strong> April 24, 2026</p>
+      <section id="section-5">
+        <h2>5. Data Retention & Security</h2>
+        <p>We maintain industry-standard physical, electronic, and procedural safeguards to protect customer records. Transaction records and freight manifests are retained in accordance with applicable commercial and customs archiving laws.</p>
+      </section>
+
+      <section id="section-6">
+        <h2>6. Your Rights</h2>
+        <p>Customers may request verification, correction, or updating of their stored contact information or active shipment details by contacting our dispatch desk.</p>
+      </section>
+
+      <section id="section-7">
+        <h2>7. Privacy Inquiries</h2>
+        <p>For questions regarding this policy or data practices at our airport and seaport hubs, please reach out via:</p>
+        <p style="margin-bottom: 0;"><strong>Airsell Cargo Data Compliance</strong><br>
+        Email: <a href="mailto:info@airsellcargo.com" style="color: var(--brand-red);">info@airsellcargo.com</a><br>
+        Phone: <a href="tel:+252634125763" style="color: var(--brand-red);">+252 63 412 5763</a></p>
+      </section>
+
+    </article>
+
+  </div>
 </main>
+
+<!-- Footer Section -->
 <footer class="site-footer">
-    <div class="container footer-row">
-        <!-- Column 1: Brand Authority -->
-        <div class="footer-column">
-            <h4 class="brand-yellow-text">Airsell Cargo</h4>
-            <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6;">
-                A professional, non-IATA freight forwarder and multimodal logistics provider. 
-                Strategically positioned in Hargeisa to bridge regional trade with global markets through digital innovation.
-            </p>
-        </div>
-
-        <!-- Column 2: Operations & Portal -->
-        <div class="footer-column">
-            <h4 class="brand-yellow-text">Operations</h4>
-            <ul class="footer-links">
-                <li><a href="services.html">Freight Services</a></li>
-                <li><a href="tracking.html">Airsell Web Portal</a></li>
-                <li><a href="about.html">Company Profile</a></li>
-                <li><a href="terms.html">Standard Trading Conditions</a></li>
-            </ul>
-        </div>
-
-        <!-- Column 3: Professional Verification -->
-        <div class="footer-column">
-            <h4 class="brand-yellow-text">Member Verification</h4>
-            <ul class="footer-links" style="font-size: 0.85rem;">
-                <li>
-                    <a href="https://www.iata.org/en/publications/directories/cargolink/directory/airsell-cargo-service-agent/12787/" target="_blank">
-                        ✓ IATA Cargolink Directory
-                    </a>
-                </li>
-                <li>
-                    <a href="https://fiata.org/directory/so/" target="_blank">
-                        ✓ FIATA Member Directory
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.iata.org/en/programs/cargo/e/one-record/multi-lateral-agreement/" target="_blank">
-                        ✓ IATA ONE Record Standard
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Column 4: Contact (Hidden Number Support) -->
-        <div class="footer-column">
-            <h4 class="brand-yellow-text">Global Contact</h4>
-            <div style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.8;">
-                📍 Hargeisa, Somaliland<br>
-                📧 <a href="mailto:contact@airsellcargo.com" style="color: white; text-decoration: none;">contact@airsellcargo.com</a><br>
-                <!-- Hidden Number Button -->
-                <div style="margin-top: 10px;">
-                    <a href="https://wa.me/252634823310" target="_blank" 
-                       style="background: #25D366; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem;">
-                       <span>💬 Live Support Chat</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4 style="color: #ffffff;">Airsell Cargo</h4>
+      <p style="color: #94a3b8;">Global Freight & Logistics Solutions</p>
+      <p style="color: #64748b; font-size: 0.85rem;">© 2026 Airsell Cargo. All rights reserved.</p>
     </div>
 
-    <!-- Legal & Compliance Bar -->
-    <div class="footer-bottom">
-        <div class="container" style="border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-            <p style="color: #64748b; font-size: 0.8rem;">&copy; 2026 Airsell Cargo. All rights reserved.</p>
-            <div style="font-size: 0.8rem;">
-                <a href="terms.html" style="color: #64748b; text-decoration: none; margin-left: 20px;">Terms of Service</a>
-                <span style="color: #64748b; margin-left: 20px;">Logistics Excellence for East Africa</span>
-            </div>
-        </div>
+    <div class="footer-col">
+      <h4 style="color: #ffffff;">Quick Links</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="quote.html">Get a Quote</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
     </div>
+
+    <div class="footer-col">
+      <h4 style="color: #ffffff;">Locations</h4>
+      <p style="color: #94a3b8; margin-bottom: 6px;">📍 Hargeisa Airport (HGA)</p>
+      <p style="color: #94a3b8;">📍 Berbera Port (BBO)</p>
+    </div>
+
+    <div class="footer-col">
+      <h4 style="color: #ffffff;">Contact</h4>
+      <p style="color: #94a3b8; margin-bottom: 6px;">✉️ info@airsellcargo.com</p>
+      <p style="color: #94a3b8;">📞 +252 63 412 5763</p>
+    </div>
+
+    <div class="footer-col">
+      <h4 style="color: #ffffff;">Legal</h4>
+      <ul>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
 </footer>
 
 </body>
