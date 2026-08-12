@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freight Services | Airsell Cargo</title>
+    <style>
+        :root {
+            --primary: #0a2540;
+            --accent-red: #d9232d;
+            --accent-green: #28a745;
+            --accent-yellow: #ffc107;
+            --bg-light: #f8f9fa;
+            --text-dark: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* Header Navigation */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        nav a.active {
+            color: var(--accent-red);
+        }
+
+        /* Page Hero Header */
+        .hero {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hero h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 25px auto;
+            color: #d1d5db;
+        }
+
+        .hero-buttons .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 0 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn-quote { background-color: var(--accent-red); color: white; }
+        .btn-track { background-color: var(--accent-green); color: white; }
+
+        /* Services Section */
+        .services-container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary);
+        }
+
+        .service-card h2 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-card ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .service-card ul li::before {
+            content: "✓ ";
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        /* Footer Banner */
+        .cta-banner {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .cta-banner .btn-yellow {
+            background-color: var(--accent-yellow);
+            color: var(--primary);
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="logo">AIRSELL CARGO</div>
+        <nav>
+            <a href="index.html">HOME</a>
+            <a href="about.html">ABOUT</a>
+            <a href="freight.html" class="active">SERVICES</a>
+            <a href="tracking.html">TRACKING</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="quote.html">GET A QUOTE</a>
+        </nav>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <h1>Multimodal Freight Solutions</h1>
+        <p>Connecting East Africa and global trade hubs with reliable air, ocean, land, and customs services.</p>
+        <div class="hero-buttons">
+            <a href="quote.html" class="btn btn-quote">Get a Quote</a>
+            <a href="tracking.html" class="btn btn-track">Track Shipment</a>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services-container">
+        
+        <div class="service-card" id="air">
+            <h2>Air Freight Forwarding</h2>
+            <p>Expedited, time-sensitive cargo transportation through key regional hubs.</p>
+            <ul>
+                <li>Expedited airport-to-airport freight</li>
+                <li>Priority handling via Hargeisa Airport</li>
+                <li>Perishable & high-value cargo solutions</li>
+            </ul>
+        </div>
+
+        <div class="service-card" id="ocean">
+            <h2>Ocean Cargo Services</h2>
+            <p>Comprehensive ocean logistics serving deep-water port infrastructure.</p>
+            <ul>
+                <li>Full Container Load (FCL) & LCL options</li>
+                <li>Port operations at deep-water Berbera Port</li>
+                <li>Break-bulk & heavy machinery transit</li>
+            </ul>
+        </div>
+
+        <div class="service-card" id="land">
+            <h2>Land Transport</h2>
+            <p>Reliable regional ground transportation and inland logistics networks.</p>
+            <ul>
+                <li>Cross-border trucking routes</li>
+                <li>Secure regional transit & delivery</li>
+                <li>Integrated supply chain management</li>
+            </ul>
+        </div>
+
+        <div class="service-card" id="customs">
+            <h2>Customs Clearance</h2>
+            <p>Full regulatory compliance and automated customs documentation.</p>
+            <ul>
+                <li>Import & export regulatory compliance</li>
+                <li>Automated digital manifest filings</li>
+                <li>Duty assessment & tariff classification</li>
+            </ul>
+        </div>
+
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="cta-banner">
+        <h2>Ready to ship your cargo?</h2>
+        <p>Get instant competitive freight quotes or speak directly to our logistics planners.</p>
+        <a href="quote.html" class="btn-yellow">Request a Quote</a>
+    </section>
+
+</body>
+</html>
