@@ -4,28 +4,30 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Contact Our Logistics Experts | Airsell Cargo</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Contact Us | Airsell Cargo - Global Logistics Hubs</title>
+  <meta name="description" content="Get in touch with Airsell Cargo dispatch offices at Hargeisa Airport and Berbera Port for freight inquiries, tracking support, and rate quotes.">
+  
   <style>  
     :root {
       --brand-red: #cc0000;
       --brand-green: #008800;
-      --brand-yellow: #ffcc00;
+      --brand-yellow: #fca311;
       --primary-dark: #001f3f;
+      --text-dark: #0f172a;
       --text-gray: #64748b;
-      --card-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      --bg-light: #f8fafc;
+      --card-shadow: 0 12px 35px rgba(0, 31, 63, 0.08);
+      --border-color: #cbd5e1;
     }
     
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body { 
       font-family: 'Segoe UI', Roboto, Arial, sans-serif; 
       margin: 0; 
-      background: #f1f5f9; 
-      color: #1e293b; 
-      line-height: 1.6; 
+      background: #ffffff; 
+      color: var(--text-dark); 
+      line-height: 1.7; 
     }
     
     .container { 
@@ -34,11 +36,33 @@
       padding: 0 24px; 
     }
     
-    /* Header & Navigation */
+    /* Top Bar */
+    .top-bar {
+      background: var(--primary-dark);
+      color: #94a3b8;
+      font-size: 0.82rem;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .top-bar-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-bar-info span { margin-right: 20px; }
+    .top-bar-info a { color: #cbd5e1; text-decoration: none; }
+    .top-bar-info a:hover { color: var(--brand-yellow); }
+
+    /* Header Navigation */
     header { 
-      background: white; 
-      border-bottom: 4px solid var(--brand-yellow); 
-      box-shadow: 0 4px 6px rgba(0,0,0,0.08); 
+      background: #ffffff; 
+      border-bottom: 5px solid var(--brand-yellow); 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06); 
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     
     .header-flex { 
@@ -47,17 +71,11 @@
       align-items: center; 
       padding: 15px 0;
     }
-
-    .brand-logo {
-      font-size: 1.5rem;
-      margin: 0;
-      color: var(--primary-dark);
-      font-weight: 800;
-    }
     
     .nav-links { 
       list-style: none; 
       display: flex; 
+      align-items: center;
       gap: 20px; 
       margin: 0; 
       padding: 0;
@@ -69,702 +87,360 @@
       font-weight: 600; 
       text-transform: uppercase; 
       font-size: 0.85rem; 
-      transition: color 0.3s; 
+      transition: color 0.3s ease; 
     }
     
-    .nav-links a.active,
-    .nav-links a:hover { 
+    .nav-links a.active, .nav-links a:hover { 
       color: var(--brand-red); 
     }
-    
+
+    .btn-nav-cta {
+      background: var(--brand-red);
+      color: #ffffff !important;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 700 !important;
+    }
+
+    .btn-nav-cta:hover {
+      background: var(--primary-dark);
+    }
+
     /* Hero Banner */
     .hero-banner { 
       text-align: center; 
-      padding: 60px 0 100px; 
-      background: white; 
-      border-bottom: 1px solid #e2e8f0; 
+      padding: 50px 20px 60px; 
+      background: linear-gradient(180deg, var(--primary-dark) 0%, #001226 100%);
+      color: #ffffff;
+      border-bottom: 5px solid var(--brand-yellow); 
     }
     
     .hero-banner h1 { 
       font-size: 2.5rem; 
-      margin: 0 0 15px; 
+      margin: 0 0 10px; 
       font-weight: 800; 
-      color: var(--primary-dark); 
     } 
-    
-    .hero-banner p { 
-      font-size: 1.1rem; 
-      color: var(--text-gray); 
-      max-width: 650px; 
-      margin: 0 auto; 
-      border-top: 4px solid var(--brand-red); 
-      padding-top: 20px; 
-    }
-    
-    /* Main Layout Grid */
-    .contact-grid { 
-      display: grid; 
-      grid-template-columns: 1fr 2fr; 
-      gap: 30px; 
-      margin-top: -60px; 
-      padding-bottom: 80px; 
-    }
 
-    @media (max-width: 900px) {
-      .contact-grid {
-        grid-template-columns: 1fr;
-        margin-top: 30px;
-      }
-    }
-
-    /* Info Card & Form Cards */
-    .info-card { 
-      background: white; 
-      padding: 35px; 
-      border-radius: 12px; 
-      box-shadow: var(--card-shadow); 
-      border-top: 6px solid var(--brand-red); 
-      height: fit-content;
-    }
-    
-    .info-card h2 { 
-      margin-top: 0; 
-      margin-bottom: 15px;
-      color: var(--primary-dark); 
-      font-size: 1.5rem;
-    }
-    
-    .contact-details-list {
-      list-style: none;
-      padding: 0;
-      margin: 25px 0 0;
-    }
-
-    .contact-details-list li {
-      margin-bottom: 20px;
-      font-style: normal;
-    }
-
-    .contact-details-list strong {
-      display: block;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      color: var(--text-gray);
-      margin-bottom: 4px;
-    }
-
-    .contact-details-list a, .contact-details-list span {
-      color: var(--primary-dark);
-      font-weight: 600;
-      text-decoration: none;
+    .hero-banner p {
+      max-width: 650px;
+      margin: 0 auto 15px;
+      color: #cbd5e1;
       font-size: 1rem;
     }
 
-    .contact-details-list a:hover {
-      color: var(--brand-red);
+    /* Contact Cards Section */
+    .contact-section {
+      padding: 60px 0;
+      background: var(--bg-light);
     }
 
-    /* Form Layout */
-    .form-card {
-      background: white;
-      padding: 35px;
-      border-radius: 12px;
+    .hub-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .hub-card {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 30px;
       box-shadow: var(--card-shadow);
-      border-top: 6px solid var(--primary-dark);
+      border: 1px solid var(--border-color);
+      border-top: 4px solid var(--brand-red);
     }
 
-    .form-card h2 {
+    .hub-card h3 {
       margin-top: 0;
-      margin-bottom: 20px;
       color: var(--primary-dark);
-      font-size: 1.5rem;
+      font-size: 1.35rem;
+      margin-bottom: 15px;
     }
 
-    .form-parallel-wrapper {
+    .hub-detail {
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      color: #334155;
+    }
+
+    .hub-detail strong {
+      color: var(--primary-dark);
+    }
+
+    .btn-whatsapp {
+      display: inline-block;
+      background: var(--brand-green);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-top: 15px;
+      transition: background 0.3s;
+    }
+
+    .btn-whatsapp:hover {
+      background: #006600;
+    }
+
+    /* Form Section */
+    .form-container {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--border-color);
+    }
+
+    .form-container h2 {
+      margin-top: 0;
+      color: var(--primary-dark);
+      font-size: 1.6rem;
+      border-bottom: 2px solid var(--brand-yellow);
+      padding-bottom: 10px;
+      margin-bottom: 25px;
+    }
+
+    .form-grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 25px;
-    }
-
-    @media (max-width: 650px) {
-      .form-parallel-wrapper {
-        grid-template-columns: 1fr;
-      }
+      gap: 20px;
+      margin-bottom: 20px;
     }
 
     .form-group {
-      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
     }
 
-    .form-group.full-width {
-      grid-column: 1 / -1;
-    }
-
-    .form-label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 6px;
+    .form-group label {
+      font-weight: 700;
       font-size: 0.88rem;
-      color: #334155;
-    }
-    
-    form input, form select, form textarea { 
-      width: 100%; 
-      padding: 12px; 
-      border: 1px solid #cbd5e1; 
-      border-radius: 6px; 
-      font-size: 0.95rem; 
-      background: white;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
     }
 
-    form input:focus, form select:focus, form textarea:focus {
+    .form-group input, .form-group select, .form-group textarea {
+      padding: 12px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 0.95rem;
       outline: none;
-      border-color: var(--primary-dark);
-      box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
+      transition: border-color 0.2s;
     }
-    
+
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--brand-red);
+    }
+
     .btn-submit {
       background: var(--brand-red);
-      color: white;
+      color: #ffffff;
       border: none;
-      padding: 16px 28px;
+      padding: 16px 32px;
       font-size: 1rem;
       font-weight: 700;
       border-radius: 6px;
       cursor: pointer;
       width: 100%;
-      transition: background 0.3s;
-      margin-top: 10px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      transition: background 0.3s;
     }
 
     .btn-submit:hover {
-      background: #a30000;
+      background: var(--primary-dark);
     }
 
-    /* Site Footer */
+    /* Footer */
     .site-footer { 
       background: var(--primary-dark); 
-      color: white; 
-      padding: 60px 0 30px; 
+      color: #ffffff; 
+      padding: 50px 0 30px; 
+      font-size: 0.9rem;
+      border-top: 3px solid var(--brand-yellow);
     }
 
-    .footer-row { 
+    .footer-grid { 
       display: grid; 
-      grid-template-columns: 1.5fr 1fr 1fr 1fr; 
-      gap: 40px; 
+      grid-template-columns: 1.5fr repeat(4, 1fr); 
+      gap: 30px; 
     }
 
-    @media (max-width: 800px) {
-      .footer-row {
-        grid-template-columns: 1fr 1fr;
-      }
+    .footer-col h4 {
+      color: var(--brand-yellow);
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
     }
 
-    .brand-yellow-text { 
-      color: var(--brand-yellow); 
-      text-transform: uppercase; 
-      font-size: 0.85rem; 
-      font-weight: 700;
-      margin-bottom: 15px; 
-      display: block; 
-    }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; text-decoration: none; transition: color 0.3s ease; }
+    .footer-col a:hover { color: #ffffff; }
 
-    .footer-links { 
-      list-style: none; 
-      padding: 0; 
-      margin: 0; 
-    }
-
-    .footer-links li { 
-      margin-bottom: 10px; 
-      font-size: 0.9rem; 
-    }
-
-    .footer-links a { 
-      color: #94a3b8; 
-      text-decoration: none; 
-      transition: color 0.3s; 
-    }
-
-    .footer-links a:hover { 
-      color: white; 
-    }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      margin-top: 40px;
-      padding-top: 20px;
-      font-size: 0.85rem;
-      color: #94a3b8;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 15px;
+    @media (max-width: 768px) {
+      .hub-grid, .form-grid-2 { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 25px; }
+      .top-bar { display: none; }
     }
   </style>
 </head>
 <body>
+
+<!-- Top Navigation Bar -->
+<div class="top-bar">
+  <div class="container top-bar-flex">
+    <div class="top-bar-info">
+      <span>📍 Hargeisa Airport & Berbera Port Hubs</span>
+      <span>📞 <a href="tel:+252634125763">+252 63 412 5763</a></span>
+    </div>
+    <div>
+      <span>🕒 Mon–Sat: 8:00 AM – 6:00 PM EAT</span>
+    </div>
+  </div>
+</div>
+
+<!-- Header Navigation -->
 <header>
   <div class="container header-flex">
     <div class="logo">
-      <a href="/">
+      <a href="index.html">
         <img src="logo.png" alt="Airsell Cargo" width="180">
       </a>
     </div>
     
     <nav aria-label="Main Navigation">
       <ul class="nav-links">
-        <li><a href="/"index">Home</a></li>
-        <li><a href="/about">About Us</a></li>
-        <li><a href="/services">Services</a></li>
-        <li><a href="/tracking">Tracking</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="tracking.html">Tracking</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
-        <li><a href="/quote">Get a Quote</a></li>
-        
+        <li><a href="quote.html" class="btn-nav-cta">Get a Quote</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
-  <main>
-    <!-- Hero Banner -->
-    <section class="hero-banner">
-      <div class="container">
-        <h1>Contact Our Freight Specialists</h1>
-        <p>Get real-time rates for global air, ocean, and land cargo transport. Submit your inquiry below for a quick response from our team within 24 hours.</p>
+<!-- Hero Section -->
+<section class="hero-banner">
+  <div class="container">
+    <h1>Contact Our Dispatch Team</h1>
+    <p>Get in direct contact with our operational hubs at Hargeisa Airport and Berbera Port for immediate cargo assistance.</p>
+  </div>
+</section>
+
+<!-- Main Contact Section -->
+<main class="contact-section">
+  <div class="container">
+    
+    <!-- Operational Hub Cards -->
+    <div class="hub-grid">
+      <div class="hub-card">
+        <h3>📍 Hargeisa Airport Hub (HGA)</h3>
+        <div class="hub-detail"><strong>Location:</strong> Cargo Terminal Sector, Egal International Airport</div>
+        <div class="hub-detail"><strong>Dispatch Phone:</strong> +252 63 412 5763</div>
+        <div class="hub-detail"><strong>Email:</strong> hga-dispatch@airsellcargo.com</div>
+        <div class="hub-detail"><strong>Hours:</strong> Mon–Sat: 08:00 – 18:00 (EAT)</div>
+        <a href="https://wa.me/252634125763" class="btn-whatsapp" target="_blank" rel="noopener">Chat via WhatsApp</a>
       </div>
-    </section>
 
-    <!-- Main Content Section -->
-    <section class="container">
-      <div class="contact-grid">
-        
-        <!-- Sidebar Contact Info -->
-        <aside class="info-card">
-          <h2>Direct Contacts</h2>
-          <p>Prefer to speak with our specialists directly? Reach out via phone or email.</p>
-          
-          <address>
-            <ul class="contact-details-list">
-              <li>
-                <strong>Phone &amp; WhatsApp</strong>
-                <a href="tel:+252634823310">+252 63 482 3310</a>
-              </li>
-              <li>
-                <strong>General Inquiries</strong>
-                <a href="mailto:info@airsellcargo.com">info@airsellcargo.com</a>
-              </li>
-              <li>
-                <strong>Sales Team</strong>
-                <a href="mailto:sales@airsellcargo.com">sales@airsellcargo.com</a>
-              </li>
-              <li>
-                <strong>Head Office</strong>
-                <span>Hargeisa, Somaliland</span>
-              </li>
-            </ul>
-          </address>
-        </aside>
+      <div class="hub-card" style="border-top-color: var(--brand-green);">
+        <h3>📍 Berbera Port Hub (BBO)</h3>
+        <div class="hub-detail"><strong>Location:</strong> Maritime Logistics Zone, Berbera Commercial Port</div>
+        <div class="hub-detail"><strong>Dispatch Phone:</strong> +252 63 412 5764</div>
+        <div class="hub-detail"><strong>Email:</strong> bbo-dispatch@airsellcargo.com</div>
+        <div class="hub-detail"><strong>Hours:</strong> Mon–Sat: 08:00 – 18:00 (EAT)</div>
+        <a href="https://wa.me/252634125764" class="btn-whatsapp" target="_blank" rel="noopener">Chat via WhatsApp</a>
+      </div>
+    </div>
 
-        <!-- Main Contact Form -->
-        <div class="form-card">
-          <h2>Send Us a Message</h2>
-
-          <form id="contactForm" action="https://formsubmit.co/1233a26cfc71ac026ab36a3426f8e462" method="POST" enctype="multipart/form-data">
-            <!-- FormSubmit Hidden Settings -->
-          <input type="hidden" name="_next" value="https://airsellcargo.com/thank.html">
-          <input type="hidden" name="_subject" value="New Submit Request">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-     
-          <!-- Captures Human-Readable Service Name for Email -->
-          <input type="hidden" id="selectedServiceText" name="Service_Type_Selected" value="Air Freight">
-           
-
-
- 
-            <div class="form-parallel-wrapper">
-              
-              <div class="form-group">
-                <label for="fullName" class="form-label">Full Name *</label>
-                <input type="text" id="fullName" name="name" required placeholder="John Doe">
-              </div>
-
-              <div class="form-group">
-                <label for="companyName" class="form-label">Company Name</label>
-                <input type="text" id="companyName" name="company" placeholder="Global Logistics Ltd.">
-              </div>
-
-              <div class="form-group">
-                <label for="email" class="form-label">Email Address *</label>
-                <input type="email" id="email" name="email" required placeholder="name@company.com">
-              </div>
-
-              <div class="form-group">
-                <label for="phone" class="form-label">Phone Number *</label>
-                <input type="tel" id="phone" name="phone" required placeholder="+252 ...">
-              </div>
-
-              <div class="form-group full-width">
-                <label for="serviceType" class="form-label">Service Required</label>
-                <select id="serviceType" name="service_type" required>
-                  <option value="">Select Service Category...</option>
-                  <option value="Air Freight">Air Freight</option>
-                  <option value="Ocean Freight">Ocean Freight</option>
-                  <option value="Land Transport">Land Transport</option>
-                  <option value="Customs Clearance">Customs Clearance</option>
-                  <option value="General Inquiry">General Inquiry</option>
-                </select>
-              </div>
-
-              <div class="form-group full-width">
-                <label for="message" class="form-label">Message / Cargo Details *</label>
-                <textarea id="message" name="details" rows="5" required placeholder="Tell us about your cargo weight, dimensions, origin, destination..."></textarea>
-              </div>
-
-              <div class="form-group full-width">
-                <div id="contact-response" style="display:none; padding:12px; border-radius:8px; margin-top:10px;"></div>
-                <button type="submit" class="btn-submit">Submit Request</button>
-              </div>
-            </div>
-
-          </form>
+    <!-- General Inquiries Form -->
+    <div class="form-container">
+      <h2>Send a Message</h2>
+      <form action="thank.html" method="GET">
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Mohamed Hassan" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="mohamed@example.com" required>
+          </div>
         </div>
 
-      </div>
-    </section>
-  </main>
-<style>
-  /* Base Reset & Variables */
-  .site-footer {
-    background: linear-gradient(180deg, #071527 0%, #030a14 100%);
-    color: #94a3b8;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
-    border-top: 3px solid #fca311;
-  }
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="phone">Phone / WhatsApp</label>
+            <input type="tel" id="phone" name="phone" placeholder="+252 63 XXXXXXX" required>
+          </div>
+          <div class="form-group">
+            <label for="subject">Inquiry Type</label>
+            <select id="subject" name="subject" required>
+              <option value="general">General Support</option>
+              <option value="tracking">Shipment Status Inquiry</option>
+              <option value="customs">Customs Clearance Support</option>
+              <option value="charter">Special Charter Flight</option>
+            </select>
+          </div>
+        </div>
 
-  /* Upper CTA Bar */
-  .footer-cta-bar {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
+        <div class="form-group">
+          <label for="message">Message / Details</label>
+          <textarea id="message" name="message" rows="5" placeholder="Please provide your waybill number or specific inquiry details..." required></textarea>
+        </div>
 
-  .cta-text h3 {
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 600;
-    margin: 0 0 4px 0;
-  }
+        <button type="submit" class="btn-submit">Send Inquiry</button>
+      </form>
+    </div>
 
-  .cta-text p {
-    margin: 0;
-    color: #cbd5e1;
-    font-size: 13px;
-  }
+  </div>
+</main>
 
-  .cta-buttons {
-    display: flex;
-    gap: 12px;
-  }
-
-  .btn-primary {
-    background-color: #fca311;
-    color: #030a14;
-    padding: 10px 20px;
-    font-weight: 600;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-
-  .btn-primary:hover {
-    background-color: #e5920c;
-    transform: translateY(-1px);
-  }
-
-  .btn-secondary {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    padding: 10px 20px;
-    font-weight: 600;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-
-  .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: #ffffff;
-  }
-
-  /* Main Grid */
-  .footer-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 50px 20px 40px;
-    display: grid;
-    grid-template-columns: 2fr repeat(4, 1fr);
-    gap: 40px;
-  }
-
-  .footer-brand .brand-logo {
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    margin: 0 0 12px 0;
-    display: inline-block;
-  }
-
-  .footer-brand .brand-logo span {
-    color: #fca311;
-  }
-
-  .footer-brand p {
-    color: #94a3b8;
-    margin-bottom: 20px;
-    font-size: 13px;
-  }
-
-  /* Section Titles */
-  .footer-title {
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0 0 18px 0;
-  }
-
-  /* Navigation Links */
-  .footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .footer-links li {
-    margin-bottom: 10px;
-  }
-
-  .footer-links a {
-    color: #cbd5e1;
-    text-decoration: none;
-    font-size: 13px;
-    transition: color 0.2s ease, transform 0.2s ease;
-    display: inline-block;
-  }
-
-  .footer-links a:hover {
-    color: #fca311;
-    transform: translateX(3px);
-  }
-
-  /* Contact Items */
-  .contact-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 13px;
-    margin-bottom: 12px;
-    color: #cbd5e1;
-  }
-
-  .contact-item a {
-    color: #cbd5e1;
-    text-decoration: none;
-  }
-
-  .contact-item a:hover {
-    color: #ffffff;
-  }
-
-  /* Social Links */
-  .social-group {
-    display: flex;
-    gap: 10px;
-  }
-
-  .social-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 600;
-    transition: all 0.2s ease;
-  }
-
-  .social-icon:hover {
-    background: #fca311;
-    border-color: #fca311;
-    color: #030a14;
-  }
-
-  /* Bottom Bar */
-  .footer-bottom {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 24px 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    font-size: 12px;
-  }
-
-  .footer-bottom-links {
-    display: flex;
-    gap: 20px;
-  }
-
-  .footer-bottom-links a {
-    color: #64748b;
-    text-decoration: none;
-  }
-
-  .footer-bottom-links a:hover {
-    color: #94a3b8;
-  }
-
-  /* Responsive Rules */
-  @media (max-width: 1024px) {
-    .footer-main {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .footer-brand {
-      grid-column: span 3;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .footer-cta-bar {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .footer-main {
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-    .footer-brand {
-      grid-column: span 1;
-    }
-    .footer-bottom {
-      flex-direction: column;
-      text-align: center;
-    }
-  }
-</style>
-
+<!-- Footer Section -->
 <footer class="site-footer">
-  
-  <!-- High-Conversion Action Bar -->
-  <div class="footer-cta-bar">
-    <div class="cta-text">
-      <h3>Ready to ship your cargo?</h3>
-      <p>Get instant competitive freight quotes or speak directly to our logistics planners.</p>
-    </div>
-    <div class="cta-buttons">
-      <a href="quote.html" class="btn-primary">Get a Quote</a>
-      <a href="tracking.html" class="btn-secondary">Track Shipment</a>
-    </div>
-  </div>
-
-  <!-- Primary Footer Navigation -->
-  <div class="footer-main">
-    
-    <!-- Company Profile -->
-    <div class="footer-brand">
-      <div class="brand-logo">AIRSELL <span>CARGO</span></div>
-      <p>Your premier freight and logistics partner delivering end-to-end air, ocean, and land transport solutions globally.</p>
-      <div class="social-group">
-        <a href="https://wa.me/252634823310" class="social-icon" title="WhatsApp">WA</a>
-        <a href="#" class="social-icon" title="LinkedIn">LN</a>
-        <a href="#" class="social-icon" title="Facebook">FB</a>
-      </div>
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4 style="color: #ffffff;">Airsell Cargo</h4>
+      <p style="color: #94a3b8;">Global Freight & Logistics Solutions</p>
+      <p style="color: #64748b; font-size: 0.85rem;">© 2026 Airsell Cargo. All rights reserved.</p>
     </div>
 
-    <!-- Column 1: Services -->
-    <div>
-      <h4 class="footer-title">Services</h4>
-      <ul class="footer-links">
-        <li><a href="air-freight.html">Air Freight</a></li>
-        <li><a href="ocean-freight.html">Ocean Freight</a></li>
-        <li><a href="land-transport.html">Land Transport</a></li>
-        <li><a href="customs-clearance.html">Customs Clearance</a></li>
-      </ul>
-    </div>
-
-    <!-- Column 2: Quick Links -->
-    <div>
-      <h4 class="footer-title">Company</h4>
-      <ul class="footer-links">
+    <div class="footer-col">
+      <h4 style="color: #ffffff;">Quick Links</h4>
+      <ul>
         <li><a href="about.html">About Us</a></li>
-        <li><a href="tracking.html">Tracking Portal</a></li>
-        <li><a href="quote.html">Request Quote</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="quote.html">Get a Quote</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
 
-    <!-- Column 3: Legal & Help -->
-    <div>
-      <h4 class="footer-title">Support & Legal</h4>
-      <ul class="footer-links">
-        <li><a href="faq.html">Help Center / FAQ</a></li>
-        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-        <li><a href="terms-of-service.html">Terms of Service</a></li>
+    <div class="footer-col">
+      <h4 style="color: #ffffff;">Locations</h4>
+      <p style="color: #94a3b8; margin-bottom: 6px;">📍 Hargeisa Airport (HGA)</p>
+      <p style="color: #94a3b8;">📍 Berbera Port (BBO)</p>
+    </div>
+
+    <div class="footer-col">
+      <h4 style="color: #ffffff;">Contact</h4>
+      <p style="color: #94a3b8; margin-bottom: 6px;">✉️ info@airsellcargo.com</p>
+      <p style="color: #94a3b8;">📞 +252 63 412 5763</p>
+    </div>
+
+    <div class="footer-col">
+      <h4 style="color: #ffffff;">Legal</h4>
+      <ul>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
       </ul>
     </div>
-
-    <!-- Column 4: Direct Details -->
-    <div>
-      <h4 class="footer-title">Headquarters</h4>
-      <div class="contact-item">
-        <span>📍</span>
-        <span>Hargeisa, Somaliland</span>
-      </div>
-      <div class="contact-item">
-        <span>📞</span>
-        <a href="tel:+252634823310">+252 63 482 3310</a>
-      </div>
-      <div class="contact-item">
-        <span>✉️</span>
-        <a href="mailto:info@airsellcargo.com">info@airsellcargo.com</a>
-      </div>
-    </div>
-
   </div>
-
-  <!-- Copyright & Compliance Bar -->
-  <div class="footer-bottom">
-    <div>© 2026 Airsell Cargo Ltd. All rights reserved.</div>
-    <div class="footer-bottom-links">
-      <a href="privacy-policy.html">Privacy</a>
-      <a href="terms-of-service.html">Terms</a>
-      <a href="#">Cookies Settings</a>
-    </div>
-  </div>
-
 </footer>
+
 </body>
-</html>  
+</html>
