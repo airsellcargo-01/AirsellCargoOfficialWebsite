@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Our Services | Airsell Cargo</title>
-  <meta name="description" content="Explore professional freight forwarding solutions by Airsell Cargo: Air Freight, Ocean Freight, Land Transport, and Customs Brokerage.">
+  <title>Freight & Supply Chain Services | Airsell Cargo</title>
+  <meta name="description" content="Explore Airsell Cargo's comprehensive air express, ocean container freight, overland trucking, and customs clearance services.">
   
   <style>  
     :root {
@@ -25,7 +25,7 @@
     body { 
       font-family: 'Segoe UI', Roboto, Arial, sans-serif; 
       margin: 0; 
-      background: var(--bg-light); 
+      background: #ffffff; 
       color: var(--text-dark); 
       line-height: 1.6; 
     }
@@ -36,7 +36,7 @@
       padding: 0 24px; 
     }
     
-    /* Top Notification Bar */
+    /* Top Bar */
     .top-bar {
       background: var(--primary-dark);
       color: #94a3b8;
@@ -55,7 +55,7 @@
     .top-bar-info a { color: #cbd5e1; text-decoration: none; }
     .top-bar-info a:hover { color: var(--brand-yellow); }
 
-    /* Header & Navigation */
+    /* Header Navigation */
     header { 
       background: #ffffff; 
       border-bottom: 5px solid var(--brand-yellow); 
@@ -106,145 +106,82 @@
       background: var(--primary-dark);
     }
     
-    /* Hero Banner Section */
+    /* Hero Banner */
     .hero-banner { 
       text-align: center; 
-      padding: 60px 20px 80px; 
-      background: linear-gradient(180deg, #ffffff 0%, var(--bg-light) 100%);
-      border-bottom: 1px solid #e2e8f0; 
+      padding: 60px 20px 70px; 
+      background: linear-gradient(180deg, var(--primary-dark) 0%, #001226 100%);
+      color: #ffffff;
+      border-bottom: 5px solid var(--brand-yellow); 
     }
     
     .hero-banner h1 { 
-      font-size: 2.6rem; 
-      margin: 0 0 10px; 
+      font-size: 2.8rem; 
+      margin: 0 0 12px; 
       font-weight: 800; 
-      color: var(--primary-dark); 
     } 
+
+    .hero-banner p {
+      max-width: 700px;
+      margin: 0 auto 15px;
+      color: #cbd5e1;
+      font-size: 1.1rem;
+    }
 
     .breadcrumbs {
       font-size: 0.9rem;
-      color: var(--text-gray);
+      color: #94a3b8;
     }
 
     .breadcrumbs a {
-      color: var(--primary-dark);
+      color: var(--brand-yellow);
       text-decoration: none;
       font-weight: 600;
     }
-    
-    .hero-banner p.subtitle { 
-      font-size: 1.1rem; 
-      color: var(--text-gray); 
-      max-width: 700px; 
-      margin: 15px auto 0; 
-      border-top: 3px solid var(--brand-red); 
-      padding-top: 15px; 
-    }
 
-    /* Filter Controls */
-    .filter-container {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: -25px;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      background: #ffffff;
-      border: 1px solid var(--border-color);
-      color: var(--primary-dark);
-      padding: 10px 22px;
-      border-radius: 30px;
-      font-weight: 700;
-      font-size: 0.88rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-    }
-
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--primary-dark);
-      color: #ffffff;
-      border-color: var(--primary-dark);
-    }
-
-    /* Services Grid Layout */
-    .services-wrapper {
-      padding-bottom: 80px;
+    /* Services Grid */
+    .services-section {
+      padding: 70px 0;
     }
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 30px;
     }
 
     .service-card {
       background: #ffffff;
       border-radius: 12px;
+      padding: 35px 25px;
       box-shadow: var(--card-shadow);
-      border-top: 5px solid var(--brand-red);
-      padding: 35px;
+      border: 1px solid #e2e8f0;
+      border-top: 5px solid var(--primary-dark);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
-    }
-
-    .service-card.hidden {
-      display: none;
+      transition: all 0.3s ease;
     }
 
     .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 40px rgba(0, 31, 63, 0.12);
+      transform: translateY(-5px);
+      border-top-color: var(--brand-red);
     }
 
-    .service-header {
-      display: flex;
-      align-items: center;
-      gap: 15px;
+    .service-icon {
+      font-size: 2.5rem;
       margin-bottom: 15px;
     }
 
-    .service-icon-badge {
-      background: rgba(204, 0, 0, 0.08);
-      color: var(--brand-red);
-      font-size: 2rem;
-      width: 60px;
-      height: 60px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(204, 0, 0, 0.15);
-    }
-
-    .service-header h2 {
-      margin: 0;
+    .service-card h3 {
+      font-size: 1.35rem;
       color: var(--primary-dark);
-      font-size: 1.5rem;
-    }
-
-    /* Transit Time Bar inside Card */
-    .transit-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #f1f5f9;
-      color: var(--text-dark);
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 700;
+      margin-top: 0;
       margin-bottom: 15px;
-      border: 1px solid var(--border-color);
     }
 
     .service-card p {
-      color: #334155;
+      color: var(--text-gray);
       font-size: 0.95rem;
       margin-bottom: 20px;
     }
@@ -252,130 +189,89 @@
     .service-features {
       list-style: none;
       padding: 0;
-      margin: 0 0 25px 0;
+      margin: 0 0 25px;
     }
 
     .service-features li {
-      font-size: 0.9rem;
-      color: var(--text-dark);
+      padding-left: 22px;
+      position: relative;
       margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      font-size: 0.88rem;
+      color: var(--text-dark);
+      font-weight: 600;
     }
 
     .service-features li::before {
-      content: "✓";
+      content: '✓';
+      position: absolute;
+      left: 0;
       color: var(--brand-green);
-      font-weight: bold;
     }
 
-    .btn-service-action {
-      display: inline-block;
-      text-align: center;
-      background: var(--primary-dark);
-      color: #ffffff;
+    .btn-card-link {
+      color: var(--brand-red);
       text-decoration: none;
-      padding: 12px 20px;
-      border-radius: 6px;
       font-weight: 700;
       font-size: 0.9rem;
-      transition: background 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
     }
 
-    .btn-service-action:hover {
-      background: var(--brand-red);
-    }
-
-    /* Primary Shipping Lanes Section */
-    .trade-routes {
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 35px;
-      margin-top: 50px;
-      border: 1px solid #e2e8f0;
-      box-shadow: var(--card-shadow);
-    }
-
-    .trade-routes h3 {
+    .btn-card-link:hover {
       color: var(--primary-dark);
-      font-size: 1.3rem;
-      margin-top: 0;
-      margin-bottom: 20px;
-      text-align: center;
     }
 
-    .route-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-      text-align: center;
-    }
-
-    .route-card {
+    /* Service Comparison Table */
+    .table-section {
       background: var(--bg-light);
-      padding: 15px 10px;
-      border-radius: 8px;
-      border: 1px solid var(--border-color);
+      padding: 70px 0;
+      border-top: 1px solid #e2e8f0;
     }
 
-    .route-card strong {
-      display: block;
-      color: var(--brand-red);
-      font-size: 0.9rem;
-    }
-
-    .route-card span {
-      font-size: 0.8rem;
-      color: var(--text-gray);
-    }
-
-    /* Callout CTA Section */
-    .cta-banner {
-      background: var(--primary-dark);
-      color: #ffffff;
-      border-radius: 12px;
-      padding: 40px;
+    .section-title {
       text-align: center;
-      margin-top: 50px;
-      border-top: 4px solid var(--brand-yellow);
+      margin-bottom: 40px;
     }
 
-    .cta-banner h3 {
-      font-size: 1.8rem;
+    .section-title h2 {
+      font-size: 2rem;
+      color: var(--primary-dark);
       margin: 0 0 10px;
     }
 
-    .cta-banner p {
-      color: #cbd5e1;
-      max-width: 600px;
-      margin: 0 auto 25px;
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
     }
 
-    .btn-cta-large {
-      background: var(--brand-red);
+    .comparison-table th {
+      background: var(--primary-dark);
       color: #ffffff;
-      text-decoration: none;
-      padding: 14px 32px;
-      border-radius: 6px;
-      font-weight: 700;
-      font-size: 1rem;
-      display: inline-block;
-      box-shadow: 0 4px 12px rgba(204, 0, 0, 0.25);
-      transition: background 0.3s ease;
+      padding: 16px;
+      text-align: left;
+      font-size: 0.95rem;
     }
 
-    .btn-cta-large:hover {
-      background: var(--brand-yellow);
-      color: var(--primary-dark);
+    .comparison-table td {
+      padding: 16px;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 0.9rem;
     }
 
-    /* Footer Section */
+    .comparison-table tr:hover {
+      background: #f1f5f9;
+    }
+
+    /* Footer */
     .site-footer { 
       background: var(--primary-dark); 
       color: #ffffff; 
       padding: 50px 0 30px; 
-      margin-top: 50px; 
       font-size: 0.9rem;
       border-top: 3px solid var(--brand-yellow);
     }
@@ -398,16 +294,15 @@
     .footer-col a { color: #94a3b8; text-decoration: none; transition: color 0.3s ease; }
     .footer-col a:hover { color: #ffffff; }
 
-    @media (max-width: 768px) {
-      .services-grid, .route-grid { grid-template-columns: 1fr; }
+    @media (max-width: 992px) {
+      .services-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; gap: 25px; }
-      .top-bar { display: none; }
     }
   </style>
 </head>
 <body>
 
-<!-- Top Bar -->
+<!-- Top Notification Bar -->
 <div class="top-bar">
   <div class="container top-bar-flex">
     <div class="top-bar-info">
@@ -420,7 +315,7 @@
   </div>
 </div>
 
-<!-- Header Navigation -->
+<!-- Main Header -->
 <header>
   <div class="container header-flex">
     <div class="logo">
@@ -442,138 +337,113 @@
   </div>
 </header>
 
-<!-- Title Banner Section -->
+<!-- Hero Section -->
 <section class="hero-banner">
   <div class="container">
-    <h1>End-to-End Freight & Logistics Solutions</h1>
-    <p class="breadcrumbs"><a href="index.html">Home</a> / Services</p>
-    <p class="subtitle">Delivering high-reliability air, sea, and overland freight services paired with expedited customs brokerage across key regional transport hubs.</p>
+    <h1>Our Logistics & Freight Solutions</h1>
+    <p>Tailored air express chartering, ocean container shipping, and cross-border customs solutions engineered for regional supply chains.</p>
+    <div class="breadcrumbs"><a href="index.html">Home</a> / Services</div>
   </div>
 </section>
 
-<!-- Filter Controls -->
-<div class="container">
-  <div class="filter-container">
-    <button class="filter-btn active" onclick="filterServices('all', this)">All Services</button>
-    <button class="filter-btn" onclick="filterServices('air', this)">✈️ Air Freight</button>
-    <button class="filter-btn" onclick="filterServices('sea', this)">🚢 Ocean Freight</button>
-    <button class="filter-btn" onclick="filterServices('road', this)">🚚 Land Transport</button>
-    <button class="filter-btn" onclick="filterServices('customs', this)">📑 Customs Clearance</button>
-  </div>
-</div>
-
-<!-- Main Services Content -->
-<main class="container services-wrapper">
-  <div class="services-grid">
-    
-    <!-- Service 1: Air Freight -->
-    <div class="service-card" data-category="air">
-      <div>
-        <div class="service-header">
-          <div class="service-icon-badge">✈️</div>
-          <h2>Air Freight</h2>
+<!-- Services Grid -->
+<section class="services-section">
+  <div class="container">
+    <div class="services-grid">
+      
+      <!-- Air Freight -->
+      <div class="service-card">
+        <div>
+          <div class="service-icon">✈️</div>
+          <h3>Air Freight Express</h3>
+          <p>Time-critical consolidation and cargo charters connecting UAE & international hubs to Hargeisa International Airport.</p>
+          <ul class="service-features">
+            <li>Express Door-to-Door Delivery</li>
+            <li>Daily Flight Schedules</li>
+            <li>Temperature-Controlled Handling</li>
+          </ul>
         </div>
-        <div class="transit-badge">⏱️ Typical Transit: 3–5 Business Days</div>
-        <p>Fast, direct, and scheduled cargo movement worldwide. Ideal for time-critical dispatches, high-value consignments, and perishable items via major international airports.</p>
-        <ul class="service-features">
-          <li>Standard Air Freight (1:167 volumetric ratio)</li>
-          <li>Express Courier & Charter options (1:200 volumetric ratio)</li>
-          <li>Real-time Air Waybill (AWB) status tracking</li>
-          <li>Airport-to-Airport & Door-to-Door delivery</li>
-        </ul>
+        <a href="freight.html#air" class="btn-card-link">View Air Services →</a>
       </div>
-      <a href="quote.html?service=air" class="btn-service-action">Request Air Quote →</a>
-    </div>
 
-    <!-- Service 2: Ocean Freight -->
-    <div class="service-card" data-category="sea">
-      <div>
-        <div class="service-header">
-          <div class="service-icon-badge">🚢</div>
-          <h2>Ocean Freight</h2>
+      <!-- Ocean Freight -->
+      <div class="service-card">
+        <div>
+          <div class="service-icon">🚢</div>
+          <h3>Ocean Freight (FCL/LCL)</h3>
+          <p>Economical sea shipping solutions operating through Berbera Port with full container load and consolidated container options.</p>
+          <ul class="service-features">
+            <li>FCL & LCL Container Consolidation</li>
+            <li>Heavy Machinery & Vehicles</li>
+            <li>Port-to-Warehouse Haulage</li>
+          </ul>
         </div>
-        <div class="transit-badge">⏱️ Typical Transit: 18–25 Business Days</div>
-        <p>Cost-effective sea transport solutions connecting global commercial ports with local maritime hubs like Berbera. Handles high-volume and heavy industrial shipments.</p>
-        <ul class="service-features">
-          <li>Full Container Load (FCL) & Less than Container Load (LCL)</li>
-          <li>Breakbulk and project cargo management</li>
-          <li>Container origin consolidation and deconsolidation</li>
-          <li>Port-to-Port and port-to-door forwarding</li>
-        </ul>
+        <a href="quote.html" class="btn-card-link">Request Sea Rates →</a>
       </div>
-      <a href="quote.html?service=sea" class="btn-service-action">Request Sea Quote →</a>
-    </div>
 
-    <!-- Service 3: Land Transport -->
-    <div class="service-card" data-category="road">
-      <div>
-        <div class="service-header">
-          <div class="service-icon-badge">🚚</div>
-          <h2>Land Transport</h2>
+      <!-- Customs Clearance -->
+      <div class="service-card">
+        <div>
+          <div class="service-icon">📑</div>
+          <h3>Customs Clearance & Transit</h3>
+          <p>Licensed customs brokerage ensuring fast regulatory clearance at airport terminals, sea ports, and overland borders.</p>
+          <ul class="service-features">
+            <li>Duty & Duty-Free Filing</li>
+            <li>Manifest & Duty Assessments</li>
+            <li>Hinterland Transit Permits</li>
+          </ul>
         </div>
-        <div class="transit-badge">⏱️ Typical Transit: 1–3 Regional Days</div>
-        <p>Reliable regional trucking networks linking coastal port terminals to inland destinations, distribution hubs, and commercial centers across the region.</p>
-        <ul class="service-features">
-          <li>Full Truckload (FTL) & Partial Load (LTL) services</li>
-          <li>Specialized flatbed, refrigerated, and heavy-haul trailers</li>
-          <li>Secured regional corridor transit</li>
-          <li>Integrated final-mile regional distribution</li>
-        </ul>
+        <a href="contact.html" class="btn-card-link">Talk to a Broker →</a>
       </div>
-      <a href="quote.html?service=road" class="btn-service-action">Request Land Quote →</a>
-    </div>
 
-    <!-- Service 4: Customs Brokerage -->
-    <div class="service-card" data-category="customs">
-      <div>
-        <div class="service-header">
-          <div class="service-icon-badge">📑</div>
-          <h2>Customs Clearance</h2>
-        </div>
-        <div class="transit-badge">⏱️ Clearance Time: 24–48 Hours</div>
-        <p>Expert local regulatory and customs compliance management. Accelerates clearance times through border posts, sea terminals, and air hubs.</p>
-        <ul class="service-features">
-          <li>Tariff classification and import/export documentation</li>
-          <li>Duty assessment, tax calculations, and compliance checks</li>
-          <li>HAZMAT and restricted commodity permitting</li>
-          <li>On-site clearance at Hargeisa Airport & Berbera Port</li>
-        </ul>
-      </div>
-      <a href="quote.html?service=air" class="btn-service-action">Get Clearance Help →</a>
-    </div>
-
-  </div>
-
-  <!-- Primary Trade Routes Banner -->
-  <div class="trade-routes">
-    <h3>🌐 Primary Strategic Logistics Lanes</h3>
-    <div class="route-grid">
-      <div class="route-card">
-        <strong>China → Berbera / HGA</strong>
-        <span>Weekly Direct Consolidation</span>
-      </div>
-      <div class="route-card">
-        <strong>UAE (DXB/JEA) → Regional</strong>
-        <span>Air Express & Express Vessels</span>
-      </div>
-      <div class="route-card">
-        <strong>Turkey (IST) → East Africa</strong>
-        <span>Scheduled Commercial Cargo</span>
-      </div>
-      <div class="route-card">
-        <strong>EU Ports → Berbera Hub</strong>
-        <span>FCL & Heavy Equipment Forwarding</span>
-      </div>
     </div>
   </div>
+</section>
 
-  <!-- Call To Action Banner -->
-  <div class="cta-banner">
-    <h3>Need an Instant Volumetric & Chargeable Weight Estimate?</h3>
-    <p>Calculate your shipment's total volume (CBM) and chargeable weight instantly before requesting a quote.</p>
-    <a href="quote.html" class="btn-cta-large">Open Freight Calculator →</a>
+<!-- Comparison Table -->
+<section class="table-section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Service Tier Overview</h2>
+      <p>Compare shipping modes to select the optimal solution for your timeline and cargo volume</p>
+    </div>
+
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Service Mode</th>
+          <th>Typical Transit Time</th>
+          <th>Ideal Cargo Size</th>
+          <th>Tracking Updates</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Air Express</strong></td>
+          <td>2 - 4 Days</td>
+          <td>1 KG - 1,000 KG+</td>
+          <td>Real-Time Milestone Updates</td>
+          <td><a href="quote.html" style="color: var(--brand-red); font-weight:700;">Get Quote</a></td>
+        </tr>
+        <tr>
+          <td><strong>Sea Freight (LCL)</strong></td>
+          <td>10 - 14 Days</td>
+          <td>1 CBM - 15 CBM</td>
+          <td>Port-to-Port Tracking</td>
+          <td><a href="quote.html" style="color: var(--brand-red); font-weight:700;">Get Quote</a></td>
+        </tr>
+        <tr>
+          <td><strong>Sea Freight (FCL)</strong></td>
+          <td>7 - 12 Days</td>
+          <td>20ft / 40ft Containers</td>
+          <td>Daily Vessel & Port Log</td>
+          <td><a href="quote.html" style="color: var(--brand-red); font-weight:700;">Get Quote</a></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</main>
+</section>
 
 <!-- Footer Section -->
 <footer class="site-footer">
@@ -615,26 +485,6 @@
     </div>
   </div>
 </footer>
-
-<!-- Interactive Filtering Engine Script -->
-<script>
-  function filterServices(category, btnElement) {
-    const cards = document.querySelectorAll('.service-card');
-    const buttons = document.querySelectorAll('.filter-btn');
-
-    buttons.forEach(btn => btn.classList.remove('active'));
-    if (btnElement) btnElement.classList.add('active');
-
-    cards.forEach(card => {
-      const cardCategory = card.getAttribute('data-category');
-      if (category === 'all' || cardCategory === category) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-  }
-</script>
 
 </body>
 </html>
