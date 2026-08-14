@@ -289,90 +289,82 @@
   </div>
 </section>
 
-<!-- Quote Form Section -->
-<main class="quote-section">
-  <div class="container">
-    <div class="quote-card">
+<!-- Form Tag with method="POST" -->
+<form id="quoteForm" action="https://formsubmit.co/1233a26cfc71ac026ab36a3426f8e462" method="POST" enctype="multipart/form-data">
+  
+  <!-- FormSubmit Configuration Settings -->
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_subject" value="🚚 Freight Quote: {Service_Required} ({Origin_Hub} ➔ {Destination_Hub}) - {Full_Name}">
+  <input type="hidden" name="_next" value="https://airsellcargo.com/thank.html">
+  <input type="hidden" name="_autoresponse" value="Thank you for contacting Airsell Cargo. We have received your freight quote request and our team will get back to you shortly.">
 
-      <!-- Form Tag with method="POST" -->
-      <form id="quoteForm" action="https://formsubmit.co/1233a26cfc71ac026ab36a3426f8e462" method="POST" enctype="multipart/form-data">
-        
-        <!-- FormSubmit Hidden Settings -->
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="🚚 New Freight Quote Request - Airsell Cargo">
-        <input type="hidden" name="_replyto" value="email">
-        <input type="hidden" name="_next" value="https://airsellcargo.com/thank.html">
-
-        <!-- Form fields continue below... -->
-
-        <!-- 1. Route Selection -->
-        <div class="form-section-title">1. Transport Route & Service Mode</div>
-        <div class="form-grid-3">
-          <div class="form-group">
-            <label for="service-type">Service Required</label>
-            <select id="service-type" name="Service Required" required>
-              <option value="Air Freight (Express)">Air Freight (Express)</option>
-              <option value="Air Charter Special">Air Charter Special</option>
-              <option value="Ocean Cargo (FCL)">Ocean Cargo (FCL)</option>
-              <option value="Ocean Cargo (LCL)">Ocean Cargo (LCL)</option>
-              <option value="Customs Clearance Only">Customs Clearance Only</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="origin">Origin Hub / City</label>
-            <input type="text" id="origin" name="Origin Hub" placeholder="e.g. Dubai (DXB)" required>
-          </div>
-          <div class="form-group">
-            <label for="destination">Destination Hub / City</label>
-            <input type="text" id="destination" name="Destination Hub" placeholder="e.g. Hargeisa (HGA)" required>
-          </div>
-        </div>
-
-        <!-- 2. Cargo Details -->
-        <div class="form-section-title">2. Cargo Specifications</div>
-        <div class="form-grid-3">
-          <div class="form-group">
-            <label for="weight">Est. Gross Weight (kg)</label>
-            <input type="number" id="weight" name="Est. Gross Weight (kg)" placeholder="500" required>
-          </div>
-          <div class="form-group">
-            <label for="volume">Est. Volume (m³)</label>
-            <input type="number" step="0.1" id="volume" name="Est. Volume (m3)" placeholder="2.5">
-          </div>
-          <div class="form-group">
-            <label for="commodity">Commodity Type</label>
-            <input type="text" id="commodity" name="Commodity Type" placeholder="e.g. General Electronics" required>
-          </div>
-        </div>
-
-        <!-- 3. Contact Information -->
-        <div class="form-section-title">3. Contact Details</div>
-        <div class="form-grid-2">
-          <div class="form-group">
-            <label for="fullname">Full Name / Company</label>
-            <input type="text" id="fullname" name="Full Name" placeholder="Ahmed Ali" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="ahmed@example.com" required>
-          </div>
-        </div>
-
-        <div class="form-grid-2">
-          <div class="form-group">
-            <label for="phone">Phone / WhatsApp Number</label>
-            <input type="tel" id="phone" name="Phone Number" placeholder="+252 63 XXXXXXX" required>
-          </div>
-          <div class="form-group">
-            <label for="notes">Additional Requirements / Special Handling</label>
-            <textarea id="notes" name="Special Handling Notes" rows="1" placeholder="Temperature control, urgent deadline, etc."></textarea>
-          </div>
-        </div>
-
-        <button type="submit" class="btn-submit">Submit Rate Request</button>
-      </form>
+  <!-- 1. Route Selection -->
+  <div class="form-section-title">1. Transport Route & Service Mode</div>
+  <div class="form-grid-3">
+    <div class="form-group">
+      <label for="service-type">Service Required</label>
+      <select id="service-type" name="Service_Required" required>
+        <option value="Air Freight (Express)">Air Freight (Express)</option>
+        <option value="Air Charter Special">Air Charter Special</option>
+        <option value="Ocean Cargo (FCL)">Ocean Cargo (FCL)</option>
+        <option value="Ocean Cargo (LCL)">Ocean Cargo (LCL)</option>
+        <option value="Customs Clearance Only">Customs Clearance Only</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="origin">Origin Hub / City</label>
+      <input type="text" id="origin" name="Origin_Hub" placeholder="e.g. Dubai (DXB)" required>
+    </div>
+    <div class="form-group">
+      <label for="destination">Destination Hub / City</label>
+      <input type="text" id="destination" name="Destination_Hub" placeholder="e.g. Hargeisa (HGA)" required>
     </div>
   </div>
+
+  <!-- 2. Cargo Details -->
+  <div class="form-section-title">2. Cargo Specifications</div>
+  <div class="form-grid-3">
+    <div class="form-group">
+      <label for="weight">Est. Gross Weight (kg)</label>
+      <input type="number" id="weight" name="Est_Gross_Weight_kg" placeholder="500" required>
+    </div>
+    <div class="form-group">
+      <label for="volume">Est. Volume (m³)</label>
+      <input type="number" step="0.1" id="volume" name="Est_Volume_m3" placeholder="2.5">
+    </div>
+    <div class="form-group">
+      <label for="commodity">Commodity Type</label>
+      <input type="text" id="commodity" name="Commodity_Type" placeholder="e.g. General Electronics" required>
+    </div>
+  </div>
+
+  <!-- 3. Contact Information -->
+  <div class="form-section-title">3. Contact Details</div>
+  <div class="form-grid-2">
+    <div class="form-group">
+      <label for="fullname">Full Name / Company</label>
+      <input type="text" id="fullname" name="Full_Name" placeholder="Ahmed Ali" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="ahmed@example.com" required>
+    </div>
+  </div>
+
+  <div class="form-grid-2">
+    <div class="form-group">
+      <label for="phone">Phone / WhatsApp Number</label>
+      <input type="tel" id="phone" name="Phone_Number" placeholder="+252 63 XXXXXXX" required>
+    </div>
+    <div class="form-group">
+      <label for="notes">Additional Requirements / Special Handling</label>
+      <textarea id="notes" name="Special_Handling_Notes" rows="1" placeholder="Temperature control, urgent deadline, etc."></textarea>
+    </div>
+  </div>
+
+  <button type="submit" class="btn-submit">Submit Rate Request</button>
+</form>
 </main>
 
 <!-- Footer Section -->
