@@ -1,0 +1,7 @@
+# Option A: If serving backend directly as root folder
+root /var/www/airsell-cargo-api;
+
+# Option B: If reverse proxying to a running API process (Node.js/Laravel/etc.)
+location /api {
+    proxy_pass http://localhost:5000; # or your backend port
+}
