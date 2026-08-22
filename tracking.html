@@ -6,8 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Track Shipment | Airsell Cargo - Real-Time Manifest Tracking</title>
   <meta name="description" content="Track your Air, Ocean, and Overland freight shipments in real time with the Airsell Cargo tracking portal.">
-  
-  <style>  
+  <style>
     :root {
       --brand-red: #cc0000;
       --brand-green: #008800;
@@ -19,23 +18,19 @@
       --card-shadow: 0 12px 35px rgba(0, 31, 63, 0.08);
       --border-color: #cbd5e1;
     }
-    
     * { box-sizing: border-box; }
-
-    body { 
-      font-family: 'Segoe UI', Roboto, Arial, sans-serif; 
-      margin: 0; 
-      background: var(--bg-light); 
-      color: var(--text-dark); 
-      line-height: 1.6; 
+    body {
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      margin: 0;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
     }
-    
-    .container { 
-      max-width: 1200px; 
-      margin: auto; 
-      padding: 0 24px; 
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 24px;
     }
-    
     /* Top Bar */
     .top-bar {
       background: var(--primary-dark);
@@ -44,56 +39,47 @@
       padding: 8px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-
     .top-bar-flex {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-
     .top-bar-info span { margin-right: 20px; }
     .top-bar-info a { color: #cbd5e1; text-decoration: none; }
     .top-bar-info a:hover { color: var(--brand-yellow); }
 
     /* Header Navigation */
-    header { 
-      background: #ffffff; 
-      border-bottom: 5px solid var(--brand-yellow); 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06); 
+    header {
+      background: #ffffff;
+      border-bottom: 5px solid var(--brand-yellow);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
       position: sticky;
       top: 0;
       z-index: 1000;
     }
-    
-    .header-flex { 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
+    .header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 15px 0;
     }
-    
-    .nav-links { 
-      list-style: none; 
-      display: flex; 
+    .nav-links {
+      list-style: none;
+      display: flex;
       align-items: center;
-      gap: 20px; 
-      margin: 0; 
+      gap: 20px;
+      margin: 0;
       padding: 0;
     }
-    
-    .nav-links a { 
-      text-decoration: none; 
-      color: var(--primary-dark); 
-      font-weight: 600; 
-      text-transform: uppercase; 
-      font-size: 0.85rem; 
-      transition: color 0.3s ease; 
+    .nav-links a {
+      text-decoration: none;
+      color: var(--primary-dark);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      transition: color 0.3s ease;
     }
-    
-    .nav-links a.active, .nav-links a:hover { 
-      color: var(--brand-red); 
-    }
-
+    .nav-links a.active, .nav-links a:hover { color: var(--brand-red); }
     .btn-nav-cta {
       background: var(--brand-red);
       color: #ffffff !important;
@@ -101,36 +87,23 @@
       border-radius: 6px;
       font-weight: 700 !important;
     }
+    .btn-nav-cta:hover { background: var(--primary-dark); }
 
-    .btn-nav-cta:hover {
-      background: var(--primary-dark);
-    }
-    
     /* Hero Banner */
-    .hero-banner { 
-      text-align: center; 
-      padding: 50px 20px 60px; 
+    .hero-banner {
+      text-align: center;
+      padding: 50px 20px 60px;
       background: linear-gradient(180deg, #ffffff 0%, var(--bg-light) 100%);
-      border-bottom: 1px solid #e2e8f0; 
+      border-bottom: 1px solid #e2e8f0;
     }
-    
-    .hero-banner h1 { 
-      font-size: 2.5rem; 
-      margin: 0 0 10px; 
-      font-weight: 800; 
-      color: var(--primary-dark); 
-    } 
-
-    .breadcrumbs {
-      font-size: 0.9rem;
-      color: var(--text-gray);
-    }
-
-    .breadcrumbs a {
+    .hero-banner h1 {
+      font-size: 2.5rem;
+      margin: 0 0 10px;
+      font-weight: 800;
       color: var(--primary-dark);
-      text-decoration: none;
-      font-weight: 600;
     }
+    .breadcrumbs { font-size: 0.9rem; color: var(--text-gray); }
+    .breadcrumbs a { color: var(--primary-dark); text-decoration: none; font-weight: 600; }
 
     /* Tracking Search Card */
     .tracking-search-card {
@@ -144,7 +117,6 @@
       position: relative;
       z-index: 10;
     }
-
     .search-title {
       font-size: 1.2rem;
       font-weight: 700;
@@ -152,12 +124,7 @@
       margin-bottom: 15px;
       text-align: center;
     }
-
-    .search-form-group {
-      display: flex;
-      gap: 12px;
-    }
-
+    .search-form-group { display: flex; gap: 12px; }
     .tracking-input {
       flex: 1;
       padding: 14px 18px;
@@ -169,11 +136,7 @@
       outline: none;
       transition: border-color 0.3s ease;
     }
-
-    .tracking-input:focus {
-      border-color: var(--primary-dark);
-    }
-
+    .tracking-input:focus { border-color: var(--primary-dark); }
     .btn-track {
       background: var(--brand-red);
       color: #ffffff;
@@ -185,11 +148,7 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-
-    .btn-track:hover {
-      background: var(--primary-dark);
-    }
-
+    .btn-track:hover { background: var(--primary-dark); }
     .sample-hint {
       font-size: 0.82rem;
       color: var(--text-gray);
@@ -202,10 +161,22 @@
       display: none;
       animation: fadeIn 0.4s ease-in-out;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Error Card */
+    .error-card {
+      display: none;
+      background: #fee2e2;
+      border: 1px solid #fca5a5;
+      color: #991b1b;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      text-align: center;
+      font-weight: 600;
     }
 
     /* Status Progress Tracker */
@@ -217,7 +188,6 @@
       margin-bottom: 30px;
       border: 1px solid #e2e8f0;
     }
-
     .status-header {
       display: flex;
       justify-content: space-between;
@@ -228,7 +198,6 @@
       flex-wrap: wrap;
       gap: 15px;
     }
-
     .status-badge-active {
       background: rgba(0, 136, 0, 0.1);
       color: var(--brand-green);
@@ -239,35 +208,13 @@
       font-size: 0.85rem;
     }
 
-    /* Milestone Steps */
+    /* Dynamic Stepper Grid */
     .milestone-stepper {
       display: flex;
       justify-content: space-between;
       position: relative;
       margin: 40px 0 20px;
     }
-
-    .milestone-stepper::before {
-      content: '';
-      position: absolute;
-      top: 20px;
-      left: 10%;
-      right: 10%;
-      height: 4px;
-      background: var(--border-color);
-      z-index: 1;
-    }
-
-    .milestone-stepper-progress {
-      position: absolute;
-      top: 20px;
-      left: 10%;
-      width: 55%;
-      height: 4px;
-      background: var(--brand-green);
-      z-index: 1;
-    }
-
     .step-item {
       position: relative;
       z-index: 2;
@@ -276,7 +223,6 @@
       padding: 0 10px;
       flex: 1;
     }
-
     .step-icon {
       width: 42px;
       height: 42px;
@@ -290,29 +236,18 @@
       font-weight: bold;
       color: var(--text-gray);
     }
-
     .step-item.completed .step-icon {
       background: var(--brand-green);
       border-color: var(--brand-green);
       color: #ffffff;
     }
-
     .step-item.active .step-icon {
       border-color: var(--brand-red);
       background: var(--brand-yellow);
       color: var(--primary-dark);
     }
-
-    .step-label {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--primary-dark);
-    }
-
-    .step-date {
-      font-size: 0.78rem;
-      color: var(--text-gray);
-    }
+    .step-label { font-size: 0.85rem; font-weight: 700; color: var(--primary-dark); }
+    .step-date { font-size: 0.78rem; color: var(--text-gray); }
 
     /* Details Grid */
     .details-grid {
@@ -321,7 +256,6 @@
       gap: 30px;
       margin-bottom: 40px;
     }
-
     .details-card {
       background: #ffffff;
       border-radius: 12px;
@@ -329,7 +263,6 @@
       box-shadow: var(--card-shadow);
       border: 1px solid #e2e8f0;
     }
-
     .details-card h3 {
       margin-top: 0;
       color: var(--primary-dark);
@@ -337,47 +270,20 @@
       border-bottom: 2px solid var(--bg-light);
       padding-bottom: 12px;
     }
-
-    .info-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    .info-table td {
-      padding: 10px 0;
-      font-size: 0.9rem;
-      border-bottom: 1px solid #f1f5f9;
-    }
-
-    .info-table td.label {
-      color: var(--text-gray);
-      font-weight: 600;
-      width: 40%;
-    }
-
-    .info-table td.val {
-      color: var(--primary-dark);
-      font-weight: 700;
-    }
+    .info-table { width: 100%; border-collapse: collapse; }
+    .info-table td { padding: 10px 0; font-size: 0.9rem; border-bottom: 1px solid #f1f5f9; }
+    .info-table td.label { color: var(--text-gray); font-weight: 600; width: 40%; }
+    .info-table td.val { color: var(--primary-dark); font-weight: 700; }
 
     /* Event Timeline Log */
-    .timeline-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
+    .timeline-list { list-style: none; padding: 0; margin: 0; }
     .timeline-item {
       position: relative;
       padding-left: 25px;
       padding-bottom: 20px;
       border-left: 2px solid var(--border-color);
     }
-
-    .timeline-item:last-child {
-      border-left: 2px solid transparent;
-    }
-
+    .timeline-item:last-child { border-left: 2px solid transparent; }
     .timeline-item::before {
       content: '';
       position: absolute;
@@ -388,23 +294,9 @@
       border-radius: 50%;
       background: var(--brand-red);
     }
-
-    .timeline-time {
-      font-size: 0.78rem;
-      color: var(--text-gray);
-      font-weight: 600;
-    }
-
-    .timeline-event {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--primary-dark);
-    }
-
-    .timeline-location {
-      font-size: 0.82rem;
-      color: var(--text-gray);
-    }
+    .timeline-time { font-size: 0.78rem; color: var(--text-gray); font-weight: 600; }
+    .timeline-event { font-size: 0.88rem; font-weight: 700; color: var(--primary-dark); }
+    .timeline-location { font-size: 0.82rem; color: var(--text-gray); }
 
     /* Help Banner */
     .support-banner {
@@ -419,7 +311,6 @@
       flex-wrap: wrap;
       gap: 20px;
     }
-
     .btn-support-whatsapp {
       background: #25d366;
       color: #ffffff;
@@ -433,28 +324,16 @@
     }
 
     /* Footer */
-    .site-footer { 
-      background: var(--primary-dark); 
-      color: #ffffff; 
-      padding: 50px 0 30px; 
-      margin-top: 60px; 
+    .site-footer {
+      background: var(--primary-dark);
+      color: #ffffff;
+      padding: 50px 0 30px;
+      margin-top: 60px;
       font-size: 0.9rem;
       border-top: 3px solid var(--brand-yellow);
     }
-
-    .footer-grid { 
-      display: grid; 
-      grid-template-columns: 1.5fr repeat(4, 1fr); 
-      gap: 30px; 
-    }
-
-    .footer-col h4 {
-      color: var(--brand-yellow);
-      margin-top: 0;
-      margin-bottom: 15px;
-      font-size: 1.1rem;
-    }
-
+    .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 30px; }
+    .footer-col h4 { color: var(--brand-yellow); margin-top: 0; margin-bottom: 15px; font-size: 1.1rem; }
     .footer-col ul { list-style: none; padding: 0; margin: 0; }
     .footer-col li { margin-bottom: 8px; }
     .footer-col a { color: #94a3b8; text-decoration: none; transition: color 0.3s ease; }
@@ -463,7 +342,6 @@
     @media (max-width: 768px) {
       .details-grid { grid-template-columns: 1fr; }
       .milestone-stepper { flex-direction: column; gap: 20px; }
-      .milestone-stepper::before, .milestone-stepper-progress { display: none; }
       .search-form-group { flex-direction: column; }
       .footer-grid { grid-template-columns: 1fr; gap: 25px; }
       .top-bar { display: none; }
@@ -472,253 +350,290 @@
 </head>
 <body>
 
-<!-- Top Navigation Bar -->
-<div class="top-bar">
-  <div class="container top-bar-flex">
-    <div class="top-bar-info">
-      <span>📍 Hargeisa Airport & Berbera Port Hubs</span>
-      <span>✉️ <a href="mailto:info@airsellcargo.com">info@airsellcargo.com</a></span>
-    </div>
-    <div>
-      <span>🕒 Mon–Sat: 8:00 AM – 6:00 PM EAT</span>
+  <!-- Top Navigation Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-flex">
+      <div class="top-bar-info">
+        <span>📍 Hargeisa Airport & Berbera Port Hubs</span>
+        <span>✉️ <a href="mailto:info@airsellcargo.com">info@airsellcargo.com</a></span>
+      </div>
+      <div>
+        <span>🕒 Mon–Sat: 8:00 AM – 6:00 PM EAT</span>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Header Navigation -->
-<header>
-  <div class="container header-flex">
-    <div class="logo">
-      <a href="index.html">
-        <img src="logo.png" alt="Airsell Cargo" width="180">
-      </a>
+  <!-- Header Navigation -->
+  <header>
+    <div class="container header-flex">
+      <div class="logo">
+        <a href="index.html">
+          <img src="logo.png" alt="Airsell Cargo" width="180">
+        </a>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="tracking.html" class="active" aria-current="page">Tracking</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="quote.html" class="btn-nav-cta">Get a Quote</a></li>
+        </ul>
+      </nav>
     </div>
-    
-    <nav aria-label="Main Navigation">
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="tracking.html" class="active" aria-current="page">Tracking</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="quote.html" class="btn-nav-cta">Get a Quote</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+  </header>
 
-<!-- Hero Section -->
-<section class="hero-banner">
+  <!-- Hero Section -->
+  <section class="hero-banner">
+    <div class="container">
+      <h1>Real-Time Cargo Tracking</h1>
+      <p class="breadcrumbs"><a href="index.html">Home</a> / Tracking</p>
+    </div>
+  </section>
+
+  <!-- Tracking Search Section -->
   <div class="container">
-    <h1>Real-Time Cargo Tracking</h1>
-    <p class="breadcrumbs"><a href="index.html">Home</a> / Tracking</p>
-  </div>
-</section>
-
-<!-- Tracking Search Section -->
-<div class="container">
-  <div class="tracking-search-card">
-    <div class="search-title">Enter Waybill or Reference Number</div>
-    <form onsubmit="handleTrackingSearch(event)">
-      <div class="search-form-group">
-        <input 
-          type="text" 
-          id="trackingInput" 
-          class="tracking-input" 
-          placeholder="e.g. ASC-2026-8891 or AWB-991823" 
-          required
-        >
-        <button type="submit" class="btn-track">Track Cargo →</button>
+    <div class="tracking-search-card">
+      <div class="search-title">Enter Waybill or Reference Number</div>
+      <form onsubmit="handleTrackingSearch(event)">
+        <div class="search-form-group">
+          <input type="text" id="trackingInput" class="tracking-input" placeholder="e.g. ASC-2026-8891 or AWB-991823" required>
+          <button type="submit" class="btn-track">Track Cargo →</button>
+        </div>
+      </form>
+      <div class="sample-hint">
+        Example Reference ID: <strong>ASC-2026-8891</strong>
       </div>
-    </form>
-    <div class="sample-hint">
-      Example Reference ID: <strong>ASC-2026-8891</strong>
     </div>
   </div>
-</div>
 
-<!-- Results Area -->
-<main class="container">
-  <div id="trackingResult" class="result-container">
-    
-    <!-- Status Progress Card -->
-    <div class="status-tracker-card">
-      <div class="status-header">
+  <!-- Results & Error Area -->
+  <main class="container">
+    <!-- Dynamic Error Alert -->
+    <div id="trackingError" class="error-card"></div>
+
+    <!-- Tracking Result Display Container -->
+    <div id="trackingResult" class="result-container">
+      <div class="status-tracker-card">
+        <div class="status-header">
+          <div>
+            <span style="color: var(--text-gray); font-size: 0.85rem;">Tracking ID:</span>
+            <strong id="dispTrackingId" style="font-size: 1.3rem; color: var(--primary-dark); margin-left: 8px;"></strong>
+          </div>
+          <div id="dispStatusBadge" class="status-badge-active"></div>
+        </div>
+
+        <!-- Dynamic Milestone Progress Steps -->
+        <div id="milestoneContainer" class="milestone-stepper"></div>
+      </div>
+
+      <!-- Specifications & Activity Log -->
+      <div class="details-grid">
+        <div class="details-card">
+          <h3>Shipment Specifications</h3>
+          <table class="info-table">
+            <tr><td class="label">Transport Mode:</td><td class="val" id="dispMode">--</td></tr>
+            <tr><td class="label">Origin Hub:</td><td class="val" id="dispOrigin">--</td></tr>
+            <tr><td class="label">Destination Hub:</td><td class="val" id="dispDest">--</td></tr>
+            <tr><td class="label">Weight & Quantity:</td><td class="val" id="dispWeight">--</td></tr>
+            <tr><td class="label">Estimated Delivery:</td><td class="val" id="dispEstDelivery" style="color: var(--brand-red);">--</td></tr>
+          </table>
+        </div>
+
+        <div class="details-card">
+          <h3>Activity Log</h3>
+          <ul class="timeline-list" id="dispTimeline"></ul>
+        </div>
+      </div>
+
+      <!-- Support Banner -->
+      <div class="support-banner">
         <div>
-          <span style="color: var(--text-gray); font-size: 0.85rem;">Tracking ID:</span>
-          <strong id="dispTrackingId" style="font-size: 1.3rem; color: var(--primary-dark); margin-left: 8px;">ASC-2026-8891</strong>
+          <h4 style="margin: 0 0 5px; font-size: 1.2rem;">Questions About This Shipment?</h4>
+          <p style="margin: 0; color: #cbd5e1; font-size: 0.9rem;">Contact our logistics dispatch center directly with your tracking code.</p>
         </div>
-        <div class="status-badge-active">In Transit (On Schedule)</div>
-      </div>
-
-      <!-- Timeline Progress Steps -->
-      <div class="milestone-stepper">
-        <div class="milestone-stepper-progress"></div>
-        
-        <div class="step-item completed">
-          <div class="step-icon">✓</div>
-          <div class="step-label">Booked</div>
-          <div class="step-date">Aug 08, 2026</div>
-        </div>
-
-        <div class="step-item completed">
-          <div class="step-icon">✓</div>
-          <div class="step-label">Received</div>
-          <div class="step-date">Aug 09, 2026</div>
-        </div>
-
-        <div class="step-item active">
-          <div class="step-icon">✈️</div>
-          <div class="step-label">In Transit</div>
-          <div class="step-date">Aug 11, 2026</div>
-        </div>
-
-        <div class="step-item">
-          <div class="step-icon">📑</div>
-          <div class="step-label">Customs Clear</div>
-          <div class="step-date">Pending</div>
-        </div>
-
-        <div class="step-item">
-          <div class="step-icon">📦</div>
-          <div class="step-label">Delivered</div>
-          <div class="step-date">Est. Aug 14</div>
-        </div>
+        <a href="#" id="whatsappSupportBtn" target="_blank" class="btn-support-whatsapp">💬 Chat on WhatsApp</a>
       </div>
     </div>
+  </main>
 
-    <!-- Metadata Details & Event Log -->
-    <div class="details-grid">
-      
-      <!-- Specifications Table -->
-      <div class="details-card">
-        <h3>Shipment Specifications</h3>
-        <table class="info-table">
-          <tr>
-            <td class="label">Transport Mode:</td>
-            <td class="val" id="dispMode">Air Express Freight</td>
-          </tr>
-          <tr>
-            <td class="label">Origin Hub:</td>
-            <td class="val" id="dispOrigin">Dubai Cargo Hub (DXB)</td>
-          </tr>
-          <tr>
-            <td class="label">Destination Hub:</td>
-            <td class="val" id="dispDest">Hargeisa Intl Airport (HGA)</td>
-          </tr>
-          <tr>
-            <td class="label">Weight & Quantity:</td>
-            <td class="val">8 Cartons / 145.50 KG</td>
-          </tr>
-          <tr>
-            <td class="label">Estimated Delivery:</td>
-            <td class="val" style="color: var(--brand-red);">Aug 14, 2026 - 02:00 PM EAT</td>
-          </tr>
-        </table>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h4 style="color: #ffffff;">Airsell Cargo</h4>
+        <p style="color: #94a3b8;">Global Freight & Logistics Solutions</p>
+        <p style="color: #64748b; font-size: 0.85rem;">© 2026 Airsell Cargo. All rights reserved.</p>
       </div>
-
-      <!-- Activity Timeline -->
-      <div class="details-card">
-        <h3>Activity Log</h3>
-        <ul class="timeline-list">
-          <li class="timeline-item">
-            <div class="timeline-time">Aug 12, 2026 - 18:30 EAT</div>
-            <div class="timeline-event">Departed Transit Hub</div>
-            <div class="timeline-location">Sharjah Airport Hub</div>
-          </li>
-          <li class="timeline-item">
-            <div class="timeline-time">Aug 10, 2026 - 14:15 EAT</div>
-            <div class="timeline-event">Export Customs Cleared</div>
-            <div class="timeline-location">Dubai Air Cargo Terminal</div>
-          </li>
-          <li class="timeline-item">
-            <div class="timeline-time">Aug 09, 2026 - 09:00 EAT</div>
-            <div class="timeline-event">Cargo Received</div>
-            <div class="timeline-location">Airsell Logistics Warehouse, UAE</div>
-          </li>
+      <div class="footer-col">
+        <h4 style="color: #ffffff;">Quick Links</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="quote.html">Get a Quote</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
-
-    </div>
-
-    <!-- Support Banner -->
-    <div class="support-banner">
-      <div>
-        <h4 style="margin: 0 0 5px; font-size: 1.2rem;">Questions About This Shipment?</h4>
-        <p style="margin: 0; color: #cbd5e1; font-size: 0.9rem;">Contact our logistics dispatch center directly with your tracking code.</p>
+      <div class="footer-col">
+        <h4 style="color: #ffffff;">Locations</h4>
+        <p style="color: #94a3b8; margin-bottom: 6px;">📍 Hargeisa Airport (HGA)</p>
+        <p style="color: #94a3b8;">📍 Berbera Port (BBO)</p>
       </div>
-      <a href="https://wa.me/252634125763?text=Hello%20Airsell%20Cargo,%20I%20am%20inquiring%20about%20my%20shipment%20ID:" id="whatsappSupportBtn" target="_blank" class="btn-support-whatsapp">
-        💬 Chat on WhatsApp
-      </a>
+      <div class="footer-col">
+        <h4 style="color: #ffffff;">Contact</h4>
+        <p style="color: #94a3b8; margin-bottom: 6px;">✉️ info@airsellcargo.com</p>
+        <p style="color: #94a3b8;">📞 +252 63 412 5763</p>
+      </div>
+      <div class="footer-col">
+        <h4 style="color: #ffffff;">Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
     </div>
+  </footer>
 
-  </div>
-</main>
+  <script>
+    // Sample Database Mock (Replace this function with a real API fetch call when ready)
+    async function fetchShipmentData(trackingId) {
+      const mockDatabase = {
+        "ASC-2026-8891": {
+          trackingId: "ASC-2026-8891",
+          status: "In Transit (On Schedule)",
+          transportMode: "Air Express Freight",
+          originHub: "Dubai Cargo Hub (DXB)",
+          destinationHub: "Hargeisa Intl Airport (HGA)",
+          weightAndQty: "8 Cartons / 145.50 KG",
+          estimatedDelivery: "Aug 14, 2026 - 02:00 PM EAT",
+          milestones: [
+            { label: "Booked", date: "Aug 08, 2026", icon: "✓", state: "completed" },
+            { label: "Received", date: "Aug 09, 2026", icon: "✓", state: "completed" },
+            { label: "In Transit", date: "Aug 11, 2026", icon: "✈️", state: "active" },
+            { label: "Customs Clear", date: "Pending", icon: "📑", state: "" },
+            { label: "Delivered", date: "Est. Aug 14", icon: "📦", state: "" }
+          ],
+          activityLog: [
+            { time: "Aug 12, 2026 - 18:30 EAT", event: "Departed Transit Hub", location: "Sharjah Airport Hub" },
+            { time: "Aug 10, 2026 - 14:15 EAT", event: "Export Customs Cleared", location: "Dubai Air Cargo Terminal" },
+            { time: "Aug 09, 2026 - 09:00 EAT", event: "Cargo Received", location: "Airsell Logistics Warehouse, UAE" }
+          ]
+        }
+      };
 
-<!-- Footer -->
-<footer class="site-footer">
-  <div class="container footer-grid">
-    <div class="footer-col">
-      <h4 style="color: #ffffff;">Airsell Cargo</h4>
-      <p style="color: #94a3b8;">Global Freight & Logistics Solutions</p>
-      <p style="color: #64748b; font-size: 0.85rem;">© 2026 Airsell Cargo. All rights reserved.</p>
-    </div>
+      // To connect a real backend API endpoint, uncomment and modify line below:
+      // const res = await fetch(`https://api.airsellcargo.com/v1/shipments/${encodeURIComponent(trackingId)}`);
+      // if (!res.ok) throw new Error("Not found");
+      // return await res.json();
 
-    <div class="footer-col">
-      <h4 style="color: #ffffff;">Quick Links</h4>
-      <ul>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="quote.html">Get a Quote</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
+      if (mockDatabase[trackingId]) {
+        return mockDatabase[trackingId];
+      } else {
+        throw new Error("Invalid tracking number");
+      }
+    }
 
-    <div class="footer-col">
-      <h4 style="color: #ffffff;">Locations</h4>
-      <p style="color: #94a3b8; margin-bottom: 6px;">📍 Hargeisa Airport (HGA)</p>
-      <p style="color: #94a3b8;">📍 Berbera Port (BBO)</p>
-    </div>
+    async function handleTrackingSearch(e) {
+      if (e) e.preventDefault();
 
-    <div class="footer-col">
-      <h4 style="color: #ffffff;">Contact</h4>
-      <p style="color: #94a3b8; margin-bottom: 6px;">✉️ info@airsellcargo.com</p>
-      <p style="color: #94a3b8;">📞 +252 63 412 5763</p>
-    </div>
+      const trackingInput = document.getElementById('trackingInput').value.trim().toUpperCase();
+      const resultBox = document.getElementById('trackingResult');
+      const errorBox = document.getElementById('trackingError');
 
-    <div class="footer-col">
-      <h4 style="color: #ffffff;">Legal</h4>
-      <ul>
-        <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="terms.html">Terms of Service</a></li>
-      </ul>
-    </div>
-  </div>
-</footer>
+      // Hide active display boxes
+      resultBox.style.display = 'none';
+      errorBox.style.display = 'none';
 
-<script>
-  function handleTrackingSearch(e) {
-    e.preventDefault();
-    const trackingCode = document.getElementById('trackingInput').value.trim().toUpperCase();
-    const resultBox = document.getElementById('trackingResult');
-    
-    if (trackingCode.length > 0) {
-      document.getElementById('dispTrackingId').innerText = trackingCode;
-      document.getElementById('whatsappSupportBtn').href = `https://wa.me/252634125763?text=Hello%20Airsell%20Cargo,%20I%20am%20inquiring%20about%20my%20shipment%20ID:%20${encodeURIComponent(trackingCode)}`;
+      if (!trackingInput) return;
+
+      try {
+        const data = await fetchShipmentData(trackingInput);
+        renderShipmentDetails(data);
+      } catch (err) {
+        errorBox.textContent = `No shipment found for tracking number "${trackingInput}". Please check the ID and try again.`;
+        errorBox.style.display = 'block';
+      }
+    }
+
+    function renderShipmentDetails(data) {
+      const resultBox = document.getElementById('trackingResult');
+
+      // Populate text elements using textContent to prevent XSS
+      document.getElementById('dispTrackingId').textContent = data.trackingId;
+      document.getElementById('dispStatusBadge').textContent = data.status;
+      document.getElementById('dispMode').textContent = data.transportMode;
+      document.getElementById('dispOrigin').textContent = data.originHub;
+      document.getElementById('dispDest').textContent = data.destinationHub;
+      document.getElementById('dispWeight').textContent = data.weightAndQty;
+      document.getElementById('dispEstDelivery').textContent = data.estimatedDelivery;
+
+      // Update WhatsApp URL safely
+      const waMsg = `Hello Airsell Cargo, I am inquiring about my shipment ID: ${data.trackingId}`;
+      document.getElementById('whatsappSupportBtn').href = `https://wa.me/252634125763?text=${encodeURIComponent(waMsg)}`;
+
+      // Populate Milestones dynamically
+      const milestoneContainer = document.getElementById('milestoneContainer');
+      milestoneContainer.innerHTML = '';
+      data.milestones.forEach(m => {
+        const stepDiv = document.createElement('div');
+        stepDiv.className = `step-item ${m.state}`.trim();
+        
+        const iconDiv = document.createElement('div');
+        iconDiv.className = 'step-icon';
+        iconDiv.textContent = m.icon;
+
+        const labelDiv = document.createElement('div');
+        labelDiv.className = 'step-label';
+        labelDiv.textContent = m.label;
+
+        const dateDiv = document.createElement('div');
+        dateDiv.className = 'step-date';
+        dateDiv.textContent = m.date;
+
+        stepDiv.appendChild(iconDiv);
+        stepDiv.appendChild(labelDiv);
+        stepDiv.appendChild(dateDiv);
+        milestoneContainer.appendChild(stepDiv);
+      });
+
+      // Populate Activity Log dynamically
+      const timelineEl = document.getElementById('dispTimeline');
+      timelineEl.innerHTML = '';
+      data.activityLog.forEach(log => {
+        const li = document.createElement('li');
+        li.className = 'timeline-item';
+
+        const timeDiv = document.createElement('div');
+        timeDiv.className = 'timeline-time';
+        timeDiv.textContent = log.time;
+
+        const eventDiv = document.createElement('div');
+        eventDiv.className = 'timeline-event';
+        eventDiv.textContent = log.event;
+
+        const locDiv = document.createElement('div');
+        locDiv.className = 'timeline-location';
+        locDiv.textContent = log.location;
+
+        li.appendChild(timeDiv);
+        li.appendChild(eventDiv);
+        li.appendChild(locDiv);
+        timelineEl.appendChild(li);
+      });
+
       resultBox.style.display = 'block';
       resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-  }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const trackingIdParam = urlParams.get('id');
-    if (trackingIdParam) {
-      document.getElementById('trackingInput').value = trackingIdParam;
-      handleTrackingSearch(new Event('submit'));
-    }
-  });
-</script>
-
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const trackingIdParam = urlParams.get('id');
+      if (trackingIdParam) {
+        document.getElementById('trackingInput').value = trackingIdParam;
+        handleTrackingSearch();
+      }
+    });
+  </script>
 </body>
 </html>
