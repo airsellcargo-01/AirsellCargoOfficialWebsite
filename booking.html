@@ -1,29 +1,387 @@
-// Submit Cargo Search on airsellcargo.com
-async function searchCargoRates() {
-  const searchParams = {
-    origin: document.getElementById('originAirport').value,       // e.g. "HGA" (Hargeisa)
-    destination: document.getElementById('destAirport').value,    // e.g. "DXB" (Dubai)
-    weight: document.getElementById('cargoWeight').value,        // e.g. 250 (kg)
-    volume: document.getElementById('cargoVolume').value          // e.g. 1.5 (m³)
-  };
-
-  try {
-    const response = await fetch('https://api.airsellcargo.com/api/cargo/search', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(searchParams)
-    });
-
-    const result = await response.json();
-    
-    if (result.success) {
-      console.log('Available Rates:', result.data);
-      // Function to render rates on your web page
-      displayRatesOnUI(result.data);
-    } else {
-      alert('Error fetching cargo rates: ' + result.error);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Book Cargo Shipment | Airsell Cargo</title>
+  <meta name="description" content="Book air and ocean cargo shipments online with Airsell Cargo. Get instant tracking reference codes.">
+  <style>
+    :root {
+      --brand-red: #cc0000;
+      --brand-green: #008800;
+      --brand-yellow: #fca311;
+      --primary-dark: #001f3f;
+      --text-dark: #0f172a;
+      --text-gray: #64748b;
+      --bg-light: #f8fafc;
+      --card-shadow: 0 12px 35px rgba(0, 31, 63, 0.08);
+      --border-color: #cbd5e1;
     }
-  } catch (err) {
-    console.error('Connection error:', err);
-  }
-}
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      margin: 0;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 24px;
+    }
+    /* Top Bar */
+    .top-bar {
+      background: var(--primary-dark);
+      color: #94a3b8;
+      font-size: 0.82rem;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .top-bar-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-bar-info span { margin-right: 20px; }
+    .top-bar-info a { color: #cbd5e1; text-decoration: none; }
+
+    /* Header Navigation */
+    header {
+      background: #ffffff;
+      border-bottom: 5px solid var(--brand-yellow);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--primary-dark);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+    .nav-links a.active, .nav-links a:hover { color: var(--brand-red); }
+    .btn-nav-cta {
+      background: var(--brand-red);
+      color: #ffffff !important;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 700 !important;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      text-align: center;
+      padding: 50px 20px 60px;
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg-light) 100%);
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .hero-banner h1 {
+      font-size: 2.5rem;
+      margin: 0 0 10px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+    .breadcrumbs { font-size: 0.9rem; color: var(--text-gray); }
+    .breadcrumbs a { color: var(--primary-dark); text-decoration: none; font-weight: 600; }
+
+    /* Form Card Layout */
+    .booking-card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      padding: 40px;
+      max-width: 850px;
+      margin: -40px auto 60px;
+      border-top: 5px solid var(--brand-red);
+      position: relative;
+      z-index: 10;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
+    .form-group.full-width { grid-column: span 2; }
+    .form-group label {
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin-bottom: 6px;
+      color: var(--primary-dark);
+    }
+    .form-control {
+      padding: 12px 16px;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    .form-control:focus { border-color: var(--primary-dark); }
+    .btn-submit-booking {
+      background: var(--brand-red);
+      color: #ffffff;
+      border: none;
+      padding: 16px 30px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+      transition: background 0.3s ease;
+    }
+    .btn-submit-booking:hover { background: var(--primary-dark); }
+
+    /* Footer */
+    .site-footer {
+      background: var(--primary-dark);
+      color: #ffffff;
+      padding: 50px 0 30px;
+      margin-top: 60px;
+      font-size: 0.9rem;
+      border-top: 3px solid var(--brand-yellow);
+    }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 30px; }
+    .footer-col h4 { color: var(--brand-yellow); margin-top: 0; margin-bottom: 15px; font-size: 1.1rem; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full-width { grid-column: span 1; }
+      .footer-grid { grid-template-columns: 1fr; gap: 25px; }
+      .top-bar { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-flex">
+      <div class="top-bar-info">
+        <span>📍 Hargeisa Airport & Berbera Port Hubs</span>
+        <span>✉️ <a href="mailto:info@airsellcargo.com">info@airsellcargo.com</a></span>
+      </div>
+      <div>
+        <span>🕒 Mon–Sat: 8:00 AM – 6:00 PM EAT</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="container header-flex">
+      <div class="logo">
+        <a href="index.html">
+          <img src="logo.png" alt="Airsell Cargo" width="180">
+        </a>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="tracking.html">Tracking</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="booking.html" class="active btn-nav-cta">Book Cargo</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-banner">
+    <div class="container">
+      <h1>Cargo Shipment Booking</h1>
+      <p class="breadcrumbs"><a href="index.html">Home</a> / Cargo Booking</p>
+    </div>
+  </section>
+
+  <!-- Booking Form Container -->
+  <div class="container">
+    <div class="booking-card">
+      <h2 style="color: var(--primary-dark); margin-top:0; text-align:center;">Shipment Details</h2>
+      <p style="text-align:center; color: var(--text-gray); margin-bottom: 30px;">
+        Complete the form below to receive your instant Airsell Cargo Waybill Tracking ID.
+      </p>
+
+      <form id="bookingForm" onsubmit="handleBookingSubmission(event)">
+        <div class="form-grid">
+          
+          <div class="form-group">
+            <label for="senderName">Sender / Company Name</label>
+            <input type="text" id="senderName" class="form-control" placeholder="e.g. Hassan Trading Co." required>
+          </div>
+
+          <div class="form-group">
+            <label for="senderPhone">Contact Phone Number</label>
+            <input type="tel" id="senderPhone" class="form-control" placeholder="e.g. +252 63 XXXXXXX" required>
+          </div>
+
+          <div class="form-group">
+            <label for="originHub">Origin Cargo Hub</label>
+            <select id="originHub" class="form-control" required>
+              <option value="">Select Origin...</option>
+              <option value="Dubai Cargo Hub (DXB)">Dubai Cargo Hub (DXB)</option>
+              <option value="Istanbul Airport Hub (IST)">Istanbul Airport Hub (IST)</option>
+              <option value="Guangzhou Cargo Terminal (CAN)">Guangzhou Cargo Terminal (CAN)</option>
+              <option value="Nairobi Hub (NBO)">Nairobi Hub (NBO)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="destinationHub">Destination Cargo Hub</label>
+            <select id="destinationHub" class="form-control" required>
+              <option value="">Select Destination...</option>
+              <option value="Hargeisa Intl Airport (HGA)">Hargeisa Intl Airport (HGA)</option>
+              <option value="Berbera Port Terminal (BBO)">Berbera Port Terminal (BBO)</option>
+              <option value="Mogadishu Hub (MGQ)">Mogadishu Hub (MGQ)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="transportMode">Transport Mode</label>
+            <select id="transportMode" class="form-control" required>
+              <option value="Air Express Freight">Air Express Freight</option>
+              <option value="Ocean LCL Freight">Ocean LCL Freight</option>
+              <option value="Overland Logistics">Overland Logistics</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="weightAndQty">Quantity & Weight (Specification)</label>
+            <input type="text" id="weightAndQty" class="form-control" placeholder="e.g. 5 Cartons / 85.00 KG" required>
+          </div>
+
+          <div class="form-group full-width">
+            <button type="submit" class="btn-submit-booking">Generate Tracking & Confirm Booking →</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h4 style="color: #ffffff;">Airsell Cargo</h4>
+        <p style="color: #94a3b8;">Global Freight & Logistics Solutions</p>
+        <p style="color: #64748b; font-size: 0.85rem;">© 2026 Airsell Cargo. All rights reserved.</p>
+      </div>
+      <div class="footer-col">
+        <h4 style="color: #ffffff;">Quick Links</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="quote.html">Get a Quote</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 style="color: #ffffff;">Locations</h4>
+        <p style="color: #94a3b8; margin-bottom: 6px;">📍 Hargeisa Airport (HGA)</p>
+        <p style="color: #94a3b8;">📍 Berbera Port (BBO)</p>
+      </div>
+      <div class="footer-col">
+        <h4 style="color: #ffffff;">Contact</h4>
+        <p style="color: #94a3b8; margin-bottom: 6px;">✉️ info@airsellcargo.com</p>
+        <p style="color: #94a3b8;">📞 +252 63 412 5763</p>
+      </div>
+      <div class="footer-col">
+        <h4 style="color: #ffffff;">Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    async function handleBookingSubmission(e) {
+      e.preventDefault();
+
+      // 1. Generate unique tracking reference number
+      const randomID = Math.floor(1000 + Math.random() * 9000);
+      const trackingId = `ASC-2026-${randomID}`;
+
+      // 2. Gather values from form
+      const origin = document.getElementById('originHub').value;
+      const destination = document.getElementById('destinationHub').value;
+      const mode = document.getElementById('transportMode').value;
+      const weight = document.getElementById('weightAndQty').value;
+
+      // 3. Construct payload object for API backend / database
+      const bookingPayload = {
+        trackingId: trackingId,
+        status: "Booking Confirmed",
+        transportMode: mode,
+        originHub: origin,
+        destinationHub: destination,
+        weightAndQty: weight,
+        estimatedDelivery: "Pending Dispatch Date",
+        milestones: [
+          { label: "Booked", date: "Just now", icon: "✓", state: "active" },
+          { label: "Received", date: "Pending", icon: "📦", state: "" },
+          { label: "In Transit", date: "Pending", icon: "✈️", state: "" },
+          { label: "Customs Clear", date: "Pending", icon: "📑", state: "" },
+          { label: "Delivered", date: "Pending", icon: "📍", state: "" }
+        ],
+        activityLog: [
+          {
+            time: new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }),
+            event: "Shipment Booking Created",
+            location: origin
+          }
+        ]
+      };
+
+      try {
+        // Optional Backend API Post Call:
+        /*
+        await fetch('/api/shipments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(bookingPayload)
+        });
+        */
+
+        alert(`Booking successful! Your Waybill Reference is ${trackingId}. Redirecting to tracking portal...`);
+        
+        // 4. Redirect directly to tracking page with parameter
+        window.location.href = `tracking.html?id=${encodeURIComponent(trackingId)}`;
+
+      } catch (error) {
+        alert("An error occurred while creating your booking. Please try again.");
+      }
+    }
+  </script>
+</body>
+</html>
