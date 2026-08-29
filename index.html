@@ -2,43 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Airsell Cargo | Global Freight & Logistics Solutions</title>
-  <meta name="description" content="Airsell Cargo provides fast, reliable freight cargo, express courier, and secure mail services across East Africa and major global trade routes.">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Airsell Cargo | Strategic Logistics & Gateway Partner</title>
+  <meta name="description" content="Your trusted regional operating extension, connecting international airline networks and global forwarders to East African markets through HGA and BBO hubs.">
   
-  <!-- Fonts & Styles -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <style>
+  <style>  
     :root {
       --brand-red: #cc0000;
       --brand-yellow: #fca311;
       --primary-dark: #071527;
+      --text-dark: #0f172a;
+      --text-gray: #64748b;
       --bg-light: #f8fafc;
-      --text-dark: #1e293b;
-      --text-muted: #64748b;
-      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      --card-shadow: 0 12px 35px rgba(7, 21, 39, 0.08);
+      --border-color: #cbd5e1;
     }
-
+    
     * { box-sizing: border-box; }
 
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      margin: 0;
-      background: var(--bg-light);
-      color: var(--text-dark);
-      line-height: 1.6;
+    body { 
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif; 
+      margin: 0; 
+      background: var(--bg-light); 
+      color: var(--text-dark); 
+      line-height: 1.6; 
     }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
+    
+    .container { 
+      max-width: 1200px; 
+      margin: auto; 
+      padding: 0 24px; 
     }
-
-    /* Top Utility Bar */
+    
+    /* Top Bar */
     .top-bar {
       background: var(--primary-dark);
       color: #94a3b8;
@@ -57,406 +54,484 @@
     .top-bar-info a { color: #cbd5e1; text-decoration: none; }
     .top-bar-info a:hover { color: var(--brand-yellow); }
 
-    /* Navigation Header */
-    header {
-      background: #ffffff;
-      border-bottom: 4px solid var(--brand-yellow);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    /* Header Navigation */
+    header { 
+      background: #ffffff; 
+      border-bottom: 4px solid var(--brand-yellow); 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
       position: sticky;
       top: 0;
       z-index: 1000;
     }
-
-    .header-flex {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 0;
+    
+    .header-flex { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 15px 0;
     }
-
-    .logo a {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--primary-dark);
-      text-decoration: none;
-      letter-spacing: -0.5px;
-    }
-
-    .logo span { color: var(--brand-red); }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
+    
+    .nav-links { 
+      list-style: none; 
+      display: flex; 
       align-items: center;
-      gap: 24px;
-      margin: 0;
+      gap: 20px; 
+      margin: 0; 
       padding: 0;
     }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--primary-dark);
-      font-weight: 600;
-      font-size: 0.88rem;
-      text-transform: uppercase;
-      transition: color 0.2s;
+    
+    .nav-links a { 
+      text-decoration: none; 
+      color: var(--primary-dark); 
+      font-weight: 600; 
+      text-transform: uppercase; 
+      font-size: 0.85rem; 
+      transition: color 0.3s ease; 
     }
-
-    .nav-links a:hover, .nav-links a.active {
-      color: var(--brand-red);
+    
+    .nav-links a.active, .nav-links a:hover { 
+      color: var(--brand-red); 
     }
 
     .btn-nav-cta {
       background: var(--brand-red);
-      color: white !important;
-      padding: 10px 20px;
+      color: #ffffff !important;
+      padding: 10px 18px;
       border-radius: 6px;
       font-weight: 700 !important;
-      box-shadow: 0 4px 12px rgba(204, 0, 0, 0.2);
-      transition: transform 0.2s, background 0.2s !important;
     }
 
     .btn-nav-cta:hover {
-      background: #b30000 !important;
-      transform: translateY(-1px);
+      background: var(--primary-dark);
     }
-
+    
     /* Hero Section */
-    .hero {
+    .hero-banner { 
+      text-align: center; 
+      padding: 70px 20px 80px; 
       background: linear-gradient(180deg, var(--primary-dark) 0%, #030a14 100%);
-      color: white;
-      padding: 80px 0 100px;
-      text-align: center;
+      color: #ffffff;
+      border-bottom: 5px solid var(--brand-yellow); 
     }
+    
+    .hero-banner h1 { 
+      font-size: 2.8rem; 
+      margin: 0 0 16px; 
+      font-weight: 800; 
+      color: #ffffff; 
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    } 
 
-    .hero h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      margin: 0 0 16px;
-      line-height: 1.2;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
+    .hero-banner p {
+      max-width: 700px;
+      margin: 0 auto 30px;
       color: #cbd5e1;
-      max-width: 720px;
-      margin: 0 auto 36px;
+      font-size: 1.15rem;
     }
 
-    .hero-actions {
+    .hero-btns {
       display: flex;
       justify-content: center;
-      gap: 16px;
+      gap: 15px;
     }
 
-    .btn-hero-primary {
+    .btn-primary {
       background: var(--brand-red);
-      color: white;
-      padding: 16px 32px;
-      font-size: 1rem;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
       font-weight: 700;
-      border-radius: 6px;
-      text-decoration: none;
-      box-shadow: 0 4px 15px rgba(204, 0, 0, 0.3);
+      transition: background 0.2s;
     }
 
-    .btn-hero-secondary {
+    .btn-primary:hover {
+      background: #a30000;
+    }
+
+    .btn-secondary {
       background: rgba(255, 255, 255, 0.1);
-      color: white;
-      padding: 16px 32px;
-      font-size: 1rem;
-      font-weight: 600;
+      color: #ffffff;
+      padding: 12px 24px;
       border-radius: 6px;
       text-decoration: none;
+      font-weight: 700;
       border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: background 0.2s;
     }
 
-    /* Stats Bar */
-    .stats-section {
-      margin-top: -50px;
-      margin-bottom: 60px;
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
     }
 
-    .stats-grid {
-      background: white;
-      border-radius: 12px;
-      box-shadow: var(--card-shadow);
+    /* Trust Metrics Strip */
+    .metrics-strip {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      padding: 25px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    }
+
+    .metrics-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      padding: 30px;
-      border-top: 5px solid var(--brand-yellow);
-    }
-
-    .stat-item {
+      gap: 20px;
       text-align: center;
-      border-right: 1px solid #f1f5f9;
     }
 
-    .stat-item:last-child { border-right: none; }
-
-    .stat-number {
-      font-size: 2rem;
+    .metric-item strong {
+      display: block;
+      font-size: 1.6rem;
+      color: var(--brand-red);
       font-weight: 800;
-      color: var(--primary-dark);
-      margin-bottom: 4px;
     }
 
-    .stat-label {
+    .metric-item span {
       font-size: 0.85rem;
-      color: var(--text-muted);
-      font-weight: 600;
+      color: var(--text-gray);
       text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
     }
 
-    /* Services Section */
-    .services-section { padding: 40px 0 80px; }
+    /* Services & Partnership Section */
+    .services-wrapper {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 24px;
+    }
 
     .section-title {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
 
     .section-title h2 {
       font-size: 2.2rem;
       color: var(--primary-dark);
-      margin: 0 0 10px;
+      margin-bottom: 10px;
     }
 
     .section-title p {
-      color: var(--text-muted);
-      margin: 0;
+      color: var(--text-gray);
+      font-size: 1.05rem;
     }
 
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 30px;
+      margin-bottom: 40px;
     }
 
     .service-card {
-      background: white;
+      background: #ffffff;
+      color: var(--text-dark);
+      padding: 35px 25px;
       border-radius: 10px;
-      padding: 35px 30px;
-      box-shadow: var(--card-shadow);
-      border: 1px solid #e2e8f0;
-      transition: transform 0.2s;
+      box-shadow: 0 8px 25px rgba(7, 21, 39, 0.06);
+      border-top: 5px solid var(--primary-dark);
+      border-left: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease;
     }
 
     .service-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-4px);
     }
 
-    .service-icon {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
+    .service-card .icon {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
     }
 
-    .service-card h3 {
-      font-size: 1.3rem;
+    .service-card h2 {
       color: var(--primary-dark);
-      margin: 0 0 12px;
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 1.35rem;
     }
 
     .service-card p {
-      color: var(--text-muted);
+      color: var(--text-gray);
       font-size: 0.95rem;
-      margin-bottom: 20px;
+      line-height: 1.6;
+      margin-bottom: 25px;
     }
 
     .service-link {
+      display: inline-block;
       color: var(--brand-red);
-      font-weight: 700;
       text-decoration: none;
-      font-size: 0.9rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .service-link:hover {
+      color: var(--primary-dark);
+    }
+
+    /* Strategic Partnership Spotlight Banner */
+    .partnership-spotlight {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #102a4c 100%);
+      color: #ffffff;
+      padding: 40px;
+      border-radius: 10px;
+      border-left: 6px solid var(--brand-yellow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .partnership-spotlight h3 {
+      color: var(--brand-yellow);
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+    }
+
+    .partnership-spotlight p {
+      color: #cbd5e1;
+      margin: 0;
+      font-size: 1rem;
+      max-width: 750px;
+    }
+
+    .btn-partnership {
+      background: var(--brand-yellow);
+      color: var(--primary-dark);
+      padding: 12px 22px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+
+    .btn-partnership:hover {
+      background: #e08e0b;
     }
 
     /* Footer */
-    footer {
-      background: var(--primary-dark);
-      color: white;
-      padding: 60px 0 30px;
-      border-top: 4px solid var(--brand-yellow);
+    .site-footer { 
+      background: var(--primary-dark); 
+      color: #ffffff; 
+      padding: 45px 0 25px; 
+      font-size: 0.9rem;
+      border-top: 3px solid var(--brand-yellow);
     }
 
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.5fr repeat(4, 1fr);
-      gap: 30px;
+    .footer-grid { 
+      display: grid; 
+      grid-template-columns: 1.5fr repeat(4, 1fr); 
+      gap: 30px; 
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 24px;
     }
 
-    .footer-col h4 {
-      color: var(--brand-red);
+    .footer-col h3 {
+      color: var(--brand-yellow);
       margin-top: 0;
-      margin-bottom: 16px;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
     }
 
     .footer-col ul { list-style: none; padding: 0; margin: 0; }
-    .footer-col li { margin-bottom: 10px; }
-    .footer-col a { color: #94a3b8; text-decoration: none; font-size: 0.9rem; }
-    .footer-col a:hover { color: white; }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      margin-top: 40px;
-      padding-top: 20px;
-      text-align: center;
-      color: #64748b;
-      font-size: 0.85rem;
-    }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; text-decoration: none; transition: color 0.3s ease; }
+    .footer-col a:hover { color: #ffffff; }
 
     @media (max-width: 900px) {
-      .services-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
-      .stat-item { border-right: none; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 2.2rem; }
+      .services-grid, .metrics-grid { grid-template-columns: 1fr; }
+      .hero-btns { flex-direction: column; }
+      .partnership-spotlight { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Support Bar -->
-  <div class="top-bar">
-    <div class="container top-bar-flex">
-      <div class="top-bar-info">
-        <span>📍 Hargeisa Airport & Berbera Port Hubs</span>
-        <span>✉️ <a href="mailto:info@airsellcargo.com">info@airsellcargo.com</a></span>
+<!-- Top Notification Bar -->
+<div class="top-bar">
+  <div class="container top-bar-flex">
+    <div class="top-bar-info">
+      <span>📍 Hargeisa Airport (HGA) & Berbera Port (BBO) Hubs</span>
+      <span>✉️ <a href="url?id=0">info@airsellcargo.com</a></span>
+    </div>
+    <div>
+      <span>🕒 Mon–Sat: 8:00 AM – 6:00 PM EAT</span>
+    </div>
+  </div>
+</div>
+
+<!-- Main Header -->
+<header>
+  <div class="container header-flex">
+    <div class="logo">
+      <a href="https://airsellcargo.com/index.html">
+        <img src="logo.png" alt="Airsell Cargo Service Agent" width="180">
+      </a>
+    </div>
+    
+    <nav aria-label="Main Navigation">
+      <ul class="nav-links">
+        <li><a href="https://airsellcargo.com/index.html" class="active" aria-current="page">HOME</a></li>
+        <li><a href="https://airsellcargo.com/services.html">SERVICES</a></li>
+        <li><a href="https://airsellcargo.com/about.html">ABOUT US</a></li>
+        <li><a href="https://airsellcargo.com/tracking.html">TRACKING</a></li>
+        <li><a href="https://airsellcargo.com/contact.html">CONTACT</a></li>
+        <li><a href="url?id=6" class="btn-nav-cta">GET A QUOTE</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero-banner">
+  <div class="container">
+    <h1>Your Strategic Logistics & Gateway Partner in East Africa</h1>
+    <p>Seamlessly connecting international airline networks and global forwarders to regional markets through specialized ground handling at HGA and BBO hubs.</p>
+    <div class="hero-btns">
+      <a href="https://airsellcargo.com/quote.html" class="btn-primary">Calculate Freight Quote</a>
+      <a href="https://airsellcargo.com/tracking.html" class="btn-secondary">Track Your Shipment</a>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Metrics Strip -->
+<div class="metrics-strip">
+  <div class="container">
+    <div class="metrics-grid">
+      <div class="metric-item">
+        <strong>10,000+</strong>
+        <span>Shipments Handled</span>
       </div>
-      <div>
-        <span>🕒 Mon–Sat: 8:00 AM – 6:00 PM EAT</span>
+      <div class="metric-item">
+        <strong>99.2%</strong>
+        <span>On-Time Delivery</span>
+      </div>
+      <div class="metric-item">
+        <strong>15+</strong>
+        <span>Carrier & Forwarder Networks</span>
+      </div>
+      <div class="metric-item">
+        <strong>24/7</strong>
+        <span>Hub Terminal Operations</span>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Main Navigation -->
-  <header>
-    <div class="container header-flex">
-      <div class="logo">
-        <a href="index.html">
-          <img src="logo.png" alt="Airsell Cargo - Professional Freight Forwarding" width="180">
-        </a>
+<!-- Core Services & Partnership Section -->
+<div class="services-wrapper">
+  <div class="section-title">
+    <h2>Our Core Services & Operations</h2>
+    <p>Comprehensive supply chain solutions designed for reliable interline distribution and trade efficiency.</p>
+  </div>
+
+  <div class="services-grid">
+    
+    <!-- Service 1 -->
+    <div class="service-card">
+      <div>
+        <div class="icon">🚚</div>
+        <h2>Freight Cargo Services</h2>
+        <p>Port-to-door delivery, air cargo handling via HGA Airport, customs clearance, and global forwarding integrations.</p>
       </div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="tracking.html">Tracking</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="quote.html" class="btn-nav-cta">Get a Quote</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <h1>Fast, Reliable Global Logistics & Cargo Forwarding</h1>
-      <p>Connecting businesses with seamless Freight Cargo, Express Courier, and Secure Mail solutions backed by our hubs at Hargeisa Airport and Berbera Port.</p>
-      <div class="hero-actions">
-        <a href="quote.html" class="btn-hero-primary">Calculate Freight Quote</a>
-        <a href="tracking.html" class="btn-hero-secondary">Track Your Shipment</a>
+      <div>
+        <a href="https://airsellcargo.com/services.html" class="service-link">View Freight Services →</a>
       </div>
     </div>
-  </section>
 
-  <!-- Key Metrics Bar -->
-  <section class="stats-section">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item">
-          <div class="stat-number">10,000+</div>
-          <div class="stat-label">Shipments Handled</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">99.2%</div>
-          <div class="stat-label">On-Time Delivery</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">15+</div>
-          <div class="stat-label">Global Carrier Partners</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">24/7</div>
-          <div class="stat-label">Cargo Monitoring</div>
-        </div>
+    <!-- Service 2 -->
+    <div class="service-card">
+      <div>
+        <div class="icon">📦</div>
+        <h2>Courier Services</h2>
+        <p>Express parcel delivery with same-day and next-day options plus real-time milestone notifications.</p>
+      </div>
+      <div>
+        <a href="https://airsellcargo.com/services.html" class="service-link">View Courier Services →</a>
       </div>
     </div>
-  </section>
 
-  <!-- Core Services Pillars Preview -->
-  <section class="services-section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Our Core Services</h2>
-        <p>Comprehensive supply chain solutions tailored to your trade volume, delivery urgency, and documentation needs.</p>
+    <!-- Service 3 -->
+    <div class="service-card">
+      <div>
+        <div class="icon">✉️</div>
+        <h2>Mail Services</h2>
+        <p>Domestic and international mail handling, secure document delivery, and institutional bulk solutions.</p>
       </div>
-
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">🚚</div>
-          <h3>Freight Cargo Services</h3>
-          <p>Port-to-door delivery, air cargo handling via HGA Airport, customs clearance, and global forwarding.</p>
-          <a href="services.html" class="service-link">View Freight Services →</a>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">📦</div>
-          <h3>Courier Services</h3>
-          <p>Express parcel delivery with same-day and next-day options plus real-time milestone notifications.</p>
-          <a href="services.html" class="service-link">View Courier Services →</a>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">✉️</div>
-          <h3>Mail Services</h3>
-          <p>Domestic and international mail handling, secure document delivery, and institutional bulk solutions.</p>
-          <a href="services.html" class="service-link">View Mail Services →</a>
-        </div>
+      <div>
+        <a href="https://airsellcargo.com/services.html" class="service-link">View Mail Services →</a>
       </div>
     </div>
-  </section>
 
-  <!-- Site Footer -->
-  <footer>
-    <div class="container footer-grid">
-      <div class="footer-col">
-        <h4>Airsell Cargo</h4>
-        <p style="color: #94a3b8; font-size: 0.9rem;">Your trusted partner for end-to-end global supply chain management and regional logistics.</p>
-      </div>
-      <div class="footer-col">
-        <h4 style="color: #fff;">Navigation</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="quote.html">Get a Quote</a></li>
-          <li><a href="booking.html">Cargo Booking</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4 style="color: #fff;">Hub Locations</h4>
-        <p style="color: #94a3b8; margin: 0 0 6px; font-size: 0.88rem;">📍 Hargeisa Airport (HGA)</p>
-        <p style="color: #94a3b8; font-size: 0.88rem;">📍 Berbera Port (BBO)</p>
-      </div>
-      <div class="footer-col">
-        <h4 style="color: #fff;">Contact</h4>
-        <p style="color: #94a3b8; margin: 0 0 6px; font-size: 0.88rem;">✉️ info@airsellcargo.com</p>
-        <p style="color: #94a3b8; font-size: 0.88rem;">📞 +252 63 412 5763</p>
-      </div>
-      <div class="footer-col">
-        <h4 style="color: #fff;">Legal</h4>
-        <ul>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms of Service</a></li>
-        </ul>
-      </div>
+  </div>
+
+  <!-- Strategic Alliance Spotlight Banner -->
+  <div class="partnership-spotlight">
+    <div>
+      <h3>Looking for a Regional Operating Partner?</h3>
+      <p>We actively collaborate with international air carriers, global forwarders, and logistics operators seeking reliable, compliant terminal management across East Africa.</p>
     </div>
-    <div class="container footer-bottom">
-      © 2026 Airsell Cargo. All rights reserved.
+    <div>
+      <a href="https://airsellcargo.com/contact.html" class="btn-partnership">Explore Alliances</a>
     </div>
-  </footer>
+  </div>
+
+</div>
+
+<!-- Footer Section -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h3>Airsell Cargo</h3>
+      <p style="color: #94a3b8;">Strategic Logistics & Gateway Partner</p>
+      <p style="color: #64748b; font-size: 0.85rem;">© 2026 Airsell Cargo. All rights reserved.</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Navigation</h3>
+      <ul>
+        <li><a href="url?id=1">Home</a></li>
+        <li><a href="https://airsellcargo.com/services.html">Services</a></li>
+        <li><a href="https://airsellcargo.com/about.html">About Us</a></li>
+        <li><a href="url?id=6">Get a Quote</a></li>
+        <li><a href="https://airsellcargo.com/booking.html">Cargo Booking</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Hub Locations</h3>
+      <p style="color: #94a3b8; margin-bottom: 6px;">📍 Hargeisa Airport (HGA)</p>
+      <p style="color: #94a3b8;">📍 Berbera Port (BBO)</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <p style="color: #94a3b8; margin-bottom: 6px;">✉️ <a href="mailto:info@airsellcargo.com">info@airsellcargo.com</a></p>
+      <p style="color: #94a3b8;">📞 +252 63 412 5763</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="https://airsellcargo.com/privacy.html">Privacy Policy</a></li>
+        <li><a href="https://airsellcargo.com/terms.html">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
